@@ -41,7 +41,7 @@ function norm(s: string) {
   return s.trim().toLowerCase().replace(/[.!?,]/g, "");
 }
 
-export function Exam1({ onComplete }: { onComplete?: (score: number, total: number) => void }) {
+export function Exam2({ onComplete }: { onComplete?: (score: number, total: number) => void }) {
   // Shuffled English options for the match section (stable per mount)
   const enOptions = useMemo(() => {
     const arr = MATCH.map((m, i) => ({ i, en: m.en }));
