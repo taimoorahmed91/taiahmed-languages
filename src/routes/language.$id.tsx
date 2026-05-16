@@ -97,6 +97,21 @@ function LanguagePage() {
     setCompleted((prev) => new Set(prev).add(active));
   };
 
+  const markReset = () => {
+    setCompleted((prev) => {
+      if (!prev.has(active)) return prev;
+      const next = new Set(prev);
+      next.delete(active);
+      return next;
+    });
+    setStarted((prev) => {
+      if (!prev.has(active)) return prev;
+      const next = new Set(prev);
+      next.delete(active);
+      return next;
+    });
+  };
+
   const toggleTopic = (ti: number) => {
     setExpanded((prev) => {
       const next = new Set(prev);
@@ -249,6 +264,7 @@ function LanguagePage() {
                 label={current.type === "lesson" ? "Lesson" : "Exam"}
                 onStart={markStarted}
                 onEnd={markComplete}
+                onReset={markReset}
               />
               <div className="rounded-lg border border-dashed border-border bg-muted/30 p-10 text-center text-muted-foreground">
                 Placeholder content for{" "}
