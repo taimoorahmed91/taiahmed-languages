@@ -23,15 +23,30 @@ const LANG_META: Record<string, { name: string; flag: string }> = {
 };
 
 type Item = { type: "lesson" | "exam"; num: number; title: string };
+type Topic = { num: number; title: string; lesson: Item; exam: Item };
 
-const ITEMS: Item[] = [
-  { type: "lesson", num: 1, title: "Hello" },
-  { type: "exam", num: 1, title: "Greetings basics" },
-  { type: "lesson", num: 2, title: "Numbers" },
-  { type: "exam", num: 2, title: "Counting check" },
-  { type: "lesson", num: 3, title: "Common phrases" },
-  { type: "exam", num: 3, title: "Phrase quiz" },
+const TOPICS: Topic[] = [
+  {
+    num: 1,
+    title: "Hello",
+    lesson: { type: "lesson", num: 1, title: "Hello" },
+    exam: { type: "exam", num: 1, title: "Greetings basics" },
+  },
+  {
+    num: 2,
+    title: "Numbers",
+    lesson: { type: "lesson", num: 2, title: "Numbers" },
+    exam: { type: "exam", num: 2, title: "Counting check" },
+  },
+  {
+    num: 3,
+    title: "Common phrases",
+    lesson: { type: "lesson", num: 3, title: "Common phrases" },
+    exam: { type: "exam", num: 3, title: "Phrase quiz" },
+  },
 ];
+
+const ITEMS: Item[] = TOPICS.flatMap((t) => [t.lesson, t.exam]);
 
 function LanguagePage() {
   const { id } = Route.useParams();
@@ -80,54 +95,81 @@ function LanguagePage() {
               <p className="text-xs text-muted-foreground">Course outline</p>
             </div>
           </div>
-          <div className="mt-4">
-            <div className="flex items-center justify-between text-xs mb-1.5">
-              <span className="text-muted-foreground">Progress</span>
-              <span className="font-medium text-foreground">
-                {completed.size} / {ITEMS.length} completed
-              </span>
-            </div>
-            <div className="h-1.5 w-full rounded-full bg-muted overflow-hidden">
-              <div
-                className="h-full bg-emerald-500 transition-all"
-                style={{ width: `${(completed.size / ITEMS.length) * 100}%` }}
-              />
-            </div>
-          </div>
-        </div>
-        <nav className="flex-1 overflow-y-auto p-3 space-y-1">
-          {ITEMS.map((it, i) => {
-            const Icon = it.type === "lesson" ? BookOpen : GraduationCap;
-            const label = `${it.type === "lesson" ? "Lesson" : "Exam"} ${it.num}: ${it.title}`;
-            const isActive = i === active;
-            const isComplete = completed.has(i);
-            const isStarted = started.has(i) && !isComplete;
+          {(() => {
+            const topicsDone = TOPICS.filter(
+              (_, ti) => completed.has(ti * 2) && completed.has(ti * 2 + 1),
+            ).length;
             return (
-              <button
-                key={i}
-                onClick={() => setActive(i)}
-                className={`w-full flex items-center gap-3 px-3 py-2 rounded-md text-sm text-left transition-colors ${
-                  isActive
-                    ? "bg-primary text-primary-foreground"
-                    : "text-foreground hover:bg-muted"
-                }`}
-              >
-                <Icon className="w-4 h-4 shrink-0" />
-                <span className="truncate flex-1">{label}</span>
-                {isComplete && (
-                  <Check className="w-4 h-4 shrink-0 ml-auto text-emerald-500" />
-                )}
-                {isStarted && (
-                  <AlertTriangle className="w-4 h-4 shrink-0 ml-auto text-amber-500" />
-                )}
-                {!isComplete && !isStarted && (
-                  <span
-                    className={`w-2 h-2 rounded-full shrink-0 ml-auto ${
-                      isActive ? "bg-primary-foreground/40" : "bg-border"
-                    }`}
+              <div className="mt-4">
+                <div className="flex items-center justify-between text-xs mb-1.5">
+                  <span className="text-muted-foreground">Progress</span>
+                  <span className="font-medium text-foreground">
+                    {topicsDone} / {TOPICS.length} topics completed
+                  </span>
+                </div>
+                <div className="h-1.5 w-full rounded-full bg-muted overflow-hidden">
+                  <div
+                    className="h-full bg-emerald-500 transition-all"
+                    style={{ width: `${(topicsDone / TOPICS.length) * 100}%` }}
                   />
-                )}
-              </button>
+                </div>
+              </div>
+            );
+          })()}
+        </div>
+        <nav className="flex-1 overflow-y-auto p-3 space-y-4">
+          {TOPICS.map((topic, ti) => {
+            const lessonIdx = ti * 2;
+            const examIdx = ti * 2 + 1;
+            const topicDone =
+              completed.has(lessonIdx) && completed.has(examIdx);
+            return (
+              <div key={ti} className="space-y-1">
+                <div className="flex items-center justify-between px-2 mb-1">
+                  <span className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                    Lesson {topic.num}: {topic.title}
+                  </span>
+                  {topicDone && (
+                    <Check className="w-3.5 h-3.5 text-emerald-500" />
+                  )}
+                </div>
+                {[
+                  { item: topic.lesson, idx: lessonIdx, sub: "Learn" },
+                  { item: topic.exam, idx: examIdx, sub: "Exam" },
+                ].map(({ item, idx, sub }) => {
+                  const Icon = item.type === "lesson" ? BookOpen : GraduationCap;
+                  const isActive = idx === active;
+                  const isComplete = completed.has(idx);
+                  const isStarted = started.has(idx) && !isComplete;
+                  return (
+                    <button
+                      key={idx}
+                      onClick={() => setActive(idx)}
+                      className={`w-full flex items-center gap-3 pl-5 pr-3 py-2 rounded-md text-sm text-left transition-colors ${
+                        isActive
+                          ? "bg-primary text-primary-foreground"
+                          : "text-foreground hover:bg-muted"
+                      }`}
+                    >
+                      <Icon className="w-4 h-4 shrink-0" />
+                      <span className="truncate flex-1">{sub}</span>
+                      {isComplete && (
+                        <Check className="w-4 h-4 shrink-0 ml-auto text-emerald-500" />
+                      )}
+                      {isStarted && (
+                        <AlertTriangle className="w-4 h-4 shrink-0 ml-auto text-amber-500" />
+                      )}
+                      {!isComplete && !isStarted && (
+                        <span
+                          className={`w-2 h-2 rounded-full shrink-0 ml-auto ${
+                            isActive ? "bg-primary-foreground/40" : "bg-border"
+                          }`}
+                        />
+                      )}
+                    </button>
+                  );
+                })}
+              </div>
             );
           })}
         </nav>
