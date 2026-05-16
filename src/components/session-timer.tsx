@@ -15,10 +15,12 @@ type Status = "idle" | "running" | "paused" | "ended";
 export function SessionTimer({
   resetKey,
   label,
+  onStart,
   onEnd,
 }: {
   resetKey: string;
   label: string;
+  onStart?: () => void;
   onEnd?: () => void;
 }) {
   const [seconds, setSeconds] = useState(0);
