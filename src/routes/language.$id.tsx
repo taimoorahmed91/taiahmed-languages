@@ -20,8 +20,9 @@ import lesson2Data from "@/data/lesson2.json";
 import { Exam2 } from "@/components/exam2";
 
 type VocabGroup = { de: string; en: string; note: string; entries: { de: string; en: string; note: string }[] };
+type PhonGroup = { de: string; en: string; entries: { de: string; en: string; examples: { de: string; en: string }[] }[] };
 const LESSON1: VocabGroup[] = lesson1Data as VocabGroup[];
-const LESSON2: VocabGroup[] = lesson2Data as VocabGroup[];
+const LESSON2: PhonGroup[] = lesson2Data as PhonGroup[];
 
 function VocabContent({ data }: { data: VocabGroup[] }) {
   return (
@@ -38,6 +39,37 @@ function VocabContent({ data }: { data: VocabGroup[] }) {
                 <div className="col-span-4 font-medium text-foreground">{e.de}</div>
                 <div className="col-span-4 text-muted-foreground">{e.en}</div>
                 <div className="col-span-4 text-xs italic text-muted-foreground/80">{e.note}</div>
+              </div>
+            ))}
+          </div>
+        </section>
+      ))}
+    </div>
+  );
+}
+
+function PhoneticsContent({ data }: { data: PhonGroup[] }) {
+  return (
+    <div className="space-y-8">
+      {data.map((group, gi) => (
+        <section key={gi} className="rounded-lg border border-border bg-card overflow-hidden">
+          <header className="px-5 py-3 border-b border-border bg-muted/40">
+            <h2 className="font-semibold text-foreground">{group.de}</h2>
+            <p className="text-xs text-muted-foreground">{group.en}</p>
+          </header>
+          <div className="divide-y divide-border">
+            {group.entries.map((e, i) => (
+              <div key={i} className="grid grid-cols-12 gap-4 px-5 py-2.5 text-sm">
+                <div className="col-span-1 font-semibold text-foreground">{e.de}</div>
+                <div className="col-span-3 text-muted-foreground italic">{e.en}</div>
+                <div className="col-span-8 flex flex-wrap gap-x-6 gap-y-1">
+                  {e.examples.map((ex, j) => (
+                    <div key={j} className="text-foreground">
+                      <span className="font-medium">{ex.de}</span>
+                      <span className="text-muted-foreground"> — {ex.en}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
             ))}
           </div>
@@ -304,7 +336,7 @@ function LanguagePage() {
                 ) : id === "german" && current.type === "exam" && current.num === 1 ? (
                   <Exam1 onComplete={() => markComplete()} />
                 ) : id === "german" && current.type === "lesson" && current.num === 2 ? (
-                  <VocabContent data={LESSON2} />
+                  <PhoneticsContent data={LESSON2} />
                 ) : id === "german" && current.type === "exam" && current.num === 2 ? (
                   <Exam2 onComplete={() => markComplete()} />
                 ) : (
