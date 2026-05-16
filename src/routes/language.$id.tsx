@@ -80,6 +80,20 @@ function LanguagePage() {
               <p className="text-xs text-muted-foreground">Course outline</p>
             </div>
           </div>
+          <div className="mt-4">
+            <div className="flex items-center justify-between text-xs mb-1.5">
+              <span className="text-muted-foreground">Progress</span>
+              <span className="font-medium text-foreground">
+                {completed.size} / {ITEMS.length} completed
+              </span>
+            </div>
+            <div className="h-1.5 w-full rounded-full bg-muted overflow-hidden">
+              <div
+                className="h-full bg-emerald-500 transition-all"
+                style={{ width: `${(completed.size / ITEMS.length) * 100}%` }}
+              />
+            </div>
+          </div>
         </div>
         <nav className="flex-1 overflow-y-auto p-3 space-y-1">
           {ITEMS.map((it, i) => {
