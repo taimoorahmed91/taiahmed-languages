@@ -16,14 +16,17 @@ import { ThemeToggle } from "@/components/theme-toggle";
 import { SessionTimer } from "@/components/session-timer";
 import lesson1Data from "@/data/lesson1.json";
 import { Exam1 } from "@/components/exam1";
+import lesson2Data from "@/data/lesson2.json";
+import { Exam2 } from "@/components/exam2";
 
 type VocabGroup = { de: string; en: string; note: string; entries: { de: string; en: string; note: string }[] };
 const LESSON1: VocabGroup[] = lesson1Data as VocabGroup[];
+const LESSON2: VocabGroup[] = lesson2Data as VocabGroup[];
 
-function Lesson1Content() {
+function VocabContent({ data }: { data: VocabGroup[] }) {
   return (
     <div className="space-y-8">
-      {LESSON1.map((group, gi) => (
+      {data.map((group, gi) => (
         <section key={gi} className="rounded-lg border border-border bg-card overflow-hidden">
           <header className="px-5 py-3 border-b border-border bg-muted/40">
             <h2 className="font-semibold text-foreground">{group.de}</h2>
@@ -73,9 +76,9 @@ const TOPICS: Topic[] = [
   },
   {
     num: 2,
-    title: "Numbers",
-    lesson: { type: "lesson", num: 2, title: "Numbers" },
-    exam: { type: "exam", num: 2, title: "Counting check" },
+    title: "Pronunciation",
+    lesson: { type: "lesson", num: 2, title: "Pronunciation" },
+    exam: { type: "exam", num: 2, title: "Pronunciation check" },
   },
   {
     num: 3,
@@ -297,9 +300,13 @@ function LanguagePage() {
               />
               {started.has(active) ? (
                 id === "german" && current.type === "lesson" && current.num === 1 ? (
-                  <Lesson1Content />
+                  <VocabContent data={LESSON1} />
                 ) : id === "german" && current.type === "exam" && current.num === 1 ? (
                   <Exam1 onComplete={() => markComplete()} />
+                ) : id === "german" && current.type === "lesson" && current.num === 2 ? (
+                  <VocabContent data={LESSON2} />
+                ) : id === "german" && current.type === "exam" && current.num === 2 ? (
+                  <Exam2 onComplete={() => markComplete()} />
                 ) : (
                   <div className="rounded-lg border border-dashed border-border bg-muted/30 p-10 text-center text-muted-foreground">
                     Placeholder content for{" "}
