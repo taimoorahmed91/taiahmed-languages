@@ -15,6 +15,7 @@ import {
 import { ThemeToggle } from "@/components/theme-toggle";
 import { SessionTimer } from "@/components/session-timer";
 import lesson1Data from "@/data/lesson1.json";
+import { Exam1 } from "@/components/exam1";
 
 type VocabGroup = { de: string; en: string; note: string; entries: { de: string; en: string; note: string }[] };
 const LESSON1: VocabGroup[] = lesson1Data as VocabGroup[];
@@ -297,6 +298,8 @@ function LanguagePage() {
               {started.has(active) ? (
                 id === "german" && current.type === "lesson" && current.num === 1 ? (
                   <Lesson1Content />
+                ) : id === "german" && current.type === "exam" && current.num === 1 ? (
+                  <Exam1 onComplete={() => markComplete()} />
                 ) : (
                   <div className="rounded-lg border border-dashed border-border bg-muted/30 p-10 text-center text-muted-foreground">
                     Placeholder content for{" "}
