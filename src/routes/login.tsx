@@ -36,8 +36,11 @@ function LoginPage() {
     <div className="min-h-screen flex items-center justify-center bg-background px-4 relative">
       <ThemeToggle className="absolute top-4 right-4" />
       <Card className="w-full max-w-md p-8">
-        <h1 className="text-2xl font-bold text-foreground mb-1">Welcome back</h1>
-        <p className="text-sm text-muted-foreground mb-6">Sign in to continue learning.</p>
+        <div className="text-4xl mb-2">👋</div>
+        <h1 className="text-2xl font-bold text-foreground mb-1">Hello again!</h1>
+        <p className="text-sm text-muted-foreground mb-6">
+          Hallo · Hola · Bonjour — sign in and pick up where you left off.
+        </p>
         <form onSubmit={onSubmit} className="space-y-4">
           <div className="space-y-2">
             <Label htmlFor="email">Email</Label>

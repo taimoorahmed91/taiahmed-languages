@@ -4,6 +4,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { BookOpen, GraduationCap, ArrowLeft } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { SessionTimer } from "@/components/session-timer";
 
 export const Route = createFileRoute("/language/$id")({
   head: ({ params }) => ({
@@ -102,11 +103,15 @@ function LanguagePage() {
       </aside>
 
       <main className="flex-1 p-10">
-        <div className="max-w-2xl">
+        <div className="max-w-2xl space-y-6">
           <p className="text-sm text-muted-foreground uppercase tracking-wide">
             {current.type === "lesson" ? `Lesson ${current.num}` : `Exam ${current.num}`}
           </p>
-          <h1 className="text-4xl font-bold text-foreground mt-1 mb-4">{current.title}</h1>
+          <h1 className="text-4xl font-bold text-foreground -mt-4">{current.title}</h1>
+          <SessionTimer
+            resetKey={`${id}-${active}`}
+            label={current.type === "lesson" ? "Lesson" : "Exam"}
+          />
           <div className="rounded-lg border border-dashed border-border bg-muted/30 p-10 text-center text-muted-foreground">
             Placeholder content for{" "}
             <span className="text-foreground font-medium">{current.title}</span>. Real
