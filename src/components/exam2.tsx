@@ -7,27 +7,32 @@ type TfQ = { statement: string; answer: boolean; explain?: string };
 type FillQ = { prompt: string; answer: string; hint?: string };
 
 const MATCH: MatchQ[] = [
-  { de: "Guten Morgen.", en: "good morning" },
-  { de: "Gute Nacht.", en: "good night" },
-  { de: "Auf Wiedersehen!", en: "goodbye (in person)" },
-  { de: "Tschüß!", en: "bye (informal)" },
-  { de: "Bis bald!", en: "until soon" },
+  { de: "Apfel", en: "apple" },
+  { de: "Haus", en: "house" },
+  { de: "Mädchen", en: "girl" },
+  { de: "Schule", en: "school" },
+  { de: "Vogel", en: "bird" },
 ];
 
 const TF: TfQ[] = [
-  { statement: "“Grüß Gott” is commonly used in Bayern and Österreich.", answer: true },
-  { statement: "“Auf Wiederhören!” is typically used in person.", answer: false, explain: "It's used on the phone." },
-  { statement: "“Wie heißt du?” literally means “How are you called?”.", answer: true },
-  { statement: "“Mir geht es schlecht” means “I feel great”.", answer: false, explain: "It means “I feel bad”." },
-  { statement: "“Sie” forms (e.g. “Wie geht es Ihnen?”) are formal.", answer: true },
+  { statement: "The German letter “v” is usually pronounced like English “f”.", answer: true },
+  { statement: "The German letter “w” is pronounced like English “w”.", answer: false, explain: "It is pronounced like English “v”." },
+  { statement: "“s” at the start of a word is pronounced like English “z”.", answer: true },
+  { statement: "“j” in a German word is pronounced like English “j” in “jam”.", answer: false, explain: "It is pronounced like English “y”." },
+  { statement: "“sch” is pronounced like English “sh”.", answer: true },
+  { statement: "“ei” is pronounced like English “eye”.", answer: true },
+  { statement: "“ie” is pronounced like English “eye”.", answer: false, explain: "It is pronounced like “ee”." },
+  { statement: "“eu” is pronounced like English “oy”.", answer: true },
+  { statement: "The umlaut “ö” sounds the same as plain “o”.", answer: false, explain: "It is a different, rounded vowel (like “urr”)." },
+  { statement: "“z” is pronounced like English “ts”.", answer: true },
 ];
 
 const FILL: FillQ[] = [
-  { prompt: "Ich ___ Anna. (My name is Anna.)", answer: "heiße", hint: "verb for “to be called”" },
-  { prompt: "Ich komme ___ Polen.", answer: "aus" },
-  { prompt: "Ich ___ in München. (live)", answer: "wohne" },
-  { prompt: "Wie ___ bist du? (age question)", answer: "alt" },
-  { prompt: "Ich bin vierzig Jahre ___ .", answer: "alt" },
+  { prompt: "M___chen (girl) — fill the umlaut", answer: "ä", hint: "a-umlaut" },
+  { prompt: "sch___n (beautiful) — fill the umlaut", answer: "ö", hint: "o-umlaut" },
+  { prompt: "M___nchen (Munich) — fill the umlaut", answer: "ü", hint: "u-umlaut" },
+  { prompt: "The digraph for the “sh” sound is ___ .", answer: "sch" },
+  { prompt: "The digraph that sounds like English “oy” is ___ .", answer: "eu" },
 ];
 
 const TOTAL = MATCH.length + TF.length + FILL.length;
