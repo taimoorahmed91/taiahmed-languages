@@ -2,7 +2,7 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
-import { BookOpen, GraduationCap, ArrowLeft } from "lucide-react";
+import { BookOpen, GraduationCap, ArrowLeft, Check, AlertTriangle } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { SessionTimer } from "@/components/session-timer";
 
@@ -39,6 +39,7 @@ function LanguagePage() {
   const meta = LANG_META[id] ?? { name: cap(id), flag: "🌐" };
   const [authed, setAuthed] = useState<boolean | null>(null);
   const [active, setActive] = useState<number>(0);
+  const [started, setStarted] = useState<Set<number>>(new Set());
   const [completed, setCompleted] = useState<Set<number>>(new Set());
 
   useEffect(() => {
@@ -56,6 +57,10 @@ function LanguagePage() {
   if (authed === null) return <div className="min-h-screen flex items-center justify-center text-muted-foreground">Loading…</div>;
 
   const current = ITEMS[active];
+
+  const markStarted = () => {
+    setStarted((prev) => new Set(prev).add(active));
+  };
 
   const markComplete = () => {
     setCompleted((prev) => new Set(prev).add(active));
@@ -82,6 +87,7 @@ function LanguagePage() {
             const label = `${it.type === "lesson" ? "Lesson" : "Exam"} ${it.num}: ${it.title}`;
             const isActive = i === active;
             const isComplete = completed.has(i);
+            const isStarted = started.has(i) && !isComplete;
             return (
               <button
                 key={i}
@@ -94,16 +100,19 @@ function LanguagePage() {
               >
                 <Icon className="w-4 h-4 shrink-0" />
                 <span className="truncate flex-1">{label}</span>
-                <span
-                  className={`w-2.5 h-2.5 rounded-full shrink-0 ml-auto ${
-                    isComplete
-                      ? "bg-emerald-500"
-                      : isActive
-                        ? "bg-primary-foreground/40"
-                        : "bg-border"
-                  }`}
-                  title={isComplete ? "Completed" : "Not completed"}
-                />
+                {isComplete && (
+                  <Check className="w-4 h-4 shrink-0 ml-auto text-emerald-500" />
+                )}
+                {isStarted && (
+                  <AlertTriangle className="w-4 h-4 shrink-0 ml-auto text-amber-500" />
+                )}
+                {!isComplete && !isStarted && (
+                  <span
+                    className={`w-2 h-2 rounded-full shrink-0 ml-auto ${
+                      isActive ? "bg-primary-foreground/40" : "bg-border"
+                    }`}
+                  />
+                )}
               </button>
             );
           })}
@@ -127,6 +136,7 @@ function LanguagePage() {
           <SessionTimer
             resetKey={`${id}-${active}`}
             label={current.type === "lesson" ? "Lesson" : "Exam"}
+            onStart={markStarted}
             onEnd={markComplete}
           />
           <div className="rounded-lg border border-dashed border-border bg-muted/30 p-10 text-center text-muted-foreground">
