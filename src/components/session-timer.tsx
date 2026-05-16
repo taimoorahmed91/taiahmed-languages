@@ -12,7 +12,15 @@ function fmt(s: number) {
 
 type Status = "idle" | "running" | "paused" | "ended";
 
-export function SessionTimer({ resetKey, label }: { resetKey: string; label: string }) {
+export function SessionTimer({
+  resetKey,
+  label,
+  onEnd,
+}: {
+  resetKey: string;
+  label: string;
+  onEnd?: () => void;
+}) {
   const [seconds, setSeconds] = useState(0);
   const [status, setStatus] = useState<Status>("idle");
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
