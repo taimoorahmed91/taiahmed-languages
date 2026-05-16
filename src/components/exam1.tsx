@@ -3,8 +3,8 @@ import { Button } from "@/components/ui/button";
 import { Check, X } from "lucide-react";
 
 type MatchQ = { de: string; en: string };
-type TfQ = { statement: string; answer: boolean; explain?: string };
-type FillQ = { prompt: string; answer: string; hint?: string };
+type TfQ = { de: string; statement: string; answer: boolean; explain?: string };
+type FillQ = { de: string; prompt: string; answer: string; hint?: string };
 
 const MATCH: MatchQ[] = [
   { de: "Guten Morgen.", en: "good morning" },
@@ -15,19 +15,19 @@ const MATCH: MatchQ[] = [
 ];
 
 const TF: TfQ[] = [
-  { statement: "“Grüß Gott” is commonly used in Bayern and Österreich.", answer: true },
-  { statement: "“Auf Wiederhören!” is typically used in person.", answer: false, explain: "It's used on the phone." },
-  { statement: "“Wie heißt du?” literally means “How are you called?”.", answer: true },
-  { statement: "“Mir geht es schlecht” means “I feel great”.", answer: false, explain: "It means “I feel bad”." },
-  { statement: "“Sie” forms (e.g. “Wie geht es Ihnen?”) are formal.", answer: true },
+  { de: "„Grüß Gott“ wird in Bayern und Österreich häufig benutzt.", statement: "“Grüß Gott” is commonly used in Bayern and Österreich.", answer: true },
+  { de: "„Auf Wiederhören!“ benutzt man typischerweise persönlich.", statement: "“Auf Wiederhören!” is typically used in person.", answer: false, explain: "It's used on the phone." },
+  { de: "„Wie heißt du?“ bedeutet wörtlich „How are you called?“.", statement: "“Wie heißt du?” literally means “How are you called?”.", answer: true },
+  { de: "„Mir geht es schlecht“ bedeutet „I feel great“.", statement: "“Mir geht es schlecht” means “I feel great”.", answer: false, explain: "It means “I feel bad”." },
+  { de: "„Sie“-Formen (z. B. „Wie geht es Ihnen?“) sind formell.", statement: "“Sie” forms (e.g. “Wie geht es Ihnen?”) are formal.", answer: true },
 ];
 
 const FILL: FillQ[] = [
-  { prompt: "Ich ___ Anna. (My name is Anna.)", answer: "heiße", hint: "verb for “to be called”" },
-  { prompt: "Ich komme ___ Polen.", answer: "aus" },
-  { prompt: "Ich ___ in München. (live)", answer: "wohne" },
-  { prompt: "Wie ___ bist du? (age question)", answer: "alt" },
-  { prompt: "Ich bin vierzig Jahre ___ .", answer: "alt" },
+  { de: "Ich ___ Anna.", prompt: "(My name is Anna.)", answer: "heiße", hint: "verb for “to be called”" },
+  { de: "Ich komme ___ Polen.", prompt: "(I come from Poland.)", answer: "aus" },
+  { de: "Ich ___ in München.", prompt: "(I live in Munich.)", answer: "wohne" },
+  { de: "Wie ___ bist du?", prompt: "(How old are you?)", answer: "alt" },
+  { de: "Ich bin vierzig Jahre ___ .", prompt: "(I am forty years old.)", answer: "alt" },
 ];
 
 const TOTAL = MATCH.length + TF.length + FILL.length;
