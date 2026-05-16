@@ -87,6 +87,7 @@ function LanguagePage() {
             const label = `${it.type === "lesson" ? "Lesson" : "Exam"} ${it.num}: ${it.title}`;
             const isActive = i === active;
             const isComplete = completed.has(i);
+            const isStarted = started.has(i) && !isComplete;
             return (
               <button
                 key={i}
@@ -99,16 +100,19 @@ function LanguagePage() {
               >
                 <Icon className="w-4 h-4 shrink-0" />
                 <span className="truncate flex-1">{label}</span>
-                <span
-                  className={`w-2.5 h-2.5 rounded-full shrink-0 ml-auto ${
-                    isComplete
-                      ? "bg-emerald-500"
-                      : isActive
-                        ? "bg-primary-foreground/40"
-                        : "bg-border"
-                  }`}
-                  title={isComplete ? "Completed" : "Not completed"}
-                />
+                {isComplete && (
+                  <Check className="w-4 h-4 shrink-0 ml-auto text-emerald-500" />
+                )}
+                {isStarted && (
+                  <AlertTriangle className="w-4 h-4 shrink-0 ml-auto text-amber-500" />
+                )}
+                {!isComplete && !isStarted && (
+                  <span
+                    className={`w-2 h-2 rounded-full shrink-0 ml-auto ${
+                      isActive ? "bg-primary-foreground/40" : "bg-border"
+                    }`}
+                  />
+                )}
               </button>
             );
           })}
