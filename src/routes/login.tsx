@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card } from "@/components/ui/card";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 export const Route = createFileRoute("/login")({
   head: () => ({ meta: [{ title: "Sign in — Lingua" }] }),
@@ -32,7 +33,8 @@ function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background px-4">
+    <div className="min-h-screen flex items-center justify-center bg-background px-4 relative">
+      <ThemeToggle className="absolute top-4 right-4" />
       <Card className="w-full max-w-md p-8">
         <h1 className="text-2xl font-bold text-foreground mb-1">Welcome back</h1>
         <p className="text-sm text-muted-foreground mb-6">Sign in to continue learning.</p>

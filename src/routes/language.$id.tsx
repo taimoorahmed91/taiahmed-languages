@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { BookOpen, GraduationCap, ArrowLeft } from "lucide-react";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 export const Route = createFileRoute("/language/$id")({
   head: ({ params }) => ({
@@ -91,9 +92,12 @@ function LanguagePage() {
           })}
         </nav>
         <div className="p-3 border-t border-border">
-          <Button variant="ghost" size="sm" className="w-full" onClick={() => supabase.auth.signOut()}>
-            Sign out
-          </Button>
+          <div className="flex items-center justify-between">
+            <Button variant="ghost" size="sm" onClick={() => supabase.auth.signOut()}>
+              Sign out
+            </Button>
+            <ThemeToggle />
+          </div>
         </div>
       </aside>
 
