@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -46,6 +47,7 @@ function Index() {
           <h1 className="text-xl font-bold text-foreground">Lingua</h1>
           <div className="flex items-center gap-3 text-sm">
             <span className="text-muted-foreground hidden sm:inline">{email}</span>
+            <ThemeToggle />
             <Button variant="ghost" size="sm" onClick={() => supabase.auth.signOut()}>Sign out</Button>
           </div>
         </div>
