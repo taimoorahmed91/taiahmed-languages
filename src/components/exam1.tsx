@@ -137,7 +137,10 @@ export function Exam1({ onComplete }: { onComplete?: (score: number, total: numb
             return (
               <div key={i} className="px-5 py-3 text-sm space-y-2">
                 <div className="flex items-start gap-3">
-                  <p className="flex-1 text-foreground">{i + 1}. {q.statement}</p>
+                  <div className="flex-1">
+                    <p className="text-foreground">{i + 1}. {q.de}</p>
+                    <p className="text-xs text-muted-foreground mt-0.5">{q.statement}</p>
+                  </div>
                   {correct && <Check className="w-4 h-4 text-emerald-500 shrink-0 mt-1" />}
                   {wrong && <X className="w-4 h-4 text-rose-500 shrink-0 mt-1" />}
                 </div>
@@ -178,7 +181,10 @@ export function Exam1({ onComplete }: { onComplete?: (score: number, total: numb
             const wrong = submitted && !correct;
             return (
               <div key={i} className="grid grid-cols-12 gap-4 items-center px-5 py-3 text-sm">
-                <div className="col-span-7 text-foreground">{i + 1}. {q.prompt}</div>
+                <div className="col-span-7">
+                  <p className="text-foreground">{i + 1}. {q.de}</p>
+                  <p className="text-xs text-muted-foreground mt-0.5">{q.prompt}</p>
+                </div>
                 <div className="col-span-4">
                   <input
                     disabled={submitted}
