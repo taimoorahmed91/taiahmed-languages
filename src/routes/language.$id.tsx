@@ -39,6 +39,7 @@ function LanguagePage() {
   const meta = LANG_META[id] ?? { name: cap(id), flag: "🌐" };
   const [authed, setAuthed] = useState<boolean | null>(null);
   const [active, setActive] = useState<number>(0);
+  const [started, setStarted] = useState<Set<number>>(new Set());
   const [completed, setCompleted] = useState<Set<number>>(new Set());
 
   useEffect(() => {
@@ -56,6 +57,10 @@ function LanguagePage() {
   if (authed === null) return <div className="min-h-screen flex items-center justify-center text-muted-foreground">Loading…</div>;
 
   const current = ITEMS[active];
+
+  const markStarted = () => {
+    setStarted((prev) => new Set(prev).add(active));
+  };
 
   const markComplete = () => {
     setCompleted((prev) => new Set(prev).add(active));
