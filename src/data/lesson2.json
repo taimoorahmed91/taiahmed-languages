@@ -2,973 +2,883 @@
   {
     "de": "die Vokale",
     "en": "Vowels",
-    "note": "",
     "entries": [
       {
         "de": "a",
         "en": "ah",
-        "note": "pronunciation"
+        "examples": []
       },
       {
         "de": "e",
         "en": "ay",
-        "note": "pronunciation"
+        "examples": []
       },
       {
         "de": "i",
         "en": "ee",
-        "note": "pronunciation"
+        "examples": []
       },
       {
         "de": "o",
         "en": "oh",
-        "note": "pronunciation"
+        "examples": []
       },
       {
         "de": "u",
         "en": "oo",
-        "note": "pronunciation"
+        "examples": []
       }
     ]
   },
   {
     "de": "das Alphabet",
     "en": "Alphabet",
-    "note": "",
     "entries": [
       {
         "de": "a",
         "en": "ah",
-        "note": "pronunciation"
-      },
-      {
-        "de": "Apfel",
-        "en": "apple",
-        "note": "example"
-      },
-      {
-        "de": "Atlas",
-        "en": "atlas",
-        "note": "example (a)"
-      },
-      {
-        "de": "Abend",
-        "en": "evening",
-        "note": "example (a)"
+        "examples": [
+          {
+            "de": "Apfel",
+            "en": "apple"
+          },
+          {
+            "de": "Atlas",
+            "en": "atlas"
+          },
+          {
+            "de": "Abend",
+            "en": "evening"
+          }
+        ]
       },
       {
         "de": "b",
         "en": "bay",
-        "note": "pronunciation"
-      },
-      {
-        "de": "Banane",
-        "en": "banana",
-        "note": "example"
-      },
-      {
-        "de": "Baum",
-        "en": "tree",
-        "note": "example (b)"
-      },
-      {
-        "de": "Bruder",
-        "en": "brother",
-        "note": "example (b)"
+        "examples": [
+          {
+            "de": "Banane",
+            "en": "banana"
+          },
+          {
+            "de": "Baum",
+            "en": "tree"
+          },
+          {
+            "de": "Bruder",
+            "en": "brother"
+          }
+        ]
       },
       {
         "de": "c",
         "en": "tsay",
-        "note": "pronunciation"
-      },
-      {
-        "de": "Chef",
-        "en": "boss, manager (not \"cook\")",
-        "note": "example"
-      },
-      {
-        "de": "Café",
-        "en": "café",
-        "note": "example (c)"
-      },
-      {
-        "de": "Cent",
-        "en": "cent",
-        "note": "example (c)"
+        "examples": [
+          {
+            "de": "Chef",
+            "en": "boss, manager (not \"cook\")"
+          },
+          {
+            "de": "Café",
+            "en": "café"
+          },
+          {
+            "de": "Cent",
+            "en": "cent"
+          }
+        ]
       },
       {
         "de": "d",
         "en": "day",
-        "note": "pronunciation"
-      },
-      {
-        "de": "danke",
-        "en": "thanks",
-        "note": "example"
-      },
-      {
-        "de": "Deutschland",
-        "en": "Germany",
-        "note": "example (d)"
-      },
-      {
-        "de": "Dusche",
-        "en": "shower",
-        "note": "example (d)"
+        "examples": [
+          {
+            "de": "danke",
+            "en": "thanks"
+          },
+          {
+            "de": "Deutschland",
+            "en": "Germany"
+          },
+          {
+            "de": "Dusche",
+            "en": "shower"
+          }
+        ]
       },
       {
         "de": "e",
         "en": "ay",
-        "note": "pronunciation"
-      },
-      {
-        "de": "Ente",
-        "en": "duck",
-        "note": "example"
-      },
-      {
-        "de": "Erde",
-        "en": "Earth or soil",
-        "note": "example (e)"
-      },
-      {
-        "de": "essen",
-        "en": "to eat (if \"Essen\", then \"food\")",
-        "note": "example (e)"
+        "examples": [
+          {
+            "de": "Ente",
+            "en": "duck"
+          },
+          {
+            "de": "Erde",
+            "en": "Earth or soil"
+          },
+          {
+            "de": "essen",
+            "en": "to eat (if \"Essen\", then \"food\")"
+          }
+        ]
       },
       {
         "de": "f",
         "en": "eff",
-        "note": "pronunciation"
-      },
-      {
-        "de": "Frau",
-        "en": "woman",
-        "note": "example"
-      },
-      {
-        "de": "Farbe",
-        "en": "color",
-        "note": "example (f)"
-      },
-      {
-        "de": "Familie",
-        "en": "family",
-        "note": "example (f)"
+        "examples": [
+          {
+            "de": "Frau",
+            "en": "woman"
+          },
+          {
+            "de": "Farbe",
+            "en": "color"
+          },
+          {
+            "de": "Familie",
+            "en": "family"
+          }
+        ]
       },
       {
         "de": "g",
         "en": "gay",
-        "note": "pronunciation"
-      },
-      {
-        "de": "Gitarre",
-        "en": "guitar",
-        "note": "example"
-      },
-      {
-        "de": "Gebäude",
-        "en": "building",
-        "note": "example (g)"
-      },
-      {
-        "de": "Garten",
-        "en": "garden",
-        "note": "example (g)"
+        "examples": [
+          {
+            "de": "Gitarre",
+            "en": "guitar"
+          },
+          {
+            "de": "Gebäude",
+            "en": "building"
+          },
+          {
+            "de": "Garten",
+            "en": "garden"
+          }
+        ]
       },
       {
         "de": "h",
         "en": "hah",
-        "note": "pronunciation"
-      },
-      {
-        "de": "Haus",
-        "en": "house",
-        "note": "example"
-      },
-      {
-        "de": "Herz",
-        "en": "heart",
-        "note": "example (h)"
-      },
-      {
-        "de": "Hand",
-        "en": "hand",
-        "note": "example (h)"
+        "examples": [
+          {
+            "de": "Haus",
+            "en": "house"
+          },
+          {
+            "de": "Herz",
+            "en": "heart"
+          },
+          {
+            "de": "Hand",
+            "en": "hand"
+          }
+        ]
       },
       {
         "de": "i",
         "en": "ee",
-        "note": "pronunciation"
-      },
-      {
-        "de": "Igel",
-        "en": "hedgehog (not \"eagle\")",
-        "note": "example"
-      },
-      {
-        "de": "Idee",
-        "en": "idea",
-        "note": "example (i)"
-      },
-      {
-        "de": "Information",
-        "en": "information",
-        "note": "example (i)"
+        "examples": [
+          {
+            "de": "Igel",
+            "en": "hedgehog (not \"eagle\")"
+          },
+          {
+            "de": "Idee",
+            "en": "idea"
+          },
+          {
+            "de": "Information",
+            "en": "information"
+          }
+        ]
       },
       {
         "de": "j",
         "en": "yoot (short!, like \"soot\") / in word: like \"y\"",
-        "note": "pronunciation"
-      },
-      {
-        "de": "Joghurt",
-        "en": "yoghurt",
-        "note": "example"
-      },
-      {
-        "de": "Jahr",
-        "en": "year",
-        "note": "example (j)"
-      },
-      {
-        "de": "Junge",
-        "en": "boy",
-        "note": "example (j)"
+        "examples": [
+          {
+            "de": "Joghurt",
+            "en": "yoghurt"
+          },
+          {
+            "de": "Jahr",
+            "en": "year"
+          },
+          {
+            "de": "Junge",
+            "en": "boy"
+          }
+        ]
       },
       {
         "de": "k",
         "en": "kah",
-        "note": "pronunciation"
-      },
-      {
-        "de": "Kaffee",
-        "en": "coffee",
-        "note": "example"
-      },
-      {
-        "de": "Küche",
-        "en": "kitchen",
-        "note": "example (k)"
-      },
-      {
-        "de": "Kind",
-        "en": "child",
-        "note": "example (k)"
+        "examples": [
+          {
+            "de": "Kaffee",
+            "en": "coffee"
+          },
+          {
+            "de": "Küche",
+            "en": "kitchen"
+          },
+          {
+            "de": "Kind",
+            "en": "child"
+          }
+        ]
       },
       {
         "de": "l",
         "en": "ell",
-        "note": "pronunciation"
-      },
-      {
-        "de": "Liebe",
-        "en": "love",
-        "note": "example"
-      },
-      {
-        "de": "Löwe",
-        "en": "lion",
-        "note": "example (l)"
-      },
-      {
-        "de": "Leben",
-        "en": "life",
-        "note": "example (l)"
+        "examples": [
+          {
+            "de": "Liebe",
+            "en": "love"
+          },
+          {
+            "de": "Löwe",
+            "en": "lion"
+          },
+          {
+            "de": "Leben",
+            "en": "life"
+          }
+        ]
       },
       {
         "de": "m",
         "en": "emm",
-        "note": "pronunciation"
-      },
-      {
-        "de": "Mensch",
-        "en": "human or person",
-        "note": "example"
-      },
-      {
-        "de": "Mond",
-        "en": "moon",
-        "note": "example (m)"
-      },
-      {
-        "de": "Milch",
-        "en": "milk",
-        "note": "example (m)"
+        "examples": [
+          {
+            "de": "Mensch",
+            "en": "human or person"
+          },
+          {
+            "de": "Mond",
+            "en": "moon"
+          },
+          {
+            "de": "Milch",
+            "en": "milk"
+          }
+        ]
       },
       {
         "de": "n",
         "en": "enn",
-        "note": "pronunciation"
-      },
-      {
-        "de": "Nagel",
-        "en": "nail",
-        "note": "example"
-      },
-      {
-        "de": "Nummer",
-        "en": "number",
-        "note": "example (n)"
-      },
-      {
-        "de": "Nacht",
-        "en": "night",
-        "note": "example (n)"
+        "examples": [
+          {
+            "de": "Nagel",
+            "en": "nail"
+          },
+          {
+            "de": "Nummer",
+            "en": "number"
+          },
+          {
+            "de": "Nacht",
+            "en": "night"
+          }
+        ]
       },
       {
         "de": "o",
         "en": "oh",
-        "note": "pronunciation"
-      },
-      {
-        "de": "Orange",
-        "en": "orange",
-        "note": "example"
-      },
-      {
-        "de": "Oma",
-        "en": "grandmother",
-        "note": "example (o)"
-      },
-      {
-        "de": "Ohr",
-        "en": "ear",
-        "note": "example (o)"
+        "examples": [
+          {
+            "de": "Orange",
+            "en": "orange"
+          },
+          {
+            "de": "Oma",
+            "en": "grandmother"
+          },
+          {
+            "de": "Ohr",
+            "en": "ear"
+          }
+        ]
       },
       {
         "de": "p",
         "en": "pay",
-        "note": "pronunciation"
-      },
-      {
-        "de": "Pinguin",
-        "en": "penguin",
-        "note": "example"
-      },
-      {
-        "de": "Pilz",
-        "en": "mushroom",
-        "note": "example (p)"
-      },
-      {
-        "de": "Preis",
-        "en": "price or prize",
-        "note": "example (p)"
+        "examples": [
+          {
+            "de": "Pinguin",
+            "en": "penguin"
+          },
+          {
+            "de": "Pilz",
+            "en": "mushroom"
+          },
+          {
+            "de": "Preis",
+            "en": "price or prize"
+          }
+        ]
       },
       {
         "de": "q",
         "en": "koo",
-        "note": "pronunciation"
-      },
-      {
-        "de": "Qualität",
-        "en": "quality",
-        "note": "example"
-      },
-      {
-        "de": "Quark",
-        "en": "quark (dairy product)",
-        "note": "example (q)"
-      },
-      {
-        "de": "Quelle",
-        "en": "source or spring",
-        "note": "example (q)"
+        "examples": [
+          {
+            "de": "Qualität",
+            "en": "quality"
+          },
+          {
+            "de": "Quark",
+            "en": "quark (dairy product)"
+          },
+          {
+            "de": "Quelle",
+            "en": "source or spring"
+          }
+        ]
       },
       {
         "de": "r",
         "en": "air / in word: trilled",
-        "note": "pronunciation"
-      },
-      {
-        "de": "rot",
-        "en": "red",
-        "note": "example"
-      },
-      {
-        "de": "Rock",
-        "en": "skirt or rock music",
-        "note": "example (r)"
-      },
-      {
-        "de": "Reise",
-        "en": "journey or trip",
-        "note": "example (r)"
+        "examples": [
+          {
+            "de": "rot",
+            "en": "red"
+          },
+          {
+            "de": "Rock",
+            "en": "skirt or rock music"
+          },
+          {
+            "de": "Reise",
+            "en": "journey or trip"
+          }
+        ]
       },
       {
         "de": "s",
         "en": "ess / in word: like \"z\"",
-        "note": "pronunciation"
-      },
-      {
-        "de": "Sonne",
-        "en": "sun",
-        "note": "example"
-      },
-      {
-        "de": "Stuhl",
-        "en": "stool, chair, seat",
-        "note": "example (s)"
-      },
-      {
-        "de": "Salat",
-        "en": "salad",
-        "note": "example (s)"
+        "examples": [
+          {
+            "de": "Sonne",
+            "en": "sun"
+          },
+          {
+            "de": "Stuhl",
+            "en": "stool, chair, seat"
+          },
+          {
+            "de": "Salat",
+            "en": "salad"
+          }
+        ]
       },
       {
         "de": "t",
         "en": "tay",
-        "note": "pronunciation"
-      },
-      {
-        "de": "Tee",
-        "en": "tea",
-        "note": "example"
-      },
-      {
-        "de": "Tür",
-        "en": "door",
-        "note": "example (t)"
-      },
-      {
-        "de": "Tische",
-        "en": "tables",
-        "note": "example (t)"
+        "examples": [
+          {
+            "de": "Tee",
+            "en": "tea"
+          },
+          {
+            "de": "Tür",
+            "en": "door"
+          },
+          {
+            "de": "Tische",
+            "en": "tables"
+          }
+        ]
       },
       {
         "de": "u",
         "en": "oo / (in word: short!)",
-        "note": "pronunciation"
-      },
-      {
-        "de": "Uhr",
-        "en": "clock",
-        "note": "example"
-      },
-      {
-        "de": "Unterricht",
-        "en": "lesson or instruction (class)",
-        "note": "example (u)"
-      },
-      {
-        "de": "Umwelt",
-        "en": "environment",
-        "note": "example (u)"
+        "examples": [
+          {
+            "de": "Uhr",
+            "en": "clock"
+          },
+          {
+            "de": "Unterricht",
+            "en": "lesson or instruction (class)"
+          },
+          {
+            "de": "Umwelt",
+            "en": "environment"
+          }
+        ]
       },
       {
         "de": "v",
         "en": "fow (like \"pow\") / in word: like \"f\"",
-        "note": "pronunciation"
-      },
-      {
-        "de": "Vogel",
-        "en": "bird",
-        "note": "example"
-      },
-      {
-        "de": "Verkehr",
-        "en": "traffic",
-        "note": "example (v)"
-      },
-      {
-        "de": "Vater",
-        "en": "father",
-        "note": "example (v)"
+        "examples": [
+          {
+            "de": "Vogel",
+            "en": "bird"
+          },
+          {
+            "de": "Verkehr",
+            "en": "traffic"
+          },
+          {
+            "de": "Vater",
+            "en": "father"
+          }
+        ]
       },
       {
         "de": "w",
         "en": "vay",
-        "note": "pronunciation"
-      },
-      {
-        "de": "Wolke",
-        "en": "cloud",
-        "note": "example"
-      },
-      {
-        "de": "Wasser",
-        "en": "water",
-        "note": "example (w)"
-      },
-      {
-        "de": "Woche",
-        "en": "week",
-        "note": "example (w)"
+        "examples": [
+          {
+            "de": "Wolke",
+            "en": "cloud"
+          },
+          {
+            "de": "Wasser",
+            "en": "water"
+          },
+          {
+            "de": "Woche",
+            "en": "week"
+          }
+        ]
       },
       {
         "de": "x",
         "en": "icks",
-        "note": "pronunciation"
-      },
-      {
-        "de": "Xenophobie",
-        "en": "xenophobia",
-        "note": "example"
-      },
-      {
-        "de": "Xenon",
-        "en": "xenon (chemical)",
-        "note": "example (x)"
-      },
-      {
-        "de": "Xylophon",
-        "en": "xylophone",
-        "note": "example (x)"
+        "examples": [
+          {
+            "de": "Xenophobie",
+            "en": "xenophobia"
+          },
+          {
+            "de": "Xenon",
+            "en": "xenon (chemical)"
+          },
+          {
+            "de": "Xylophon",
+            "en": "xylophone"
+          }
+        ]
       },
       {
         "de": "y",
         "en": "ip-suh-lon (but \"ip\" is almost like \"eep\")",
-        "note": "pronunciation"
-      },
-      {
-        "de": "Yoga",
-        "en": "yoga",
-        "note": "example"
-      },
-      {
-        "de": "Yoghurt",
-        "en": "yogurt",
-        "note": "example (y)"
-      },
-      {
-        "de": "Yacht",
-        "en": "yacht",
-        "note": "example (y)"
+        "examples": [
+          {
+            "de": "Yoga",
+            "en": "yoga"
+          },
+          {
+            "de": "Yoghurt",
+            "en": "yogurt"
+          },
+          {
+            "de": "Yacht",
+            "en": "yacht"
+          }
+        ]
       },
       {
         "de": "z",
         "en": "tsett",
-        "note": "pronunciation"
-      },
-      {
-        "de": "Zebra",
-        "en": "zebra",
-        "note": "example"
-      },
-      {
-        "de": "Zimmer",
-        "en": "room",
-        "note": "example (z)"
-      },
-      {
-        "de": "Zucker",
-        "en": "sugar",
-        "note": "example (z)"
+        "examples": [
+          {
+            "de": "Zebra",
+            "en": "zebra"
+          },
+          {
+            "de": "Zimmer",
+            "en": "room"
+          },
+          {
+            "de": "Zucker",
+            "en": "sugar"
+          }
+        ]
       }
     ]
   },
   {
     "de": "der Umlaut",
     "en": "Mutated Vowel",
-    "note": "",
     "entries": [
       {
         "de": "ä",
         "en": "(ae)  aeh",
-        "note": "pronunciation"
-      },
-      {
-        "de": "Bär",
-        "en": "bear",
-        "note": "example"
-      },
-      {
-        "de": "Mädchen",
-        "en": "girl",
-        "note": "example (ä)"
-      },
-      {
-        "de": "Zähne",
-        "en": "teeth",
-        "note": "example (ä)"
+        "examples": [
+          {
+            "de": "Bär",
+            "en": "bear"
+          },
+          {
+            "de": "Mädchen",
+            "en": "girl"
+          },
+          {
+            "de": "Zähne",
+            "en": "teeth"
+          }
+        ]
       },
       {
         "de": "ö",
         "en": "(oe)  urr",
-        "note": "pronunciation"
-      },
-      {
-        "de": "schön",
-        "en": "beautiful",
-        "note": "example"
-      },
-      {
-        "de": "Größe",
-        "en": "size or greatness",
-        "note": "example (ö)"
-      },
-      {
-        "de": "hören",
-        "en": "to hear",
-        "note": "example (ö)"
+        "examples": [
+          {
+            "de": "schön",
+            "en": "beautiful"
+          },
+          {
+            "de": "Größe",
+            "en": "size or greatness"
+          },
+          {
+            "de": "hören",
+            "en": "to hear"
+          }
+        ]
       },
       {
         "de": "ü",
         "en": "(ue) eeh (heavy, sort of)",
-        "note": "pronunciation"
-      },
-      {
-        "de": "Übelkeit",
-        "en": "nausea",
-        "note": "example"
-      },
-      {
-        "de": "früh",
-        "en": "early",
-        "note": "example (ü)"
-      },
-      {
-        "de": "München",
-        "en": "Munich",
-        "note": "example (ü)"
+        "examples": [
+          {
+            "de": "Übelkeit",
+            "en": "nausea"
+          },
+          {
+            "de": "früh",
+            "en": "early"
+          },
+          {
+            "de": "München",
+            "en": "Munich"
+          }
+        ]
       }
     ]
   },
   {
     "de": "der Diphthong",
     "en": "Diphthong",
-    "note": "",
     "entries": [
       {
         "de": "ai",
         "en": "eye",
-        "note": "pronunciation"
-      },
-      {
-        "de": "Mai",
-        "en": "May",
-        "note": "example"
-      },
-      {
-        "de": "Mais",
-        "en": "corn",
-        "note": "example (ai)"
-      },
-      {
-        "de": "Kaiser",
-        "en": "emperor",
-        "note": "example (ai)"
+        "examples": [
+          {
+            "de": "Mai",
+            "en": "May"
+          },
+          {
+            "de": "Mais",
+            "en": "corn"
+          },
+          {
+            "de": "Kaiser",
+            "en": "emperor"
+          }
+        ]
       },
       {
         "de": "ao",
         "en": "ah-oh",
-        "note": "pronunciation"
-      },
-      {
-        "de": "Kakao",
-        "en": "cocao",
-        "note": "example"
-      },
-      {
-        "de": "Chaos",
-        "en": "chaos",
-        "note": "example (ao)"
+        "examples": [
+          {
+            "de": "Kakao",
+            "en": "cocao"
+          },
+          {
+            "de": "Chaos",
+            "en": "chaos"
+          }
+        ]
       },
       {
         "de": "au",
         "en": "ow",
-        "note": "pronunciation"
-      },
-      {
-        "de": "Haus",
-        "en": "house",
-        "note": "example"
-      },
-      {
-        "de": "Auto",
-        "en": "car",
-        "note": "example (au)"
-      },
-      {
-        "de": "Auge",
-        "en": "eye",
-        "note": "example (au)"
+        "examples": [
+          {
+            "de": "Haus",
+            "en": "house"
+          },
+          {
+            "de": "Auto",
+            "en": "car"
+          },
+          {
+            "de": "Auge",
+            "en": "eye"
+          }
+        ]
       },
       {
         "de": "ea",
         "en": "ay / ay-ah",
-        "note": "pronunciation"
-      },
-      {
-        "de": "ideal",
-        "en": "ideal",
-        "note": "example"
-      },
-      {
-        "de": "Team",
-        "en": "team",
-        "note": "example (ea)"
+        "examples": [
+          {
+            "de": "ideal",
+            "en": "ideal"
+          },
+          {
+            "de": "Team",
+            "en": "team"
+          }
+        ]
       },
       {
         "de": "ee",
         "en": "ay",
-        "note": "pronunciation"
-      },
-      {
-        "de": "See",
-        "en": "lake",
-        "note": "example"
-      },
-      {
-        "de": "Schnee",
-        "en": "snow",
-        "note": "example (ee)"
-      },
-      {
-        "de": "Klee",
-        "en": "clover",
-        "note": "example (ee)"
+        "examples": [
+          {
+            "de": "See",
+            "en": "lake"
+          },
+          {
+            "de": "Schnee",
+            "en": "snow"
+          },
+          {
+            "de": "Klee",
+            "en": "clover"
+          }
+        ]
       },
       {
         "de": "ei",
         "en": "eye",
-        "note": "pronunciation"
-      },
-      {
-        "de": "klein",
-        "en": "small",
-        "note": "example"
-      },
-      {
-        "de": "Ei",
-        "en": "egg",
-        "note": "example (ei)"
-      },
-      {
-        "de": "mein",
-        "en": "my or mine",
-        "note": "example (ei)"
+        "examples": [
+          {
+            "de": "klein",
+            "en": "small"
+          },
+          {
+            "de": "Ei",
+            "en": "egg"
+          },
+          {
+            "de": "mein",
+            "en": "my or mine"
+          }
+        ]
       },
       {
         "de": "eo",
         "en": "ay-oh",
-        "note": "pronunciation"
-      },
-      {
-        "de": "Theorie",
-        "en": "theory",
-        "note": "example"
-      },
-      {
-        "de": "Leopard",
-        "en": "leopard",
-        "note": "example (eo)"
-      },
-      {
-        "de": "Meteor",
-        "en": "meteor",
-        "note": "example (eo)"
+        "examples": [
+          {
+            "de": "Theorie",
+            "en": "theory"
+          },
+          {
+            "de": "Leopard",
+            "en": "leopard"
+          },
+          {
+            "de": "Meteor",
+            "en": "meteor"
+          }
+        ]
       },
       {
         "de": "eu",
         "en": "oy",
-        "note": "pronunciation"
-      },
-      {
-        "de": "freut",
-        "en": "to make happy",
-        "note": "example"
-      },
-      {
-        "de": "neu",
-        "en": "new",
-        "note": "example (eu)"
-      },
-      {
-        "de": "Leute",
-        "en": "people",
-        "note": "example (eu)"
+        "examples": [
+          {
+            "de": "freut",
+            "en": "to make happy"
+          },
+          {
+            "de": "neu",
+            "en": "new"
+          },
+          {
+            "de": "Leute",
+            "en": "people"
+          }
+        ]
       },
       {
         "de": "ia",
         "en": "ee-ah",
-        "note": "pronunciation"
-      },
-      {
-        "de": "Material",
-        "en": "material",
-        "note": "example"
+        "examples": [
+          {
+            "de": "Material",
+            "en": "material"
+          }
+        ]
       },
       {
         "de": "ie",
         "en": "ee",
-        "note": "pronunciation"
-      },
-      {
-        "de": "verbieten",
-        "en": "to forbid",
-        "note": "example"
-      },
-      {
-        "de": "studieren",
-        "en": "to study",
-        "note": "example (ie)"
-      },
-      {
-        "de": "Liebe",
-        "en": "love",
-        "note": "example (ie)"
+        "examples": [
+          {
+            "de": "verbieten",
+            "en": "to forbid"
+          },
+          {
+            "de": "studieren",
+            "en": "to study"
+          },
+          {
+            "de": "Liebe",
+            "en": "love"
+          }
+        ]
       },
       {
         "de": "io",
         "en": "ee-oh",
-        "note": "pronunciation"
-      },
-      {
-        "de": "Reaktion",
-        "en": "reaction",
-        "note": "example"
-      },
-      {
-        "de": "Position",
-        "en": "position",
-        "note": "example (io)"
-      },
-      {
-        "de": "Information",
-        "en": "information",
-        "note": "example (io)"
+        "examples": [
+          {
+            "de": "Reaktion",
+            "en": "reaction"
+          },
+          {
+            "de": "Position",
+            "en": "position"
+          },
+          {
+            "de": "Information",
+            "en": "information"
+          }
+        ]
       },
       {
         "de": "iu",
         "en": "ee-oo(short!)",
-        "note": "pronunciation"
-      },
-      {
-        "de": "Studium",
-        "en": "study program",
-        "note": "example"
-      },
-      {
-        "de": "Aquarium",
-        "en": "aquarium",
-        "note": "example (iu)"
-      },
-      {
-        "de": "Opium",
-        "en": "opium",
-        "note": "example (iu)"
+        "examples": [
+          {
+            "de": "Studium",
+            "en": "study program"
+          },
+          {
+            "de": "Aquarium",
+            "en": "aquarium"
+          },
+          {
+            "de": "Opium",
+            "en": "opium"
+          }
+        ]
       },
       {
         "de": "oa",
         "en": "oh",
-        "note": "pronunciation"
-      },
-      {
-        "de": "Toast",
-        "en": "toast (almost any word, just like this",
-        "note": "example"
+        "examples": [
+          {
+            "de": "Toast",
+            "en": "toast (almost any word, just like this"
+          }
+        ]
       },
       {
         "de": "oi",
         "en": "oy",
-        "note": "pronunciation"
-      },
-      {
-        "de": "Point",
-        "en": "point",
-        "note": "example"
-      },
-      {
-        "de": "Toilette",
-        "en": "toilet",
-        "note": "example (oi)"
+        "examples": [
+          {
+            "de": "Point",
+            "en": "point"
+          },
+          {
+            "de": "Toilette",
+            "en": "toilet"
+          }
+        ]
       },
       {
         "de": "oo",
         "en": "oh",
-        "note": "pronunciation"
-      },
-      {
-        "de": "Boot",
-        "en": "boat",
-        "note": "example"
-      },
-      {
-        "de": "Zoo",
-        "en": "zoo",
-        "note": "example (oo)"
+        "examples": [
+          {
+            "de": "Boot",
+            "en": "boat"
+          },
+          {
+            "de": "Zoo",
+            "en": "zoo"
+          }
+        ]
       },
       {
         "de": "ou",
         "en": "oo",
-        "note": "pronunciation"
-      },
-      {
-        "de": "Souvenir",
-        "en": "souvenir",
-        "note": "example"
-      },
-      {
-        "de": "Journal",
-        "en": "journal",
-        "note": "example (ou)"
+        "examples": [
+          {
+            "de": "Souvenir",
+            "en": "souvenir"
+          },
+          {
+            "de": "Journal",
+            "en": "journal"
+          }
+        ]
       },
       {
         "de": "ua",
         "en": "vah (\"u\" like \"v\" in this case",
-        "note": "pronunciation"
-      },
-      {
-        "de": "Qualität",
-        "en": "quality",
-        "note": "example"
-      },
-      {
-        "de": "Quartal",
-        "en": "quarter (time)",
-        "note": "example (ua)"
+        "examples": [
+          {
+            "de": "Qualität",
+            "en": "quality"
+          },
+          {
+            "de": "Quartal",
+            "en": "quarter (time)"
+          }
+        ]
       },
       {
         "de": "ui",
         "en": "oo-ee",
-        "note": "pronunciation"
-      },
-      {
-        "de": "Ruine",
-        "en": "ruin",
-        "note": "example"
-      },
-      {
-        "de": "pfui",
-        "en": "yuck!",
-        "note": "example (ui)"
+        "examples": [
+          {
+            "de": "Ruine",
+            "en": "ruin"
+          },
+          {
+            "de": "pfui",
+            "en": "yuck!"
+          }
+        ]
       },
       {
         "de": "uo",
         "en": "oo-oh",
-        "note": "pronunciation"
-      },
-      {
-        "de": "Quotient",
-        "en": "quotient",
-        "note": "example"
-      },
-      {
-        "de": "Duopol",
-        "en": "duopoly",
-        "note": "example (uo)"
+        "examples": [
+          {
+            "de": "Quotient",
+            "en": "quotient"
+          },
+          {
+            "de": "Duopol",
+            "en": "duopoly"
+          }
+        ]
       },
       {
         "de": "sch",
         "en": "shh",
-        "note": "pronunciation"
-      },
-      {
-        "de": "Schule",
-        "en": "school",
-        "note": "example"
-      },
-      {
-        "de": "Schaf",
-        "en": "sheep",
-        "note": "example (sch)"
-      },
-      {
-        "de": "Schlaf",
-        "en": "sleep",
-        "note": "example (sch)"
+        "examples": [
+          {
+            "de": "Schule",
+            "en": "school"
+          },
+          {
+            "de": "Schaf",
+            "en": "sheep"
+          },
+          {
+            "de": "Schlaf",
+            "en": "sleep"
+          }
+        ]
       }
     ]
   }
