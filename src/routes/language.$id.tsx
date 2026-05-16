@@ -10,6 +10,7 @@ import {
   AlertTriangle,
   ChevronDown,
   ChevronRight,
+  Lock,
 } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { SessionTimer } from "@/components/session-timer";
@@ -65,7 +66,7 @@ function LanguagePage() {
   const [active, setActive] = useState<number>(0);
   const [started, setStarted] = useState<Set<number>>(new Set());
   const [completed, setCompleted] = useState<Set<number>>(new Set());
-  const [expanded, setExpanded] = useState<Set<number>>(new Set(TOPICS.map((_, i) => i)));
+  const [expanded, setExpanded] = useState<Set<number>>(new Set());
 
   useEffect(() => {
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_e, session) => {
@@ -79,17 +80,14 @@ function LanguagePage() {
     return () => subscription.unsubscribe();
   }, [navigate]);
 
-  useEffect(() => {
-    setExpanded((prev) => {
-      const topicIndex = Math.floor(active / 2);
-      if (prev.has(topicIndex)) return prev;
-      return new Set(prev).add(topicIndex);
-    });
-  }, [active]);
+  // no auto-expand; topics start collapsed and the user controls them
 
   if (authed === null) return <div className="min-h-screen flex items-center justify-center text-muted-foreground">Loading…</div>;
 
   const current = ITEMS[active];
+  const currentTopicIndex = Math.floor(active / 2);
+  const isCurrentExamLocked =
+    current.type === "exam" && !completed.has(currentTopicIndex * 2);
 
   const markStarted = () => {
     setStarted((prev) => new Set(prev).add(active));
@@ -179,6 +177,7 @@ function LanguagePage() {
                       const isActive = idx === active;
                       const isComplete = completed.has(idx);
                       const isStarted = started.has(idx) && !isComplete;
+                      const isLocked = item.type === "exam" && !completed.has(lessonIdx);
                       return (
                         <button
                           key={idx}
@@ -186,10 +185,16 @@ function LanguagePage() {
                           className={`w-full flex items-center gap-3 px-3 py-2 rounded-md text-sm text-left transition-colors ${
                             isActive
                               ? "bg-primary text-primary-foreground"
-                              : "text-foreground hover:bg-muted"
+                              : isLocked
+                                ? "text-muted-foreground hover:bg-muted"
+                                : "text-foreground hover:bg-muted"
                           }`}
                         >
-                          <Icon className="w-4 h-4 shrink-0" />
+                          {isLocked ? (
+                            <Lock className="w-4 h-4 shrink-0" />
+                          ) : (
+                            <Icon className="w-4 h-4 shrink-0" />
+                          )}
                           <span className="truncate flex-1">{sub}</span>
                           {isComplete && (
                             <Check className="w-4 h-4 shrink-0 ml-auto text-emerald-500" />
@@ -229,17 +234,29 @@ function LanguagePage() {
             {current.type === "lesson" ? `Lesson ${current.num}` : `Exam ${current.num}`}
           </p>
           <h1 className="text-4xl font-bold text-foreground -mt-4">{current.title}</h1>
-          <SessionTimer
-            resetKey={`${id}-${active}`}
-            label={current.type === "lesson" ? "Lesson" : "Exam"}
-            onStart={markStarted}
-            onEnd={markComplete}
-          />
-          <div className="rounded-lg border border-dashed border-border bg-muted/30 p-10 text-center text-muted-foreground">
-            Placeholder content for{" "}
-            <span className="text-foreground font-medium">{current.title}</span>. Real
-            lesson material will live here.
-          </div>
+          {isCurrentExamLocked ? (
+            <div className="rounded-lg border border-border bg-muted/30 p-10 text-center space-y-3">
+              <Lock className="w-8 h-8 mx-auto text-muted-foreground" />
+              <p className="text-foreground font-medium">Exam locked</p>
+              <p className="text-sm text-muted-foreground">
+                Complete the skill first to unlock the exam.
+              </p>
+            </div>
+          ) : (
+            <>
+              <SessionTimer
+                resetKey={`${id}-${active}`}
+                label={current.type === "lesson" ? "Lesson" : "Exam"}
+                onStart={markStarted}
+                onEnd={markComplete}
+              />
+              <div className="rounded-lg border border-dashed border-border bg-muted/30 p-10 text-center text-muted-foreground">
+                Placeholder content for{" "}
+                <span className="text-foreground font-medium">{current.title}</span>. Real
+                lesson material will live here.
+              </div>
+            </>
+          )}
         </div>
       </main>
     </div>
