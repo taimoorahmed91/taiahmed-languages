@@ -19,6 +19,8 @@ import { Exam1 } from "@/components/exam1";
 import lesson2Data from "@/data/lesson2.json";
 import { Exam2 } from "@/components/exam2";
 import { DeText } from "@/components/de-text";
+import { Lesson3Content } from "@/components/lesson3-content";
+import { Exam3 } from "@/components/exam3";
 
 type VocabGroup = { de: string; en: string; note: string; entries: { de: string; en: string; note: string }[] };
 type PhonGroup = { de: string; en: string; entries: { de: string; en: string; examples: { de: string; en: string }[] }[] };
@@ -115,9 +117,9 @@ const TOPICS: Topic[] = [
   },
   {
     num: 3,
-    title: "Common phrases",
-    lesson: { type: "lesson", num: 3, title: "Common phrases" },
-    exam: { type: "exam", num: 3, title: "Phrase quiz" },
+    title: "Pronouns",
+    lesson: { type: "lesson", num: 3, title: "Pronouns" },
+    exam: { type: "exam", num: 3, title: "Pronouns check" },
   },
 ];
 
@@ -364,6 +366,10 @@ function LanguagePage() {
                   <PhoneticsContent data={LESSON2} />
                 ) : id === "german" && current.type === "exam" && current.num === 2 ? (
                   <Exam2 onComplete={(s, t) => markComplete(s, t)} />
+                ) : id === "german" && current.type === "lesson" && current.num === 3 ? (
+                  <Lesson3Content />
+                ) : id === "german" && current.type === "exam" && current.num === 3 ? (
+                  <Exam3 onComplete={(s, t) => markComplete(s, t)} />
                 ) : (
                   <div className="rounded-lg border border-dashed border-border bg-muted/30 p-10 text-center text-muted-foreground">
                     Placeholder content for{" "}

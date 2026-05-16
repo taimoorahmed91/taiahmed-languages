@@ -1,5 +1,6 @@
 import lesson1 from "@/data/lesson1.json";
 import lesson2 from "@/data/lesson2.json";
+import lesson3 from "@/data/lesson3.json";
 
 type L1 = { de: string; en: string; entries: { de: string; en: string }[] }[];
 type L2 = { de: string; en: string; entries: { de: string; en: string; examples: { de: string; en: string }[] }[] }[];
@@ -33,6 +34,21 @@ for (const g of lesson2 as L2) {
   for (const e of g.entries) {
     for (const ex of e.examples) addPhrase(ex.de, ex.en);
   }
+}
+
+// Lesson 3: pronouns & verb conjugations
+const L3 = lesson3 as {
+  pronouns: { forms: string; en: string }[];
+  verbs: { de: string; en: string; forms: string[] }[];
+};
+for (const p of L3.pronouns) {
+  const forms = p.forms.split("/").map((s) => s.trim());
+  const ens = p.en.split("/").map((s) => s.trim());
+  forms.forEach((f, i) => add(f, ens[i] ?? ens[0] ?? p.en));
+}
+for (const v of L3.verbs) {
+  addPhrase(v.de, v.en);
+  for (const f of v.forms) addPhrase(f, v.en);
 }
 
 // Common helpers that appear in exam sentences

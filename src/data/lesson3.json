@@ -1,0 +1,167 @@
+{
+  "pronouns": [
+    {
+      "forms": "ich / mich / mir",
+      "en": "I / me",
+      "person": "1st person singular",
+      "gender": "",
+      "ending": "-e"
+    },
+    {
+      "forms": "du / dich / dir",
+      "en": "you",
+      "person": "2nd person singular informal",
+      "gender": "",
+      "ending": "-st"
+    },
+    {
+      "forms": "Sie / Sie / Ihnen",
+      "en": "you",
+      "person": "2nd person singular formal",
+      "gender": "",
+      "ending": "-en"
+    },
+    {
+      "forms": "er / ihn / ihm",
+      "en": "he / him",
+      "person": "3rd person singular masculine",
+      "gender": "männlich",
+      "ending": "-t"
+    },
+    {
+      "forms": "sie / sie / ihr",
+      "en": "she / her",
+      "person": "3rd person singular feminine",
+      "gender": "weiblich",
+      "ending": "-t"
+    },
+    {
+      "forms": "es / es / ihm",
+      "en": "it",
+      "person": "3rd person singular neuter",
+      "gender": "sachlich",
+      "ending": "-t"
+    },
+    {
+      "forms": "wir / uns / uns",
+      "en": "we / us",
+      "person": "1st person plural",
+      "gender": "",
+      "ending": "-en"
+    },
+    {
+      "forms": "ihr / euch / euch",
+      "en": "you (all)",
+      "person": "2nd person plural informal",
+      "gender": "",
+      "ending": "-t"
+    },
+    {
+      "forms": "Sie / Sie / Ihnen",
+      "en": "you (all)",
+      "person": "2nd person plural formal",
+      "gender": "",
+      "ending": "-en"
+    },
+    {
+      "forms": "sie / sie / ihnen",
+      "en": "they / them",
+      "person": "3rd person plural",
+      "gender": "",
+      "ending": "-en"
+    }
+  ],
+  "verbs": [
+    {
+      "de": "machen",
+      "en": "to do or make",
+      "forms": [
+        "ich mache",
+        "du machst",
+        "er / sie / es macht",
+        "wir machen",
+        "ihr macht",
+        "sie machen",
+        "Sie machen"
+      ]
+    },
+    {
+      "de": "lernen",
+      "en": "to learn",
+      "forms": [
+        "ich lerne",
+        "du lernst",
+        "er / sie / es lernt",
+        "wir lernen",
+        "ihr lernt",
+        "sie lernen",
+        "Sie lernen"
+      ]
+    },
+    {
+      "de": "arbeiten",
+      "en": "to work",
+      "forms": [
+        "ich arbeite",
+        "du arbeitest",
+        "er / sie / es arbeitet",
+        "wir arbeiten",
+        "ihr arbeitet",
+        "sie arbeiten",
+        "Sie arbeiten"
+      ]
+    },
+    {
+      "de": "kommen",
+      "en": "to come",
+      "forms": [
+        "ich komme",
+        "du kommst",
+        "er / sie / es kommt",
+        "wir kommen",
+        "ihr kommt",
+        "sie kommen",
+        "Sie kommen"
+      ]
+    },
+    {
+      "de": "gehen",
+      "en": "to go",
+      "forms": [
+        "ich gehe",
+        "du gehst",
+        "er / sie / es geht",
+        "wir gehen",
+        "ihr geht",
+        "Sie gehen",
+        "sie gehen"
+      ]
+    },
+    {
+      "de": "hören",
+      "en": "to hear",
+      "forms": [
+        "ich höre",
+        "du hörst",
+        "er / sie / es hört",
+        "wir hören",
+        "ihr hört",
+        "sie hören",
+        "Sie hören"
+      ]
+    },
+    {
+      "de": "reden",
+      "en": "to talk or speak",
+      "forms": [
+        "ich rede",
+        "du redest",
+        "er / sie / es redet",
+        "wir reden",
+        "ihr redet",
+        "sie reden",
+        "Sie reden"
+      ]
+    }
+  ]
+}
