@@ -3,8 +3,8 @@ import { Button } from "@/components/ui/button";
 import { Check, X } from "lucide-react";
 
 type MatchQ = { de: string; en: string };
-type TfQ = { statement: string; answer: boolean; explain?: string };
-type FillQ = { prompt: string; answer: string; hint?: string };
+type TfQ = { de: string; statement: string; answer: boolean; explain?: string };
+type FillQ = { de: string; prompt: string; answer: string; hint?: string };
 
 const MATCH: MatchQ[] = [
   { de: "Apfel", en: "apple" },
@@ -15,24 +15,24 @@ const MATCH: MatchQ[] = [
 ];
 
 const TF: TfQ[] = [
-  { statement: "The German letter “v” is usually pronounced like English “f”.", answer: true },
-  { statement: "The German letter “w” is pronounced like English “w”.", answer: false, explain: "It is pronounced like English “v”." },
-  { statement: "“s” at the start of a word is pronounced like English “z”.", answer: true },
-  { statement: "“j” in a German word is pronounced like English “j” in “jam”.", answer: false, explain: "It is pronounced like English “y”." },
-  { statement: "“sch” is pronounced like English “sh”.", answer: true },
-  { statement: "“ei” is pronounced like English “eye”.", answer: true },
-  { statement: "“ie” is pronounced like English “eye”.", answer: false, explain: "It is pronounced like “ee”." },
-  { statement: "“eu” is pronounced like English “oy”.", answer: true },
-  { statement: "The umlaut “ö” sounds the same as plain “o”.", answer: false, explain: "It is a different, rounded vowel (like “urr”)." },
-  { statement: "“z” is pronounced like English “ts”.", answer: true },
+  { de: "Der Buchstabe „v“ klingt meistens wie das englische „f“.", statement: "The German letter “v” is usually pronounced like English “f”.", answer: true },
+  { de: "Der Buchstabe „w“ klingt wie das englische „w“.", statement: "The German letter “w” is pronounced like English “w”.", answer: false, explain: "It is pronounced like English “v”." },
+  { de: "„s“ am Wortanfang klingt wie das englische „z“.", statement: "“s” at the start of a word is pronounced like English “z”.", answer: true },
+  { de: "„j“ im Wort klingt wie das englische „j“ in „jam“.", statement: "“j” in a German word is pronounced like English “j” in “jam”.", answer: false, explain: "It is pronounced like English “y”." },
+  { de: "„sch“ klingt wie das englische „sh“.", statement: "“sch” is pronounced like English “sh”.", answer: true },
+  { de: "„ei“ klingt wie das englische „eye“.", statement: "“ei” is pronounced like English “eye”.", answer: true },
+  { de: "„ie“ klingt wie das englische „eye“.", statement: "“ie” is pronounced like English “eye”.", answer: false, explain: "It is pronounced like “ee”." },
+  { de: "„eu“ klingt wie das englische „oy“.", statement: "“eu” is pronounced like English “oy”.", answer: true },
+  { de: "Der Umlaut „ö“ klingt genauso wie „o“.", statement: "The umlaut “ö” sounds the same as plain “o”.", answer: false, explain: "It is a different, rounded vowel (like “urr”)." },
+  { de: "„z“ klingt wie das englische „ts“.", statement: "“z” is pronounced like English “ts”.", answer: true },
 ];
 
 const FILL: FillQ[] = [
-  { prompt: "M___chen (girl) — fill the umlaut", answer: "ä", hint: "a-umlaut" },
-  { prompt: "sch___n (beautiful) — fill the umlaut", answer: "ö", hint: "o-umlaut" },
-  { prompt: "M___nchen (Munich) — fill the umlaut", answer: "ü", hint: "u-umlaut" },
-  { prompt: "The digraph for the “sh” sound is ___ .", answer: "sch" },
-  { prompt: "The digraph that sounds like English “oy” is ___ .", answer: "eu" },
+  { de: "M___chen", prompt: "(girl) — fill the umlaut", answer: "ä", hint: "a-umlaut" },
+  { de: "sch___n", prompt: "(beautiful) — fill the umlaut", answer: "ö", hint: "o-umlaut" },
+  { de: "M___nchen", prompt: "(Munich) — fill the umlaut", answer: "ü", hint: "u-umlaut" },
+  { de: "Der Digraph für den „sh“-Laut ist ___ .", prompt: "The digraph for the “sh” sound.", answer: "sch" },
+  { de: "Der Digraph, der wie „oy“ klingt, ist ___ .", prompt: "The digraph that sounds like English “oy”.", answer: "eu" },
 ];
 
 const TOTAL = MATCH.length + TF.length + FILL.length;
@@ -142,7 +142,10 @@ export function Exam2({ onComplete }: { onComplete?: (score: number, total: numb
             return (
               <div key={i} className="px-5 py-3 text-sm space-y-2">
                 <div className="flex items-start gap-3">
-                  <p className="flex-1 text-foreground">{i + 1}. {q.statement}</p>
+                  <div className="flex-1">
+                    <p className="text-foreground">{i + 1}. {q.de}</p>
+                    <p className="text-xs text-muted-foreground mt-0.5">{q.statement}</p>
+                  </div>
                   {correct && <Check className="w-4 h-4 text-emerald-500 shrink-0 mt-1" />}
                   {wrong && <X className="w-4 h-4 text-rose-500 shrink-0 mt-1" />}
                 </div>
@@ -183,7 +186,10 @@ export function Exam2({ onComplete }: { onComplete?: (score: number, total: numb
             const wrong = submitted && !correct;
             return (
               <div key={i} className="grid grid-cols-12 gap-4 items-center px-5 py-3 text-sm">
-                <div className="col-span-7 text-foreground">{i + 1}. {q.prompt}</div>
+                <div className="col-span-7">
+                  <p className="text-foreground">{i + 1}. {q.de}</p>
+                  <p className="text-xs text-muted-foreground mt-0.5">{q.prompt}</p>
+                </div>
                 <div className="col-span-4">
                   <input
                     disabled={submitted}
