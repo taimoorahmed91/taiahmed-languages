@@ -135,6 +135,7 @@ function LanguagePage() {
   const [active, setActive] = useState<number>(0);
   const [started, setStarted] = useState<Set<number>>(new Set());
   const [completed, setCompleted] = useState<Set<number>>(new Set());
+  const [collapsed, setCollapsed] = useState(false);
   const [expanded, setExpanded] = useState<Set<number>>(new Set());
   const [scores, setScores] = useState<Record<number, { score: number; total: number }>>({});
 
