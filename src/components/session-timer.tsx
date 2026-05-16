@@ -18,12 +18,14 @@ export function SessionTimer({
   onStart,
   onEnd,
   onReset,
+  showEnd = true,
 }: {
   resetKey: string;
   label: string;
   onStart?: () => void;
   onEnd?: () => void;
   onReset?: () => void;
+  showEnd?: boolean;
 }) {
   const [seconds, setSeconds] = useState(0);
   const [status, setStatus] = useState<Status>("idle");
@@ -105,7 +107,7 @@ export function SessionTimer({
             <Pause className="w-4 h-4 mr-1" /> Pause
           </Button>
         )}
-        {(status === "running" || status === "paused") && (
+        {showEnd && (status === "running" || status === "paused") && (
           <Button onClick={end} size="sm" variant="destructive">
             <Square className="w-4 h-4 mr-1" /> End
           </Button>

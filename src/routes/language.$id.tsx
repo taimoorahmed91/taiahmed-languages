@@ -132,6 +132,7 @@ function LanguagePage() {
   const [started, setStarted] = useState<Set<number>>(new Set());
   const [completed, setCompleted] = useState<Set<number>>(new Set());
   const [expanded, setExpanded] = useState<Set<number>>(new Set());
+  const [scores, setScores] = useState<Record<number, { score: number; total: number }>>({});
 
   useEffect(() => {
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_e, session) => {
@@ -158,8 +159,11 @@ function LanguagePage() {
     setStarted((prev) => new Set(prev).add(active));
   };
 
-  const markComplete = () => {
+  const markComplete = (score?: number, total?: number) => {
     setCompleted((prev) => new Set(prev).add(active));
+    if (typeof score === "number" && typeof total === "number") {
+      setScores((prev) => ({ ...prev, [active]: { score, total } }));
+    }
   };
 
   const markReset = () => {
@@ -173,6 +177,12 @@ function LanguagePage() {
       if (!prev.has(active)) return prev;
       const next = new Set(prev);
       next.delete(active);
+      return next;
+    });
+    setScores((prev) => {
+      if (!(active in prev)) return prev;
+      const next = { ...prev };
+      delete next[active];
       return next;
     });
   };
@@ -258,6 +268,7 @@ function LanguagePage() {
                       const isComplete = completed.has(idx);
                       const isStarted = started.has(idx) && !isComplete;
                       const isLocked = item.type === "exam" && !completed.has(lessonIdx);
+                      const score = scores[idx];
                       return (
                         <button
                           key={idx}
@@ -276,13 +287,25 @@ function LanguagePage() {
                             <Icon className="w-4 h-4 shrink-0" />
                           )}
                           <span className="truncate flex-1">{sub}</span>
-                          {isComplete && (
+                          {item.type === "exam" && score ? (
+                            <span
+                              className={`text-xs font-semibold tabular-nums ml-auto ${
+                                isActive
+                                  ? "text-primary-foreground"
+                                  : score.score / score.total >= 0.7
+                                    ? "text-emerald-500"
+                                    : "text-amber-500"
+                              }`}
+                            >
+                              {score.score}/{score.total}
+                            </span>
+                          ) : isComplete && (
                             <Check className="w-4 h-4 shrink-0 ml-auto text-emerald-500" />
                           )}
-                          {isStarted && (
+                          {isStarted && !(item.type === "exam" && score) && (
                             <AlertTriangle className="w-4 h-4 shrink-0 ml-auto text-amber-500" />
                           )}
-                          {!isComplete && !isStarted && (
+                          {!isComplete && !isStarted && !(item.type === "exam" && score) && (
                             <span
                               className={`w-2 h-2 rounded-full shrink-0 ml-auto ${
                                 isActive ? "bg-primary-foreground/40" : "bg-border"
@@ -328,18 +351,19 @@ function LanguagePage() {
                 resetKey={`${id}-${active}`}
                 label={current.type === "lesson" ? "Lesson" : "Exam"}
                 onStart={markStarted}
-                onEnd={markComplete}
+                onEnd={() => markComplete()}
                 onReset={markReset}
+                showEnd={current.type !== "exam"}
               />
               {started.has(active) ? (
                 id === "german" && current.type === "lesson" && current.num === 1 ? (
                   <VocabContent data={LESSON1} />
                 ) : id === "german" && current.type === "exam" && current.num === 1 ? (
-                  <Exam1 onComplete={() => markComplete()} />
+                  <Exam1 onComplete={(s, t) => markComplete(s, t)} />
                 ) : id === "german" && current.type === "lesson" && current.num === 2 ? (
                   <PhoneticsContent data={LESSON2} />
                 ) : id === "german" && current.type === "exam" && current.num === 2 ? (
-                  <Exam2 onComplete={() => markComplete()} />
+                  <Exam2 onComplete={(s, t) => markComplete(s, t)} />
                 ) : (
                   <div className="rounded-lg border border-dashed border-border bg-muted/30 p-10 text-center text-muted-foreground">
                     Placeholder content for{" "}
