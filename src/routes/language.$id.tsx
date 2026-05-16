@@ -79,6 +79,14 @@ function LanguagePage() {
     return () => subscription.unsubscribe();
   }, [navigate]);
 
+  useEffect(() => {
+    setExpanded((prev) => {
+      const topicIndex = Math.floor(active / 2);
+      if (prev.has(topicIndex)) return prev;
+      return new Set(prev).add(topicIndex);
+    });
+  }, [active]);
+
   if (authed === null) return <div className="min-h-screen flex items-center justify-center text-muted-foreground">Loading…</div>;
 
   const current = ITEMS[active];
@@ -89,6 +97,15 @@ function LanguagePage() {
 
   const markComplete = () => {
     setCompleted((prev) => new Set(prev).add(active));
+  };
+
+  const toggleTopic = (ti: number) => {
+    setExpanded((prev) => {
+      const next = new Set(prev);
+      if (next.has(ti)) next.delete(ti);
+      else next.add(ti);
+      return next;
+    });
   };
 
   return (
