@@ -39,6 +39,7 @@ function LanguagePage() {
   const meta = LANG_META[id] ?? { name: cap(id), flag: "🌐" };
   const [authed, setAuthed] = useState<boolean | null>(null);
   const [active, setActive] = useState<number>(0);
+  const [completed, setCompleted] = useState<Set<number>>(new Set());
 
   useEffect(() => {
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_e, session) => {
@@ -55,6 +56,10 @@ function LanguagePage() {
   if (authed === null) return <div className="min-h-screen flex items-center justify-center text-muted-foreground">Loading…</div>;
 
   const current = ITEMS[active];
+
+  const markComplete = () => {
+    setCompleted((prev) => new Set(prev).add(active));
+  };
 
   return (
     <div className="min-h-screen flex bg-background">
@@ -76,6 +81,7 @@ function LanguagePage() {
             const Icon = it.type === "lesson" ? BookOpen : GraduationCap;
             const label = `${it.type === "lesson" ? "Lesson" : "Exam"} ${it.num}: ${it.title}`;
             const isActive = i === active;
+            const isComplete = completed.has(i);
             return (
               <button
                 key={i}
@@ -87,7 +93,17 @@ function LanguagePage() {
                 }`}
               >
                 <Icon className="w-4 h-4 shrink-0" />
-                <span className="truncate">{label}</span>
+                <span className="truncate flex-1">{label}</span>
+                <span
+                  className={`w-2.5 h-2.5 rounded-full shrink-0 ml-auto ${
+                    isComplete
+                      ? "bg-emerald-500"
+                      : isActive
+                        ? "bg-primary-foreground/40"
+                        : "bg-border"
+                  }`}
+                  title={isComplete ? "Completed" : "Not completed"}
+                />
               </button>
             );
           })}
@@ -111,6 +127,7 @@ function LanguagePage() {
           <SessionTimer
             resetKey={`${id}-${active}`}
             label={current.type === "lesson" ? "Lesson" : "Exam"}
+            onEnd={markComplete}
           />
           <div className="rounded-lg border border-dashed border-border bg-muted/30 p-10 text-center text-muted-foreground">
             Placeholder content for{" "}
