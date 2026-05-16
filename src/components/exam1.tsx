@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Check, X } from "lucide-react";
+import { DeText } from "@/components/de-text";
 
 type MatchQ = { de: string; en: string };
 type TfQ = { de: string; statement: string; answer: boolean; explain?: string };
@@ -95,7 +96,7 @@ export function Exam1({ onComplete }: { onComplete?: (score: number, total: numb
             const wrong = submitted && val !== m.en;
             return (
               <div key={i} className="grid grid-cols-12 gap-4 items-center px-5 py-3 text-sm">
-                <div className="col-span-5 font-medium text-foreground">{m.de}</div>
+                <div className="col-span-5 font-medium text-foreground"><DeText>{m.de}</DeText></div>
                 <div className="col-span-6">
                   <select
                     disabled={submitted}
@@ -138,7 +139,7 @@ export function Exam1({ onComplete }: { onComplete?: (score: number, total: numb
               <div key={i} className="px-5 py-3 text-sm space-y-2">
                 <div className="flex items-start gap-3">
                   <div className="flex-1">
-                    <p className="text-foreground">{i + 1}. {q.de}</p>
+                    <p className="text-foreground">{i + 1}. <DeText>{q.de}</DeText></p>
                     <p className="text-xs text-muted-foreground mt-0.5">{q.statement}</p>
                   </div>
                   {correct && <Check className="w-4 h-4 text-emerald-500 shrink-0 mt-1" />}
@@ -182,7 +183,7 @@ export function Exam1({ onComplete }: { onComplete?: (score: number, total: numb
             return (
               <div key={i} className="grid grid-cols-12 gap-4 items-center px-5 py-3 text-sm">
                 <div className="col-span-7">
-                  <p className="text-foreground">{i + 1}. {q.de}</p>
+                  <p className="text-foreground">{i + 1}. <DeText>{q.de}</DeText></p>
                   <p className="text-xs text-muted-foreground mt-0.5">{q.prompt}</p>
                 </div>
                 <div className="col-span-4">
