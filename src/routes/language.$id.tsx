@@ -136,6 +136,7 @@ function LanguagePage() {
           <SessionTimer
             resetKey={`${id}-${active}`}
             label={current.type === "lesson" ? "Lesson" : "Exam"}
+            onStart={markStarted}
             onEnd={markComplete}
           />
           <div className="rounded-lg border border-dashed border-border bg-muted/30 p-10 text-center text-muted-foreground">
