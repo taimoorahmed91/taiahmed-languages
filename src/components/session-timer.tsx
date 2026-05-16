@@ -17,11 +17,13 @@ export function SessionTimer({
   label,
   onStart,
   onEnd,
+  onReset,
 }: {
   resetKey: string;
   label: string;
   onStart?: () => void;
   onEnd?: () => void;
+  onReset?: () => void;
 }) {
   const [seconds, setSeconds] = useState(0);
   const [status, setStatus] = useState<Status>("idle");
@@ -59,6 +61,7 @@ export function SessionTimer({
   const reset = () => {
     setSeconds(0);
     setStatus("idle");
+    onReset?.();
   };
 
   const statusText: Record<Status, string> = {
