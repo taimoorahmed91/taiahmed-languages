@@ -47,7 +47,10 @@ export function SessionTimer({
     };
   }, [status]);
 
-  const start = () => setStatus("running");
+  const start = () => {
+    setStatus("running");
+    onStart?.();
+  };
   const pause = () => setStatus("paused");
   const end = () => {
     setStatus("ended");
