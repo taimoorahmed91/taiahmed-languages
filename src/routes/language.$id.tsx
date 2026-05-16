@@ -294,13 +294,21 @@ function LanguagePage() {
                 onEnd={markComplete}
                 onReset={markReset}
               />
-              {id === "german" && current.type === "lesson" && current.num === 1 ? (
-                <Lesson1Content />
+              {started.has(active) ? (
+                id === "german" && current.type === "lesson" && current.num === 1 ? (
+                  <Lesson1Content />
+                ) : (
+                  <div className="rounded-lg border border-dashed border-border bg-muted/30 p-10 text-center text-muted-foreground">
+                    Placeholder content for{" "}
+                    <span className="text-foreground font-medium">{current.title}</span>. Real
+                    lesson material will live here.
+                  </div>
+                )
               ) : (
-                <div className="rounded-lg border border-dashed border-border bg-muted/30 p-10 text-center text-muted-foreground">
-                  Placeholder content for{" "}
-                  <span className="text-foreground font-medium">{current.title}</span>. Real
-                  lesson material will live here.
+                <div className="rounded-lg border border-border bg-muted/30 p-10 text-center space-y-2">
+                  <p className="text-muted-foreground text-sm">
+                    Press <span className="font-semibold text-foreground">Start</span> to begin.
+                  </p>
                 </div>
               )}
             </>
