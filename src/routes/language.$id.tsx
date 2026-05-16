@@ -1,0 +1,115 @@
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
+import { supabase } from "@/integrations/supabase/client";
+import { Button } from "@/components/ui/button";
+import { BookOpen, GraduationCap, ArrowLeft } from "lucide-react";
+
+export const Route = createFileRoute("/language/$id")({
+  head: ({ params }) => ({
+    meta: [{ title: `${cap(params.id)} — Lingua` }],
+  }),
+  component: LanguagePage,
+});
+
+function cap(s: string) {
+  return s.charAt(0).toUpperCase() + s.slice(1);
+}
+
+const LANG_META: Record<string, { name: string; flag: string }> = {
+  german: { name: "German", flag: "🇩🇪" },
+  english: { name: "English", flag: "🇬🇧" },
+};
+
+type Item = { type: "lesson" | "exam"; num: number; title: string };
+
+const ITEMS: Item[] = [
+  { type: "lesson", num: 1, title: "Hello" },
+  { type: "exam", num: 1, title: "Greetings basics" },
+  { type: "lesson", num: 2, title: "Numbers" },
+  { type: "exam", num: 2, title: "Counting check" },
+  { type: "lesson", num: 3, title: "Common phrases" },
+  { type: "exam", num: 3, title: "Phrase quiz" },
+];
+
+function LanguagePage() {
+  const { id } = Route.useParams();
+  const navigate = useNavigate();
+  const meta = LANG_META[id] ?? { name: cap(id), flag: "🌐" };
+  const [authed, setAuthed] = useState<boolean | null>(null);
+  const [active, setActive] = useState<number>(0);
+
+  useEffect(() => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_e, session) => {
+      setAuthed(!!session);
+      if (!session) navigate({ to: "/login" });
+    });
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setAuthed(!!session);
+      if (!session) navigate({ to: "/login" });
+    });
+    return () => subscription.unsubscribe();
+  }, [navigate]);
+
+  if (authed === null) return <div className="min-h-screen flex items-center justify-center text-muted-foreground">Loading…</div>;
+
+  const current = ITEMS[active];
+
+  return (
+    <div className="min-h-screen flex bg-background">
+      <aside className="w-72 border-r border-border bg-card flex flex-col">
+        <div className="p-5 border-b border-border">
+          <Link to="/" className="inline-flex items-center text-sm text-muted-foreground hover:text-foreground mb-3">
+            <ArrowLeft className="w-4 h-4 mr-1" /> Languages
+          </Link>
+          <div className="flex items-center gap-3">
+            <span className="text-3xl">{meta.flag}</span>
+            <div>
+              <h2 className="font-semibold text-foreground">{meta.name}</h2>
+              <p className="text-xs text-muted-foreground">Course outline</p>
+            </div>
+          </div>
+        </div>
+        <nav className="flex-1 overflow-y-auto p-3 space-y-1">
+          {ITEMS.map((it, i) => {
+            const Icon = it.type === "lesson" ? BookOpen : GraduationCap;
+            const label = `${it.type === "lesson" ? "Lesson" : "Exam"} ${it.num}: ${it.title}`;
+            const isActive = i === active;
+            return (
+              <button
+                key={i}
+                onClick={() => setActive(i)}
+                className={`w-full flex items-center gap-3 px-3 py-2 rounded-md text-sm text-left transition-colors ${
+                  isActive
+                    ? "bg-primary text-primary-foreground"
+                    : "text-foreground hover:bg-muted"
+                }`}
+              >
+                <Icon className="w-4 h-4 shrink-0" />
+                <span className="truncate">{label}</span>
+              </button>
+            );
+          })}
+        </nav>
+        <div className="p-3 border-t border-border">
+          <Button variant="ghost" size="sm" className="w-full" onClick={() => supabase.auth.signOut()}>
+            Sign out
+          </Button>
+        </div>
+      </aside>
+
+      <main className="flex-1 p-10">
+        <div className="max-w-2xl">
+          <p className="text-sm text-muted-foreground uppercase tracking-wide">
+            {current.type === "lesson" ? `Lesson ${current.num}` : `Exam ${current.num}`}
+          </p>
+          <h1 className="text-4xl font-bold text-foreground mt-1 mb-4">{current.title}</h1>
+          <div className="rounded-lg border border-dashed border-border bg-muted/30 p-10 text-center text-muted-foreground">
+            Placeholder content for{" "}
+            <span className="text-foreground font-medium">{current.title}</span>. Real
+            lesson material will live here.
+          </div>
+        </div>
+      </main>
+    </div>
+  );
+}
