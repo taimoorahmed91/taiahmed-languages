@@ -2,7 +2,7 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
-import { BookOpen, GraduationCap, ArrowLeft } from "lucide-react";
+import { BookOpen, GraduationCap, ArrowLeft, Check, AlertTriangle } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { SessionTimer } from "@/components/session-timer";
 
