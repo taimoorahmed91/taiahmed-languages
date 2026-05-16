@@ -73,7 +73,6 @@ const COMMON: Record<string, string> = {
   wer: "who",
   wo: "where",
   geht: "goes",
-  es: "it",
   mir: "me (dat.)",
   dir: "you (dat.)",
   ihnen: "you (formal, dat.)",
