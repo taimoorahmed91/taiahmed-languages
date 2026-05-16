@@ -65,6 +65,7 @@ function LanguagePage() {
   const [active, setActive] = useState<number>(0);
   const [started, setStarted] = useState<Set<number>>(new Set());
   const [completed, setCompleted] = useState<Set<number>>(new Set());
+  const [expanded, setExpanded] = useState<Set<number>>(new Set(TOPICS.map((_, i) => i)));
 
   useEffect(() => {
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_e, session) => {
