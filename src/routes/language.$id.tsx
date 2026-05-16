@@ -2,9 +2,18 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
-import { BookOpen, GraduationCap, ArrowLeft, Check, AlertTriangle } from "lucide-react";
+import {
+  BookOpen,
+  GraduationCap,
+  ArrowLeft,
+  Check,
+  AlertTriangle,
+  ChevronDown,
+  ChevronRight,
+} from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { SessionTimer } from "@/components/session-timer";
+
 
 export const Route = createFileRoute("/language/$id")({
   head: ({ params }) => ({
@@ -56,6 +65,7 @@ function LanguagePage() {
   const [active, setActive] = useState<number>(0);
   const [started, setStarted] = useState<Set<number>>(new Set());
   const [completed, setCompleted] = useState<Set<number>>(new Set());
+  const [expanded, setExpanded] = useState<Set<number>>(new Set(TOPICS.map((_, i) => i)));
 
   useEffect(() => {
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_e, session) => {
@@ -69,6 +79,14 @@ function LanguagePage() {
     return () => subscription.unsubscribe();
   }, [navigate]);
 
+  useEffect(() => {
+    setExpanded((prev) => {
+      const topicIndex = Math.floor(active / 2);
+      if (prev.has(topicIndex)) return prev;
+      return new Set(prev).add(topicIndex);
+    });
+  }, [active]);
+
   if (authed === null) return <div className="min-h-screen flex items-center justify-center text-muted-foreground">Loading…</div>;
 
   const current = ITEMS[active];
@@ -79,6 +97,15 @@ function LanguagePage() {
 
   const markComplete = () => {
     setCompleted((prev) => new Set(prev).add(active));
+  };
+
+  const toggleTopic = (ti: number) => {
+    setExpanded((prev) => {
+      const next = new Set(prev);
+      if (next.has(ti)) next.delete(ti);
+      else next.add(ti);
+      return next;
+    });
   };
 
   return (
@@ -117,58 +144,71 @@ function LanguagePage() {
             );
           })()}
         </div>
-        <nav className="flex-1 overflow-y-auto p-3 space-y-4">
+        <nav className="flex-1 overflow-y-auto p-3 space-y-2">
           {TOPICS.map((topic, ti) => {
             const lessonIdx = ti * 2;
             const examIdx = ti * 2 + 1;
             const topicDone =
               completed.has(lessonIdx) && completed.has(examIdx);
+            const isExpanded = expanded.has(ti);
             return (
-              <div key={ti} className="space-y-1">
-                <div className="flex items-center justify-between px-2 mb-1">
-                  <span className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+              <div key={ti}>
+                <button
+                  onClick={() => toggleTopic(ti)}
+                  className="w-full flex items-center gap-2 px-2 py-2 rounded-md text-left transition-colors hover:bg-muted"
+                >
+                  {isExpanded ? (
+                    <ChevronDown className="w-4 h-4 shrink-0 text-muted-foreground" />
+                  ) : (
+                    <ChevronRight className="w-4 h-4 shrink-0 text-muted-foreground" />
+                  )}
+                  <span className="text-xs font-semibold uppercase tracking-wide text-muted-foreground flex-1">
                     Lesson {topic.num}: {topic.title}
                   </span>
                   {topicDone && (
-                    <Check className="w-3.5 h-3.5 text-emerald-500" />
+                    <Check className="w-3.5 h-3.5 text-emerald-500 shrink-0" />
                   )}
-                </div>
-                {[
-                  { item: topic.lesson, idx: lessonIdx, sub: "Learn" },
-                  { item: topic.exam, idx: examIdx, sub: "Exam" },
-                ].map(({ item, idx, sub }) => {
-                  const Icon = item.type === "lesson" ? BookOpen : GraduationCap;
-                  const isActive = idx === active;
-                  const isComplete = completed.has(idx);
-                  const isStarted = started.has(idx) && !isComplete;
-                  return (
-                    <button
-                      key={idx}
-                      onClick={() => setActive(idx)}
-                      className={`w-full flex items-center gap-3 pl-5 pr-3 py-2 rounded-md text-sm text-left transition-colors ${
-                        isActive
-                          ? "bg-primary text-primary-foreground"
-                          : "text-foreground hover:bg-muted"
-                      }`}
-                    >
-                      <Icon className="w-4 h-4 shrink-0" />
-                      <span className="truncate flex-1">{sub}</span>
-                      {isComplete && (
-                        <Check className="w-4 h-4 shrink-0 ml-auto text-emerald-500" />
-                      )}
-                      {isStarted && (
-                        <AlertTriangle className="w-4 h-4 shrink-0 ml-auto text-amber-500" />
-                      )}
-                      {!isComplete && !isStarted && (
-                        <span
-                          className={`w-2 h-2 rounded-full shrink-0 ml-auto ${
-                            isActive ? "bg-primary-foreground/40" : "bg-border"
+                </button>
+                {isExpanded && (
+                  <div className="space-y-1 pl-6">
+                    {[
+                      { item: topic.lesson, idx: lessonIdx, sub: "Learn" },
+                      { item: topic.exam, idx: examIdx, sub: "Exam" },
+                    ].map(({ item, idx, sub }) => {
+                      const Icon = item.type === "lesson" ? BookOpen : GraduationCap;
+                      const isActive = idx === active;
+                      const isComplete = completed.has(idx);
+                      const isStarted = started.has(idx) && !isComplete;
+                      return (
+                        <button
+                          key={idx}
+                          onClick={() => setActive(idx)}
+                          className={`w-full flex items-center gap-3 px-3 py-2 rounded-md text-sm text-left transition-colors ${
+                            isActive
+                              ? "bg-primary text-primary-foreground"
+                              : "text-foreground hover:bg-muted"
                           }`}
-                        />
-                      )}
-                    </button>
-                  );
-                })}
+                        >
+                          <Icon className="w-4 h-4 shrink-0" />
+                          <span className="truncate flex-1">{sub}</span>
+                          {isComplete && (
+                            <Check className="w-4 h-4 shrink-0 ml-auto text-emerald-500" />
+                          )}
+                          {isStarted && (
+                            <AlertTriangle className="w-4 h-4 shrink-0 ml-auto text-amber-500" />
+                          )}
+                          {!isComplete && !isStarted && (
+                            <span
+                              className={`w-2 h-2 rounded-full shrink-0 ml-auto ${
+                                isActive ? "bg-primary-foreground/40" : "bg-border"
+                              }`}
+                            />
+                          )}
+                        </button>
+                      );
+                    })}
+                  </div>
+                )}
               </div>
             );
           })}
