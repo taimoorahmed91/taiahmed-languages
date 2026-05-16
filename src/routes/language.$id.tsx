@@ -18,6 +18,7 @@ import lesson1Data from "@/data/lesson1.json";
 import { Exam1 } from "@/components/exam1";
 import lesson2Data from "@/data/lesson2.json";
 import { Exam2 } from "@/components/exam2";
+import { DeText } from "@/components/de-text";
 
 type VocabGroup = { de: string; en: string; note: string; entries: { de: string; en: string; note: string }[] };
 type PhonGroup = { de: string; en: string; entries: { de: string; en: string; examples: { de: string; en: string }[] }[] };
@@ -30,13 +31,13 @@ function VocabContent({ data }: { data: VocabGroup[] }) {
       {data.map((group, gi) => (
         <section key={gi} className="rounded-lg border border-border bg-card overflow-hidden">
           <header className="px-5 py-3 border-b border-border bg-muted/40">
-            <h2 className="font-semibold text-foreground">{group.de}</h2>
+            <h2 className="font-semibold text-foreground"><DeText>{group.de}</DeText></h2>
             <p className="text-xs text-muted-foreground">{group.en}</p>
           </header>
           <div className="divide-y divide-border">
             {group.entries.map((e, i) => (
               <div key={i} className="grid grid-cols-12 gap-4 px-5 py-2.5 text-sm">
-                <div className="col-span-4 font-medium text-foreground">{e.de}</div>
+                <div className="col-span-4 font-medium text-foreground"><DeText>{e.de}</DeText></div>
                 <div className="col-span-4 text-muted-foreground">{e.en}</div>
                 <div className="col-span-4 text-xs italic text-muted-foreground/80">{e.note}</div>
               </div>
@@ -54,7 +55,7 @@ function PhoneticsContent({ data }: { data: PhonGroup[] }) {
       {data.map((group, gi) => (
         <section key={gi} className="rounded-lg border border-border bg-card overflow-hidden">
           <header className="px-5 py-3 border-b border-border bg-muted/40">
-            <h2 className="font-semibold text-foreground">{group.de}</h2>
+            <h2 className="font-semibold text-foreground"><DeText>{group.de}</DeText></h2>
             <p className="text-xs text-muted-foreground">{group.en}</p>
           </header>
           <div className="divide-y divide-border">
@@ -65,7 +66,7 @@ function PhoneticsContent({ data }: { data: PhonGroup[] }) {
                 <div className="col-span-8 flex flex-wrap gap-x-6 gap-y-1">
                   {e.examples.map((ex, j) => (
                     <div key={j} className="text-foreground">
-                      <span className="font-medium">{ex.de}</span>
+                      <span className="font-medium"><DeText>{ex.de}</DeText></span>
                       <span className="text-muted-foreground"> — {ex.en}</span>
                     </div>
                   ))}
