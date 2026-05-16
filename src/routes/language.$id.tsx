@@ -11,6 +11,8 @@ import {
   ChevronDown,
   ChevronRight,
   Lock,
+  PanelLeftClose,
+  PanelLeftOpen,
 } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { SessionTimer } from "@/components/session-timer";
