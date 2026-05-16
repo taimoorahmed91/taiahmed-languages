@@ -14,6 +14,34 @@ import {
 } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { SessionTimer } from "@/components/session-timer";
+import lesson1Data from "@/data/lesson1.json";
+
+type VocabGroup = { de: string; en: string; note: string; entries: { de: string; en: string; note: string }[] };
+const LESSON1: VocabGroup[] = lesson1Data as VocabGroup[];
+
+function Lesson1Content() {
+  return (
+    <div className="space-y-8">
+      {LESSON1.map((group, gi) => (
+        <section key={gi} className="rounded-lg border border-border bg-card overflow-hidden">
+          <header className="px-5 py-3 border-b border-border bg-muted/40">
+            <h2 className="font-semibold text-foreground">{group.de}</h2>
+            <p className="text-xs text-muted-foreground">{group.en}</p>
+          </header>
+          <div className="divide-y divide-border">
+            {group.entries.map((e, i) => (
+              <div key={i} className="grid grid-cols-12 gap-4 px-5 py-2.5 text-sm">
+                <div className="col-span-4 font-medium text-foreground">{e.de}</div>
+                <div className="col-span-4 text-muted-foreground">{e.en}</div>
+                <div className="col-span-4 text-xs italic text-muted-foreground/80">{e.note}</div>
+              </div>
+            ))}
+          </div>
+        </section>
+      ))}
+    </div>
+  );
+}
 
 
 export const Route = createFileRoute("/language/$id")({
@@ -244,7 +272,7 @@ function LanguagePage() {
       </aside>
 
       <main className="flex-1 p-10">
-        <div className="max-w-2xl space-y-6">
+        <div className="max-w-4xl space-y-6">
           <p className="text-sm text-muted-foreground uppercase tracking-wide">
             {current.type === "lesson" ? `Lesson ${current.num}` : `Exam ${current.num}`}
           </p>
@@ -266,11 +294,15 @@ function LanguagePage() {
                 onEnd={markComplete}
                 onReset={markReset}
               />
-              <div className="rounded-lg border border-dashed border-border bg-muted/30 p-10 text-center text-muted-foreground">
-                Placeholder content for{" "}
-                <span className="text-foreground font-medium">{current.title}</span>. Real
-                lesson material will live here.
-              </div>
+              {id === "german" && current.type === "lesson" && current.num === 1 ? (
+                <Lesson1Content />
+              ) : (
+                <div className="rounded-lg border border-dashed border-border bg-muted/30 p-10 text-center text-muted-foreground">
+                  Placeholder content for{" "}
+                  <span className="text-foreground font-medium">{current.title}</span>. Real
+                  lesson material will live here.
+                </div>
+              )}
             </>
           )}
         </div>
