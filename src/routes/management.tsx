@@ -6,11 +6,12 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Card } from "@/components/ui/card";
 import { ThemeToggle } from "@/components/theme-toggle";
-import { Trash2, LogOut, ArrowLeft } from "lucide-react";
+import { Trash2, LogOut, ArrowLeft, Pencil, X, Save } from "lucide-react";
 import {
   getCustomLessons,
   saveCustomLesson,
   deleteCustomLesson,
+  updateCustomLesson,
   type CustomLesson,
 } from "@/lib/custom-lessons";
 
@@ -96,6 +97,10 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
   const [language, setLanguage] = useState("german");
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const [editingId, setEditingId] = useState<string | null>(null);
+  const [editLang, setEditLang] = useState("");
+  const [editTitle, setEditTitle] = useState("");
+  const [editContent, setEditContent] = useState("");
 
   const refresh = () => setCustom(getCustomLessons());
   useEffect(() => { refresh(); }, []);
@@ -112,6 +117,29 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
   const onDelete = (id: string) => {
     if (!confirm("Delete this lesson?")) return;
     deleteCustomLesson(id);
+    refresh();
+  };
+
+  const startEdit = (l: CustomLesson) => {
+    setEditingId(l.id);
+    setEditLang(l.language);
+    setEditTitle(l.title);
+    setEditContent(l.content);
+  };
+
+  const cancelEdit = () => {
+    setEditingId(null);
+  };
+
+  const saveEdit = () => {
+    if (!editingId) return;
+    if (!editTitle.trim() || !editContent.trim()) return;
+    updateCustomLesson(editingId, {
+      language: editLang.trim().toLowerCase(),
+      title: editTitle.trim(),
+      content: editContent.trim(),
+    });
+    setEditingId(null);
     refresh();
   };
 
@@ -167,17 +195,51 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
           ) : (
             <ul className="divide-y divide-border">
               {custom.map((l) => (
-                <li key={l.id} className="py-3 flex items-start justify-between gap-4">
-                  <div className="min-w-0">
-                    <div className="flex items-center gap-2">
-                      <span className="text-xs uppercase tracking-wide text-muted-foreground">{l.language}</span>
-                      <span className="font-medium text-foreground truncate">{l.title}</span>
+                <li key={l.id} className="py-3">
+                  {editingId === l.id ? (
+                    <div className="space-y-3">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                        <div className="space-y-1.5">
+                          <Label htmlFor={`el-${l.id}`}>Language</Label>
+                          <Input id={`el-${l.id}`} value={editLang} onChange={(e) => setEditLang(e.target.value)} />
+                        </div>
+                        <div className="space-y-1.5">
+                          <Label htmlFor={`et-${l.id}`}>Title</Label>
+                          <Input id={`et-${l.id}`} value={editTitle} onChange={(e) => setEditTitle(e.target.value)} />
+                        </div>
+                      </div>
+                      <div className="space-y-1.5">
+                        <Label htmlFor={`ec-${l.id}`}>Content</Label>
+                        <Textarea id={`ec-${l.id}`} rows={5} value={editContent} onChange={(e) => setEditContent(e.target.value)} />
+                      </div>
+                      <div className="flex gap-2">
+                        <Button size="sm" onClick={saveEdit}>
+                          <Save className="w-4 h-4 mr-1" /> Save
+                        </Button>
+                        <Button size="sm" variant="ghost" onClick={cancelEdit}>
+                          <X className="w-4 h-4 mr-1" /> Cancel
+                        </Button>
+                      </div>
                     </div>
-                    <p className="text-sm text-muted-foreground line-clamp-2 mt-0.5">{l.content}</p>
-                  </div>
-                  <Button variant="ghost" size="sm" onClick={() => onDelete(l.id)} className="text-destructive hover:text-destructive">
-                    <Trash2 className="w-4 h-4 mr-1" /> Delete
-                  </Button>
+                  ) : (
+                    <div className="flex items-start justify-between gap-4">
+                      <div className="min-w-0">
+                        <div className="flex items-center gap-2">
+                          <span className="text-xs uppercase tracking-wide text-muted-foreground">{l.language}</span>
+                          <span className="font-medium text-foreground truncate">{l.title}</span>
+                        </div>
+                        <p className="text-sm text-muted-foreground line-clamp-2 mt-0.5">{l.content}</p>
+                      </div>
+                      <div className="flex gap-1 shrink-0">
+                        <Button variant="ghost" size="sm" onClick={() => startEdit(l)}>
+                          <Pencil className="w-4 h-4 mr-1" /> Edit
+                        </Button>
+                        <Button variant="ghost" size="sm" onClick={() => onDelete(l.id)} className="text-destructive hover:text-destructive">
+                          <Trash2 className="w-4 h-4 mr-1" /> Delete
+                        </Button>
+                      </div>
+                    </div>
+                  )}
                 </li>
               ))}
             </ul>
