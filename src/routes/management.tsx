@@ -19,9 +19,9 @@ import {
   setOverride,
   clearOverride,
   markDeleted,
-  unmarkDeleted,
   markHidden,
   unmarkHidden,
+  restoreLesson,
   keyFor,
 } from "@/lib/builtin-overrides";
 
@@ -123,9 +123,9 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
   const [bTitle, setBTitle] = useState("");
   const [bContent, setBContent] = useState("");
 
-  const refresh = () => {
+  const refresh = async () => {
     setCustom(getCustomLessons());
-    setOverrides(getOverrides());
+    setOverrides(await getOverrides());
   };
   useEffect(() => { refresh(); }, []);
 
@@ -175,7 +175,7 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
     setBContent(ov?.content ?? "");
   };
 
-  const saveBEdit = (language: string, num: number, defaultTitle: string) => {
+  const saveBEdit = async (language: string, num: number, defaultTitle: string) => {
     const titleVal = bTitle.trim();
     const contentVal = bContent.trim();
     if (!titleVal) return;
@@ -183,37 +183,33 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
     if (titleVal !== defaultTitle) patch.title = titleVal;
     if (contentVal) patch.content = contentVal;
     if (Object.keys(patch).length === 0) {
-      clearOverride(language, num);
+      await clearOverride(language, num);
     } else {
-      // Replace fully (don't merge stale fields)
-      clearOverride(language, num);
-      setOverride(language, num, patch);
+      await setOverride(language, num, patch);
     }
     setBEditKey(null);
-    refresh();
+    await refresh();
   };
 
-  const onBDelete = (language: string, num: number) => {
+  const onBDelete = async (language: string, num: number) => {
     if (!confirm("Permanently delete this lesson and its exam from the course? This cannot be undone.")) return;
-    markDeleted(language, num);
-    refresh();
+    await markDeleted(language, num);
+    await refresh();
   };
 
-  const onBRestore = (language: string, num: number) => {
-    unmarkDeleted(language, num);
-    unmarkHidden(language, num);
-    clearOverride(language, num);
-    refresh();
+  const onBRestore = async (language: string, num: number) => {
+    await restoreLesson(language, num);
+    await refresh();
   };
 
-  const onBHide = (language: string, num: number) => {
-    markHidden(language, num);
-    refresh();
+  const onBHide = async (language: string, num: number) => {
+    await markHidden(language, num);
+    await refresh();
   };
 
-  const onBUnhide = (language: string, num: number) => {
-    unmarkHidden(language, num);
-    refresh();
+  const onBUnhide = async (language: string, num: number) => {
+    await unmarkHidden(language, num);
+    await refresh();
   };
 
   return (
@@ -327,20 +323,12 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
           <ul className="divide-y divide-border">
             {(() => {
               const visible = BUILTIN.filter((l) => !overrides.deleted.includes(keyFor(l.language, l.num)));
-              const numberedKeys = visible
-                .filter((l) => !overrides.hidden.includes(keyFor(l.language, l.num)))
-                .map((l) => keyFor(l.language, l.num));
               return visible.map((l) => {
               const k = keyFor(l.language, l.num);
               const ov = overrides.edits[k];
               const hidden = overrides.hidden.includes(k);
               const isEditing = bEditKey === k;
               const displayTitle = ov?.title ?? l.title;
-              const pos = numberedKeys.indexOf(k);
-              const pad = (n: number) => n.toString().padStart(2, "0");
-              const formattedTitle = hidden
-                ? displayTitle
-                : `01-${pad(pos + 1)}-${displayTitle}`;
               return (
                 <li key={k} className="py-3">
                   {isEditing ? (
@@ -380,7 +368,7 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
                     <div className="flex items-start justify-between gap-4">
                       <div className="min-w-0 flex items-center gap-3 flex-wrap">
                         <span className="text-xs uppercase tracking-wide text-muted-foreground w-20">{l.language}</span>
-                        <span className={`font-medium ${hidden ? "text-muted-foreground line-through" : "text-foreground"}`}>{formattedTitle}</span>
+                        <span className={`font-medium ${hidden ? "text-muted-foreground line-through" : "text-foreground"}`}>{displayTitle}</span>
                         {ov && !hidden && (
                           <span className="text-[10px] uppercase tracking-wide px-1.5 py-0.5 rounded bg-amber-500/15 text-amber-600 dark:text-amber-400">edited</span>
                         )}

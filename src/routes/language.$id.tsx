@@ -172,7 +172,7 @@ function LanguagePage() {
 
   useEffect(() => {
     setCustomLessons(getCustomLessons(id));
-    setOverrides(getOverrides());
+    getOverrides().then(setOverrides);
   }, [id]);
 
   useEffect(() => {
@@ -211,8 +211,6 @@ function LanguagePage() {
     });
   const currentVisiblePos = visibleTopicIndices.findIndex(({ i }) => i === currentTopicIndex);
   const currentDisplayNum = currentVisiblePos >= 0 ? currentVisiblePos + 1 : currentTopicIndex + 1;
-  const padNum = (n: number) => n.toString().padStart(2, "0");
-  const formattedCurrentTitle = `01-${padNum(currentDisplayNum)}-${currentTitle}`;
   const isCurrentExamLocked =
     !activeCustom && current.type === "exam" && !completed.has(currentTopicIndex * 2);
 
@@ -344,8 +342,6 @@ function LanguagePage() {
             const ovKey = keyFor(id, topic.num);
             const ovTitle = overrides.edits[ovKey]?.title ?? topic.title;
             const displayNum = vi + 1;
-            const pad = (n: number) => n.toString().padStart(2, "0");
-            const formattedTitle = `01-${pad(displayNum)}-${ovTitle}`;
             const lessonIdx = ti * 2;
             const examIdx = ti * 2 + 1;
             const topicDone =
@@ -356,7 +352,7 @@ function LanguagePage() {
                 <button
                   onClick={() => toggleTopic(ti)}
                   className="w-full flex items-center gap-2 px-2 py-2 rounded-md text-left transition-colors hover:bg-muted"
-                  title={collapsed ? formattedTitle : undefined}
+                  title={collapsed ? ovTitle : undefined}
                 >
                   {isExpanded ? (
                     <ChevronDown className="w-4 h-4 shrink-0 text-muted-foreground" />
@@ -365,7 +361,7 @@ function LanguagePage() {
                   )}
                   {!collapsed && (
                     <span className="text-xs font-semibold uppercase tracking-wide text-muted-foreground flex-1">
-                      {formattedTitle}
+                      {ovTitle}
                     </span>
                   )}
                   {collapsed && (
@@ -500,7 +496,7 @@ function LanguagePage() {
                 : `Exam ${currentDisplayNum}`}
           </p>
           <h1 className="text-4xl font-bold text-foreground -mt-4">
-            {activeCustom ? activeCustom.title : formattedCurrentTitle}
+            {activeCustom ? activeCustom.title : currentTitle}
           </h1>
           {activeCustom ? (
             <article className="rounded-lg border border-border bg-card p-8 whitespace-pre-wrap text-foreground leading-relaxed">

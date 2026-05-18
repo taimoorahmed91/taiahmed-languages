@@ -1,94 +1,99 @@
+import { supabase } from "@/integrations/supabase/client";
+
 export type BuiltinOverride = {
   title?: string;
   content?: string;
 };
 
-type Store = {
+export type Store = {
   edits: Record<string, BuiltinOverride>;
   deleted: string[];
   hidden: string[];
 };
 
-const KEY = "lingua.builtinOverrides.v1";
-
-function read(): Store {
-  if (typeof window === "undefined") return { edits: {}, deleted: [], hidden: [] };
-  try {
-    const raw = window.localStorage.getItem(KEY);
-    if (!raw) return { edits: {}, deleted: [], hidden: [] };
-    const parsed = JSON.parse(raw);
-    return {
-      edits: parsed.edits ?? {},
-      deleted: parsed.deleted ?? [],
-      hidden: parsed.hidden ?? [],
-    };
-  } catch {
-    return { edits: {}, deleted: [], hidden: [] };
-  }
-}
-
-function write(s: Store) {
-  window.localStorage.setItem(KEY, JSON.stringify(s));
-}
-
 export function keyFor(language: string, num: number) {
   return `${language}-${num}`;
 }
 
-export function getOverrides(): Store {
-  return read();
+export async function getOverrides(): Promise<Store> {
+  const { data } = await supabase.from("lesson_overrides").select("*");
+  const store: Store = { edits: {}, deleted: [], hidden: [] };
+  for (const row of data ?? []) {
+    if (row.is_deleted) {
+      store.deleted.push(row.key);
+    } else if (row.is_hidden) {
+      store.hidden.push(row.key);
+    }
+    if (row.title_override || row.content_override) {
+      store.edits[row.key] = {
+        ...(row.title_override ? { title: row.title_override } : {}),
+        ...(row.content_override ? { content: row.content_override } : {}),
+      };
+    }
+  }
+  return store;
 }
 
-export function getOverride(language: string, num: number): BuiltinOverride | undefined {
-  return read().edits[keyFor(language, num)];
+export async function setOverride(language: string, num: number, patch: BuiltinOverride) {
+  await supabase.from("lesson_overrides").upsert(
+    {
+      key: keyFor(language, num),
+      language,
+      lesson_num: num,
+      title_override: patch.title ?? null,
+      content_override: patch.content ?? null,
+      is_deleted: false,
+      is_hidden: false,
+    },
+    { onConflict: "key" }
+  );
 }
 
-export function isDeleted(language: string, num: number): boolean {
-  return read().deleted.includes(keyFor(language, num));
+export async function clearOverride(language: string, num: number) {
+  await supabase
+    .from("lesson_overrides")
+    .update({ title_override: null, content_override: null })
+    .eq("key", keyFor(language, num));
 }
 
-export function isHidden(language: string, num: number): boolean {
-  return read().hidden.includes(keyFor(language, num));
+export async function markDeleted(language: string, num: number) {
+  await supabase.from("lesson_overrides").upsert(
+    {
+      key: keyFor(language, num),
+      language,
+      lesson_num: num,
+      is_deleted: true,
+      is_hidden: false,
+      title_override: null,
+      content_override: null,
+    },
+    { onConflict: "key" }
+  );
 }
 
-export function setOverride(language: string, num: number, patch: BuiltinOverride) {
-  const s = read();
-  s.edits[keyFor(language, num)] = { ...s.edits[keyFor(language, num)], ...patch };
-  write(s);
+export async function markHidden(language: string, num: number) {
+  await supabase.from("lesson_overrides").upsert(
+    {
+      key: keyFor(language, num),
+      language,
+      lesson_num: num,
+      is_hidden: true,
+      is_deleted: false,
+    },
+    { onConflict: "key" }
+  );
 }
 
-export function clearOverride(language: string, num: number) {
-  const s = read();
-  delete s.edits[keyFor(language, num)];
-  write(s);
+export async function unmarkHidden(language: string, num: number) {
+  await supabase
+    .from("lesson_overrides")
+    .update({ is_hidden: false })
+    .eq("key", keyFor(language, num));
 }
 
-export function markDeleted(language: string, num: number) {
-  const s = read();
-  const k = keyFor(language, num);
-  if (!s.deleted.includes(k)) s.deleted.push(k);
-  // remove from hidden if present
-  s.hidden = s.hidden.filter((x) => x !== k);
-  // drop edits — lesson is gone
-  delete s.edits[k];
-  write(s);
-}
-
-export function unmarkDeleted(language: string, num: number) {
-  const s = read();
-  s.deleted = s.deleted.filter((k) => k !== keyFor(language, num));
-  write(s);
-}
-
-export function markHidden(language: string, num: number) {
-  const s = read();
-  const k = keyFor(language, num);
-  if (!s.hidden.includes(k)) s.hidden.push(k);
-  write(s);
-}
-
-export function unmarkHidden(language: string, num: number) {
-  const s = read();
-  s.hidden = s.hidden.filter((k) => k !== keyFor(language, num));
-  write(s);
+export async function restoreLesson(language: string, num: number) {
+  await supabase
+    .from("lesson_overrides")
+    .delete()
+    .eq("key", keyFor(language, num));
 }

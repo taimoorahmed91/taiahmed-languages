@@ -14,6 +14,39 @@ export type Database = {
   }
   public: {
     Tables: {
+      lesson_overrides: {
+        Row: {
+          key: string
+          language: string
+          lesson_num: number
+          is_deleted: boolean
+          is_hidden: boolean
+          title_override: string | null
+          content_override: string | null
+          updated_at: string
+        }
+        Insert: {
+          key: string
+          language: string
+          lesson_num: number
+          is_deleted?: boolean
+          is_hidden?: boolean
+          title_override?: string | null
+          content_override?: string | null
+          updated_at?: string
+        }
+        Update: {
+          key?: string
+          language?: string
+          lesson_num?: number
+          is_deleted?: boolean
+          is_hidden?: boolean
+          title_override?: string | null
+          content_override?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           city: string
