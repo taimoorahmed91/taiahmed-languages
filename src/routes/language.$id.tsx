@@ -317,6 +317,8 @@ function LanguagePage() {
             const ovKey = keyFor(id, topic.num);
             const ovTitle = overrides.edits[ovKey]?.title ?? topic.title;
             const displayNum = vi + 1;
+            const pad = (n: number) => n.toString().padStart(2, "0");
+            const formattedTitle = `01-${pad(displayNum)}-${ovTitle}`;
             const lessonIdx = ti * 2;
             const examIdx = ti * 2 + 1;
             const topicDone =
@@ -327,7 +329,7 @@ function LanguagePage() {
                 <button
                   onClick={() => toggleTopic(ti)}
                   className="w-full flex items-center gap-2 px-2 py-2 rounded-md text-left transition-colors hover:bg-muted"
-                  title={collapsed ? `Lesson ${displayNum}: ${ovTitle}` : undefined}
+                  title={collapsed ? formattedTitle : undefined}
                 >
                   {isExpanded ? (
                     <ChevronDown className="w-4 h-4 shrink-0 text-muted-foreground" />
@@ -336,7 +338,7 @@ function LanguagePage() {
                   )}
                   {!collapsed && (
                     <span className="text-xs font-semibold uppercase tracking-wide text-muted-foreground flex-1">
-                      Lesson {displayNum}: {ovTitle}
+                      {formattedTitle}
                     </span>
                   )}
                   {collapsed && (
