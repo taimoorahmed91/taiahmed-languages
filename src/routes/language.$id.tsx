@@ -142,7 +142,7 @@ function LanguagePage() {
   const [scores, setScores] = useState<Record<number, { score: number; total: number }>>({});
   const [customLessons, setCustomLessons] = useState<CustomLesson[]>([]);
   const [activeCustomId, setActiveCustomId] = useState<string | null>(null);
-  const [overrides, setOverrides] = useState<{ edits: Record<string, { title?: string; content?: string }>; deleted: string[] }>({ edits: {}, deleted: [] });
+  const [overrides, setOverrides] = useState<{ edits: Record<string, { title?: string; content?: string }>; deleted: string[]; hidden: string[] }>({ edits: {}, deleted: [], hidden: [] });
 
   useEffect(() => {
     setCustomLessons(getCustomLessons(id));
@@ -301,7 +301,7 @@ function LanguagePage() {
         <nav className="flex-1 overflow-y-auto p-3 space-y-2">
           {TOPICS.map((topic, ti) => {
             const ovKey = keyFor(id, topic.num);
-            if (overrides.deleted.includes(ovKey)) return null;
+            if (overrides.deleted.includes(ovKey) || overrides.hidden.includes(ovKey)) return null;
             const ovTitle = overrides.edits[ovKey]?.title ?? topic.title;
             const lessonIdx = ti * 2;
             const examIdx = ti * 2 + 1;

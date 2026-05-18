@@ -6,7 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Card } from "@/components/ui/card";
 import { ThemeToggle } from "@/components/theme-toggle";
-import { Trash2, LogOut, ArrowLeft, Pencil, X, Save, RotateCcw } from "lucide-react";
+import { Trash2, LogOut, ArrowLeft, Pencil, X, Save, RotateCcw, EyeOff, Eye } from "lucide-react";
 import {
   getCustomLessons,
   saveCustomLesson,
@@ -20,6 +20,8 @@ import {
   clearOverride,
   markDeleted,
   unmarkDeleted,
+  markHidden,
+  unmarkHidden,
   keyFor,
 } from "@/lib/builtin-overrides";
 
@@ -109,7 +111,11 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
   const [editLang, setEditLang] = useState("");
   const [editTitle, setEditTitle] = useState("");
   const [editContent, setEditContent] = useState("");
-  const [overrides, setOverrides] = useState(() => ({ edits: {} as Record<string, { title?: string; content?: string }>, deleted: [] as string[] }));
+  const [overrides, setOverrides] = useState(() => ({
+    edits: {} as Record<string, { title?: string; content?: string }>,
+    deleted: [] as string[],
+    hidden: [] as string[],
+  }));
   const [bEditKey, setBEditKey] = useState<string | null>(null);
   const [bTitle, setBTitle] = useState("");
   const [bContent, setBContent] = useState("");
@@ -185,14 +191,25 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
   };
 
   const onBDelete = (language: string, num: number) => {
-    if (!confirm("Hide this built-in lesson from the course?")) return;
+    if (!confirm("Permanently delete this lesson and its exam from the course? This cannot be undone.")) return;
     markDeleted(language, num);
     refresh();
   };
 
   const onBRestore = (language: string, num: number) => {
     unmarkDeleted(language, num);
+    unmarkHidden(language, num);
     clearOverride(language, num);
+    refresh();
+  };
+
+  const onBHide = (language: string, num: number) => {
+    markHidden(language, num);
+    refresh();
+  };
+
+  const onBUnhide = (language: string, num: number) => {
+    unmarkHidden(language, num);
     refresh();
   };
 
@@ -308,7 +325,8 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
             {BUILTIN.map((l) => {
               const k = keyFor(l.language, l.num);
               const ov = overrides.edits[k];
-              const hidden = overrides.deleted.includes(k);
+              const deleted = overrides.deleted.includes(k);
+              const hidden = overrides.hidden.includes(k);
               const isEditing = bEditKey === k;
               const displayTitle = ov?.title ?? l.title;
               return (
@@ -351,26 +369,42 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
                       <div className="min-w-0 flex items-center gap-3 flex-wrap">
                         <span className="text-xs uppercase tracking-wide text-muted-foreground w-20">{l.language}</span>
                         <span className="text-muted-foreground text-sm">Lesson {l.num}</span>
-                        <span className={`font-medium ${hidden ? "text-muted-foreground line-through" : "text-foreground"}`}>{displayTitle}</span>
-                        {ov && !hidden && (
+                        <span className={`font-medium ${deleted || hidden ? "text-muted-foreground line-through" : "text-foreground"}`}>{displayTitle}</span>
+                        {ov && !deleted && !hidden && (
                           <span className="text-[10px] uppercase tracking-wide px-1.5 py-0.5 rounded bg-amber-500/15 text-amber-600 dark:text-amber-400">edited</span>
                         )}
                         {hidden && (
-                          <span className="text-[10px] uppercase tracking-wide px-1.5 py-0.5 rounded bg-destructive/15 text-destructive">hidden</span>
+                          <span className="text-[10px] uppercase tracking-wide px-1.5 py-0.5 rounded bg-muted text-muted-foreground">hidden</span>
+                        )}
+                        {deleted && (
+                          <span className="text-[10px] uppercase tracking-wide px-1.5 py-0.5 rounded bg-destructive/15 text-destructive">deleted</span>
                         )}
                       </div>
                       <div className="flex gap-1 shrink-0">
-                        {(ov || hidden) && (
+                        {deleted ? (
                           <Button variant="ghost" size="sm" onClick={() => onBRestore(l.language, l.num)}>
-                            <RotateCcw className="w-4 h-4 mr-1" /> Restore
+                            <RotateCcw className="w-4 h-4 mr-1" /> Undo delete
+                          </Button>
+                        ) : hidden ? (
+                          <Button variant="ghost" size="sm" onClick={() => onBUnhide(l.language, l.num)}>
+                            <Eye className="w-4 h-4 mr-1" /> Unhide
+                          </Button>
+                        ) : ov ? (
+                          <Button variant="ghost" size="sm" onClick={() => onBRestore(l.language, l.num)}>
+                            <RotateCcw className="w-4 h-4 mr-1" /> Reset
+                          </Button>
+                        ) : null}
+                        {!deleted && !hidden && (
+                          <Button variant="ghost" size="sm" onClick={() => onBHide(l.language, l.num)}>
+                            <EyeOff className="w-4 h-4 mr-1" /> Hide
                           </Button>
                         )}
-                        {!hidden && (
+                        {!deleted && !hidden && (
                           <Button variant="ghost" size="sm" onClick={() => startBEdit(l.language, l.num, l.title)}>
                             <Pencil className="w-4 h-4 mr-1" /> Edit
                           </Button>
                         )}
-                        {!hidden && (
+                        {!deleted && (
                           <Button variant="ghost" size="sm" onClick={() => onBDelete(l.language, l.num)} className="text-destructive hover:text-destructive">
                             <Trash2 className="w-4 h-4 mr-1" /> Delete
                           </Button>
