@@ -23,6 +23,7 @@ import { Exam2 } from "@/components/exam2";
 import { DeText } from "@/components/de-text";
 import { Lesson3Content } from "@/components/lesson3-content";
 import { Exam3 } from "@/components/exam3";
+import { getCustomLessons, type CustomLesson } from "@/lib/custom-lessons";
 
 type VocabGroup = { de: string; en: string; note: string; entries: { de: string; en: string; note: string }[] };
 type PhonGroup = { de: string; en: string; entries: { de: string; en: string; examples: { de: string; en: string }[] }[] };
@@ -138,6 +139,12 @@ function LanguagePage() {
   const [collapsed, setCollapsed] = useState(false);
   const [expanded, setExpanded] = useState<Set<number>>(new Set());
   const [scores, setScores] = useState<Record<number, { score: number; total: number }>>({});
+  const [customLessons, setCustomLessons] = useState<CustomLesson[]>([]);
+  const [activeCustomId, setActiveCustomId] = useState<string | null>(null);
+
+  useEffect(() => {
+    setCustomLessons(getCustomLessons(id));
+  }, [id]);
 
   useEffect(() => {
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_e, session) => {
@@ -155,10 +162,11 @@ function LanguagePage() {
 
   if (authed === null) return <div className="min-h-screen flex items-center justify-center text-muted-foreground">Loading…</div>;
 
+  const activeCustom = activeCustomId ? customLessons.find((l) => l.id === activeCustomId) ?? null : null;
   const current = ITEMS[active];
   const currentTopicIndex = Math.floor(active / 2);
   const isCurrentExamLocked =
-    current.type === "exam" && !completed.has(currentTopicIndex * 2);
+    !activeCustom && current.type === "exam" && !completed.has(currentTopicIndex * 2);
 
   const markStarted = () => {
     setStarted((prev) => new Set(prev).add(active));
@@ -329,7 +337,7 @@ function LanguagePage() {
                       return (
                         <button
                           key={idx}
-                          onClick={() => setActive(idx)}
+                          onClick={() => { setActive(idx); setActiveCustomId(null); }}
                           className={`w-full flex items-center gap-3 rounded-md text-sm text-left transition-colors ${
                             collapsed ? "px-2 py-2 justify-center" : "px-3 py-2"
                           } ${
@@ -380,6 +388,33 @@ function LanguagePage() {
               </div>
             );
           })}
+          {customLessons.length > 0 && (
+            <div className="pt-3 mt-3 border-t border-border">
+              {!collapsed && (
+                <p className="px-2 pb-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                  Custom lessons
+                </p>
+              )}
+              {customLessons.map((l) => {
+                const isActive = activeCustomId === l.id;
+                return (
+                  <button
+                    key={l.id}
+                    onClick={() => {
+                      setActiveCustomId(l.id);
+                    }}
+                    className={`w-full flex items-center gap-3 rounded-md text-sm text-left transition-colors ${
+                      collapsed ? "px-2 py-2 justify-center" : "px-3 py-2"
+                    } ${isActive ? "bg-primary text-primary-foreground" : "text-foreground hover:bg-muted"}`}
+                    title={l.title}
+                  >
+                    <BookOpen className="w-4 h-4 shrink-0" />
+                    {!collapsed && <span className="truncate flex-1">{l.title}</span>}
+                  </button>
+                );
+              })}
+            </div>
+          )}
         </nav>
         <div className="p-3 border-t border-border">
           <div className={`flex items-center ${collapsed ? "justify-center" : "justify-between"}`}>
@@ -400,10 +435,20 @@ function LanguagePage() {
       <main className="flex-1 p-10">
         <div className="max-w-4xl space-y-6">
           <p className="text-sm text-muted-foreground uppercase tracking-wide">
-            {current.type === "lesson" ? `Lesson ${current.num}` : `Exam ${current.num}`}
+            {activeCustom
+              ? "Custom lesson"
+              : current.type === "lesson"
+                ? `Lesson ${current.num}`
+                : `Exam ${current.num}`}
           </p>
-          <h1 className="text-4xl font-bold text-foreground -mt-4">{current.title}</h1>
-          {isCurrentExamLocked ? (
+          <h1 className="text-4xl font-bold text-foreground -mt-4">
+            {activeCustom ? activeCustom.title : current.title}
+          </h1>
+          {activeCustom ? (
+            <article className="rounded-lg border border-border bg-card p-8 whitespace-pre-wrap text-foreground leading-relaxed">
+              {activeCustom.content}
+            </article>
+          ) : isCurrentExamLocked ? (
             <div className="rounded-lg border border-border bg-muted/30 p-10 text-center space-y-3">
               <Lock className="w-8 h-8 mx-auto text-muted-foreground" />
               <p className="text-foreground font-medium">Exam locked</p>
