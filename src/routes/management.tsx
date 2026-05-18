@@ -377,7 +377,7 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
                           <span className="text-[10px] uppercase tracking-wide px-1.5 py-0.5 rounded bg-muted text-muted-foreground">hidden</span>
                         )}
                         {deleted && (
-                          <span className="text-[10px] uppercase tracking-wide px-1.5 py-0.5 rounded bg-destructive/15 text-destructive">hidden</span>
+                          <span className="text-[10px] uppercase tracking-wide px-1.5 py-0.5 rounded bg-destructive/15 text-destructive">deleted</span>
                         )}
                       </div>
                       <div className="flex gap-1 shrink-0">
