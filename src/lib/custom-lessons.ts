@@ -35,3 +35,11 @@ export function deleteCustomLesson(id: string) {
   const all = getCustomLessons().filter((l) => l.id !== id);
   window.localStorage.setItem(KEY, JSON.stringify(all));
 }
+
+export function updateCustomLesson(
+  id: string,
+  patch: Partial<Pick<CustomLesson, "language" | "title" | "content">>,
+) {
+  const all = getCustomLessons().map((l) => (l.id === id ? { ...l, ...patch } : l));
+  window.localStorage.setItem(KEY, JSON.stringify(all));
+}
