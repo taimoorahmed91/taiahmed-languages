@@ -324,15 +324,22 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
             Edits and hides are stored as overrides — restore to bring back the original.
           </p>
           <ul className="divide-y divide-border">
-            {BUILTIN.filter((l) => !overrides.deleted.includes(keyFor(l.language, l.num))).map((l, idx) => {
+            {(() => {
+              const visible = BUILTIN.filter((l) => !overrides.deleted.includes(keyFor(l.language, l.num)));
+              const numberedKeys = visible
+                .filter((l) => !overrides.hidden.includes(keyFor(l.language, l.num)))
+                .map((l) => keyFor(l.language, l.num));
+              return visible.map((l) => {
               const k = keyFor(l.language, l.num);
               const ov = overrides.edits[k];
               const hidden = overrides.hidden.includes(k);
               const isEditing = bEditKey === k;
               const displayTitle = ov?.title ?? l.title;
-              const displayNum = idx + 1;
+              const pos = numberedKeys.indexOf(k);
               const pad = (n: number) => n.toString().padStart(2, "0");
-              const formattedTitle = `01-${pad(displayNum)}-${displayTitle}`;
+              const formattedTitle = hidden
+                ? displayTitle
+                : `01-${pad(pos + 1)}-${displayTitle}`;
               return (
                 <li key={k} className="py-3">
                   {isEditing ? (
@@ -408,7 +415,8 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
                   )}
                 </li>
               );
-            })}
+              });
+            })()}
           </ul>
         </Card>
       </main>
