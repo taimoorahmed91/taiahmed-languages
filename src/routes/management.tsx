@@ -331,6 +331,8 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
               const isEditing = bEditKey === k;
               const displayTitle = ov?.title ?? l.title;
               const displayNum = idx + 1;
+              const pad = (n: number) => n.toString().padStart(2, "0");
+              const formattedTitle = `01-${pad(displayNum)}-${displayTitle}`;
               return (
                 <li key={k} className="py-3">
                   {isEditing ? (
@@ -370,8 +372,7 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
                     <div className="flex items-start justify-between gap-4">
                       <div className="min-w-0 flex items-center gap-3 flex-wrap">
                         <span className="text-xs uppercase tracking-wide text-muted-foreground w-20">{l.language}</span>
-                        <span className="text-muted-foreground text-sm">Lesson {displayNum}</span>
-                        <span className={`font-medium ${hidden ? "text-muted-foreground line-through" : "text-foreground"}`}>{displayTitle}</span>
+                        <span className={`font-medium ${hidden ? "text-muted-foreground line-through" : "text-foreground"}`}>{formattedTitle}</span>
                         {ov && !hidden && (
                           <span className="text-[10px] uppercase tracking-wide px-1.5 py-0.5 rounded bg-amber-500/15 text-amber-600 dark:text-amber-400">edited</span>
                         )}

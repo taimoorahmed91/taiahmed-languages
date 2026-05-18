@@ -195,6 +195,16 @@ function LanguagePage() {
   const currentContentOverride =
     !activeCustom && current.type === "lesson" ? currentOverride?.content : undefined;
   const currentTopicIndex = Math.floor(active / 2);
+  const visibleTopicIndices = TOPICS
+    .map((t, i) => ({ t, i }))
+    .filter(({ t }) => {
+      const k = keyFor(id, t.num);
+      return !overrides.deleted.includes(k) && !overrides.hidden.includes(k);
+    });
+  const currentVisiblePos = visibleTopicIndices.findIndex(({ i }) => i === currentTopicIndex);
+  const currentDisplayNum = currentVisiblePos >= 0 ? currentVisiblePos + 1 : currentTopicIndex + 1;
+  const padNum = (n: number) => n.toString().padStart(2, "0");
+  const formattedCurrentTitle = `01-${padNum(currentDisplayNum)}-${currentTitle}`;
   const isCurrentExamLocked =
     !activeCustom && current.type === "exam" && !completed.has(currentTopicIndex * 2);
 
@@ -478,11 +488,11 @@ function LanguagePage() {
             {activeCustom
               ? "Custom lesson"
               : current.type === "lesson"
-                ? `Lesson ${current.num}`
-                : `Exam ${current.num}`}
+                ? `Lesson ${currentDisplayNum}`
+                : `Exam ${currentDisplayNum}`}
           </p>
           <h1 className="text-4xl font-bold text-foreground -mt-4">
-            {activeCustom ? activeCustom.title : currentTitle}
+            {activeCustom ? activeCustom.title : formattedCurrentTitle}
           </h1>
           {activeCustom ? (
             <article className="rounded-lg border border-border bg-card p-8 whitespace-pre-wrap text-foreground leading-relaxed">
