@@ -488,11 +488,11 @@ function LanguagePage() {
             {activeCustom
               ? "Custom lesson"
               : current.type === "lesson"
-                ? `Lesson ${current.num}`
-                : `Exam ${current.num}`}
+                ? `Lesson ${currentDisplayNum}`
+                : `Exam ${currentDisplayNum}`}
           </p>
           <h1 className="text-4xl font-bold text-foreground -mt-4">
-            {activeCustom ? activeCustom.title : currentTitle}
+            {activeCustom ? activeCustom.title : formattedCurrentTitle}
           </h1>
           {activeCustom ? (
             <article className="rounded-lg border border-border bg-card p-8 whitespace-pre-wrap text-foreground leading-relaxed">
