@@ -24,6 +24,7 @@ import { DeText } from "@/components/de-text";
 import { Lesson3Content } from "@/components/lesson3-content";
 import { Exam3 } from "@/components/exam3";
 import { getCustomLessons, type CustomLesson } from "@/lib/custom-lessons";
+import { getOverrides, keyFor } from "@/lib/builtin-overrides";
 
 type VocabGroup = { de: string; en: string; note: string; entries: { de: string; en: string; note: string }[] };
 type PhonGroup = { de: string; en: string; entries: { de: string; en: string; examples: { de: string; en: string }[] }[] };
@@ -141,9 +142,11 @@ function LanguagePage() {
   const [scores, setScores] = useState<Record<number, { score: number; total: number }>>({});
   const [customLessons, setCustomLessons] = useState<CustomLesson[]>([]);
   const [activeCustomId, setActiveCustomId] = useState<string | null>(null);
+  const [overrides, setOverrides] = useState<{ edits: Record<string, { title?: string; content?: string }>; deleted: string[] }>({ edits: {}, deleted: [] });
 
   useEffect(() => {
     setCustomLessons(getCustomLessons(id));
+    setOverrides(getOverrides());
   }, [id]);
 
   useEffect(() => {
@@ -164,6 +167,15 @@ function LanguagePage() {
 
   const activeCustom = activeCustomId ? customLessons.find((l) => l.id === activeCustomId) ?? null : null;
   const current = ITEMS[active];
+  const currentLessonNum = TOPICS[Math.floor(active / 2)].num;
+  const currentKey = keyFor(id, currentLessonNum);
+  const currentOverride = overrides.edits[currentKey];
+  const currentTitle =
+    !activeCustom && current.type === "lesson" && currentOverride?.title
+      ? currentOverride.title
+      : current.title;
+  const currentContentOverride =
+    !activeCustom && current.type === "lesson" ? currentOverride?.content : undefined;
   const currentTopicIndex = Math.floor(active / 2);
   const isCurrentExamLocked =
     !activeCustom && current.type === "exam" && !completed.has(currentTopicIndex * 2);
@@ -288,6 +300,9 @@ function LanguagePage() {
 
         <nav className="flex-1 overflow-y-auto p-3 space-y-2">
           {TOPICS.map((topic, ti) => {
+            const ovKey = keyFor(id, topic.num);
+            if (overrides.deleted.includes(ovKey)) return null;
+            const ovTitle = overrides.edits[ovKey]?.title ?? topic.title;
             const lessonIdx = ti * 2;
             const examIdx = ti * 2 + 1;
             const topicDone =
@@ -298,7 +313,7 @@ function LanguagePage() {
                 <button
                   onClick={() => toggleTopic(ti)}
                   className="w-full flex items-center gap-2 px-2 py-2 rounded-md text-left transition-colors hover:bg-muted"
-                  title={collapsed ? `Lesson ${topic.num}: ${topic.title}` : undefined}
+                  title={collapsed ? `Lesson ${topic.num}: ${ovTitle}` : undefined}
                 >
                   {isExpanded ? (
                     <ChevronDown className="w-4 h-4 shrink-0 text-muted-foreground" />
@@ -307,7 +322,7 @@ function LanguagePage() {
                   )}
                   {!collapsed && (
                     <span className="text-xs font-semibold uppercase tracking-wide text-muted-foreground flex-1">
-                      Lesson {topic.num}: {topic.title}
+                      Lesson {topic.num}: {ovTitle}
                     </span>
                   )}
                   {collapsed && (
@@ -442,7 +457,7 @@ function LanguagePage() {
                 : `Exam ${current.num}`}
           </p>
           <h1 className="text-4xl font-bold text-foreground -mt-4">
-            {activeCustom ? activeCustom.title : current.title}
+            {activeCustom ? activeCustom.title : currentTitle}
           </h1>
           {activeCustom ? (
             <article className="rounded-lg border border-border bg-card p-8 whitespace-pre-wrap text-foreground leading-relaxed">
@@ -467,7 +482,11 @@ function LanguagePage() {
                 showEnd={current.type !== "exam"}
               />
               {started.has(active) ? (
-                id === "german" && current.type === "lesson" && current.num === 1 ? (
+                currentContentOverride ? (
+                  <article className="rounded-lg border border-border bg-card p-8 whitespace-pre-wrap text-foreground leading-relaxed">
+                    {currentContentOverride}
+                  </article>
+                ) : id === "german" && current.type === "lesson" && current.num === 1 ? (
                   <VocabContent data={LESSON1} />
                 ) : id === "german" && current.type === "exam" && current.num === 1 ? (
                   <Exam1 onComplete={(s, t) => markComplete(s, t)} />

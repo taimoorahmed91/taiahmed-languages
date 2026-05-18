@@ -6,7 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Card } from "@/components/ui/card";
 import { ThemeToggle } from "@/components/theme-toggle";
-import { Trash2, LogOut, ArrowLeft, Pencil, X, Save } from "lucide-react";
+import { Trash2, LogOut, ArrowLeft, Pencil, X, Save, RotateCcw } from "lucide-react";
 import {
   getCustomLessons,
   saveCustomLesson,
@@ -14,6 +14,14 @@ import {
   updateCustomLesson,
   type CustomLesson,
 } from "@/lib/custom-lessons";
+import {
+  getOverrides,
+  setOverride,
+  clearOverride,
+  markDeleted,
+  unmarkDeleted,
+  keyFor,
+} from "@/lib/builtin-overrides";
 
 export const Route = createFileRoute("/management")({
   head: () => ({ meta: [{ title: "Management — Lingua" }] }),
@@ -101,8 +109,15 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
   const [editLang, setEditLang] = useState("");
   const [editTitle, setEditTitle] = useState("");
   const [editContent, setEditContent] = useState("");
+  const [overrides, setOverrides] = useState(() => ({ edits: {} as Record<string, { title?: string; content?: string }>, deleted: [] as string[] }));
+  const [bEditKey, setBEditKey] = useState<string | null>(null);
+  const [bTitle, setBTitle] = useState("");
+  const [bContent, setBContent] = useState("");
 
-  const refresh = () => setCustom(getCustomLessons());
+  const refresh = () => {
+    setCustom(getCustomLessons());
+    setOverrides(getOverrides());
+  };
   useEffect(() => { refresh(); }, []);
 
   const onCreate = (e: FormEvent) => {
@@ -140,6 +155,44 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
       content: editContent.trim(),
     });
     setEditingId(null);
+    refresh();
+  };
+
+  const startBEdit = (language: string, num: number, defaultTitle: string) => {
+    const k = keyFor(language, num);
+    const ov = overrides.edits[k];
+    setBEditKey(k);
+    setBTitle(ov?.title ?? defaultTitle);
+    setBContent(ov?.content ?? "");
+  };
+
+  const saveBEdit = (language: string, num: number, defaultTitle: string) => {
+    const titleVal = bTitle.trim();
+    const contentVal = bContent.trim();
+    if (!titleVal) return;
+    const patch: { title?: string; content?: string } = {};
+    if (titleVal !== defaultTitle) patch.title = titleVal;
+    if (contentVal) patch.content = contentVal;
+    if (Object.keys(patch).length === 0) {
+      clearOverride(language, num);
+    } else {
+      // Replace fully (don't merge stale fields)
+      clearOverride(language, num);
+      setOverride(language, num, patch);
+    }
+    setBEditKey(null);
+    refresh();
+  };
+
+  const onBDelete = (language: string, num: number) => {
+    if (!confirm("Hide this built-in lesson from the course?")) return;
+    markDeleted(language, num);
+    refresh();
+  };
+
+  const onBRestore = (language: string, num: number) => {
+    unmarkDeleted(language, num);
+    clearOverride(language, num);
     refresh();
   };
 
@@ -248,15 +301,86 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
 
         <Card className="p-6">
           <h2 className="font-semibold text-foreground mb-2">Built-in lessons</h2>
-          <p className="text-xs text-muted-foreground mb-4">Bundled with the app — not deletable.</p>
+          <p className="text-xs text-muted-foreground mb-4">
+            Edits and hides are stored as overrides — restore to bring back the original.
+          </p>
           <ul className="divide-y divide-border">
-            {BUILTIN.map((l) => (
-              <li key={`${l.language}-${l.num}`} className="py-2 flex items-center gap-3 text-sm">
-                <span className="text-xs uppercase tracking-wide text-muted-foreground w-20">{l.language}</span>
-                <span className="text-muted-foreground">Lesson {l.num}</span>
-                <span className="font-medium text-foreground">{l.title}</span>
-              </li>
-            ))}
+            {BUILTIN.map((l) => {
+              const k = keyFor(l.language, l.num);
+              const ov = overrides.edits[k];
+              const hidden = overrides.deleted.includes(k);
+              const isEditing = bEditKey === k;
+              const displayTitle = ov?.title ?? l.title;
+              return (
+                <li key={k} className="py-3">
+                  {isEditing ? (
+                    <div className="space-y-3">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                        <div className="space-y-1.5">
+                          <Label>Language</Label>
+                          <Input value={l.language} disabled />
+                        </div>
+                        <div className="space-y-1.5">
+                          <Label htmlFor={`bt-${k}`}>Title</Label>
+                          <Input id={`bt-${k}`} value={bTitle} onChange={(e) => setBTitle(e.target.value)} />
+                        </div>
+                      </div>
+                      <div className="space-y-1.5">
+                        <Label htmlFor={`bc-${k}`}>
+                          Content override <span className="text-muted-foreground">(optional — replaces the built-in lesson view with plain text)</span>
+                        </Label>
+                        <Textarea
+                          id={`bc-${k}`}
+                          rows={5}
+                          value={bContent}
+                          onChange={(e) => setBContent(e.target.value)}
+                          placeholder="Leave empty to keep the original lesson content."
+                        />
+                      </div>
+                      <div className="flex gap-2">
+                        <Button size="sm" onClick={() => saveBEdit(l.language, l.num, l.title)}>
+                          <Save className="w-4 h-4 mr-1" /> Save
+                        </Button>
+                        <Button size="sm" variant="ghost" onClick={() => setBEditKey(null)}>
+                          <X className="w-4 h-4 mr-1" /> Cancel
+                        </Button>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="flex items-start justify-between gap-4">
+                      <div className="min-w-0 flex items-center gap-3 flex-wrap">
+                        <span className="text-xs uppercase tracking-wide text-muted-foreground w-20">{l.language}</span>
+                        <span className="text-muted-foreground text-sm">Lesson {l.num}</span>
+                        <span className={`font-medium ${hidden ? "text-muted-foreground line-through" : "text-foreground"}`}>{displayTitle}</span>
+                        {ov && !hidden && (
+                          <span className="text-[10px] uppercase tracking-wide px-1.5 py-0.5 rounded bg-amber-500/15 text-amber-600 dark:text-amber-400">edited</span>
+                        )}
+                        {hidden && (
+                          <span className="text-[10px] uppercase tracking-wide px-1.5 py-0.5 rounded bg-destructive/15 text-destructive">hidden</span>
+                        )}
+                      </div>
+                      <div className="flex gap-1 shrink-0">
+                        {(ov || hidden) && (
+                          <Button variant="ghost" size="sm" onClick={() => onBRestore(l.language, l.num)}>
+                            <RotateCcw className="w-4 h-4 mr-1" /> Restore
+                          </Button>
+                        )}
+                        {!hidden && (
+                          <Button variant="ghost" size="sm" onClick={() => startBEdit(l.language, l.num, l.title)}>
+                            <Pencil className="w-4 h-4 mr-1" /> Edit
+                          </Button>
+                        )}
+                        {!hidden && (
+                          <Button variant="ghost" size="sm" onClick={() => onBDelete(l.language, l.num)} className="text-destructive hover:text-destructive">
+                            <Trash2 className="w-4 h-4 mr-1" /> Delete
+                          </Button>
+                        )}
+                      </div>
+                    </div>
+                  )}
+                </li>
+              );
+            })}
           </ul>
         </Card>
       </main>
