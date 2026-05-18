@@ -23,6 +23,8 @@ import { Exam2 } from "@/components/exam2";
 import { DeText } from "@/components/de-text";
 import { Lesson3Content } from "@/components/lesson3-content";
 import { Exam3 } from "@/components/exam3";
+import greetingsData from "@/data/greetings.json";
+import { ExamGreetings } from "@/components/exam-greetings";
 import { getCustomLessons, type CustomLesson } from "@/lib/custom-lessons";
 import { getOverrides, keyFor } from "@/lib/builtin-overrides";
 
@@ -30,6 +32,7 @@ type VocabGroup = { de: string; en: string; note: string; entries: { de: string;
 type PhonGroup = { de: string; en: string; entries: { de: string; en: string; examples: { de: string; en: string }[] }[] };
 const LESSON1: VocabGroup[] = lesson1Data as VocabGroup[];
 const LESSON2: PhonGroup[] = lesson2Data as PhonGroup[];
+const GREETINGS: VocabGroup[] = greetingsData as VocabGroup[];
 
 function VocabContent({ data }: { data: VocabGroup[] }) {
   return (
@@ -124,6 +127,12 @@ const TOPICS: Topic[] = [
     title: "Pronouns",
     lesson: { type: "lesson", num: 3, title: "Pronouns" },
     exam: { type: "exam", num: 3, title: "Pronouns check" },
+  },
+  {
+    num: 4,
+    title: "Greetings",
+    lesson: { type: "lesson", num: 4, title: "Greetings" },
+    exam: { type: "exam", num: 4, title: "Greetings check" },
   },
 ];
 
@@ -498,6 +507,10 @@ function LanguagePage() {
                   <Lesson3Content />
                 ) : id === "german" && current.type === "exam" && current.num === 3 ? (
                   <Exam3 onComplete={(s, t) => markComplete(s, t)} />
+                ) : id === "german" && current.type === "lesson" && current.num === 4 ? (
+                  <VocabContent data={GREETINGS} />
+                ) : id === "german" && current.type === "exam" && current.num === 4 ? (
+                  <ExamGreetings onComplete={(s, t) => markComplete(s, t)} />
                 ) : (
                   <div className="rounded-lg border border-dashed border-border bg-muted/30 p-10 text-center text-muted-foreground">
                     Placeholder content for{" "}
