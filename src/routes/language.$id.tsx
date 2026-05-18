@@ -27,6 +27,8 @@ import greetingsData from "@/data/greetings.json";
 import { ExamGreetings } from "@/components/exam-greetings";
 import pronounceData from "@/data/pronounce.json";
 import { ExamPronounce } from "@/components/exam-pronounce";
+import { LessonPronounsContent } from "@/components/lesson-pronouns-content";
+import { ExamPronouns } from "@/components/exam-pronouns";
 import { getCustomLessons, type CustomLesson } from "@/lib/custom-lessons";
 import { getOverrides, keyFor } from "@/lib/builtin-overrides";
 
@@ -142,6 +144,12 @@ const TOPICS: Topic[] = [
     title: "Pronounce",
     lesson: { type: "lesson", num: 5, title: "Pronounce" },
     exam: { type: "exam", num: 5, title: "Pronounce check" },
+  },
+  {
+    num: 6,
+    title: "Pronouns",
+    lesson: { type: "lesson", num: 6, title: "Pronouns" },
+    exam: { type: "exam", num: 6, title: "Pronouns check" },
   },
 ];
 
@@ -541,6 +549,10 @@ function LanguagePage() {
                   <PhoneticsContent data={PRONOUNCE} />
                 ) : id === "german" && current.type === "exam" && current.num === 5 ? (
                   <ExamPronounce onComplete={(s, t) => markComplete(s, t)} />
+                ) : id === "german" && current.type === "lesson" && current.num === 6 ? (
+                  <LessonPronounsContent />
+                ) : id === "german" && current.type === "exam" && current.num === 6 ? (
+                  <ExamPronouns onComplete={(s, t) => markComplete(s, t)} />
                 ) : (
                   <div className="rounded-lg border border-dashed border-border bg-muted/30 p-10 text-center text-muted-foreground">
                     Placeholder content for{" "}
