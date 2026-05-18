@@ -322,10 +322,9 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
             Edits and hides are stored as overrides — restore to bring back the original.
           </p>
           <ul className="divide-y divide-border">
-            {BUILTIN.map((l) => {
+            {BUILTIN.filter((l) => !overrides.deleted.includes(keyFor(l.language, l.num))).map((l) => {
               const k = keyFor(l.language, l.num);
               const ov = overrides.edits[k];
-              const deleted = overrides.deleted.includes(k);
               const hidden = overrides.hidden.includes(k);
               const isEditing = bEditKey === k;
               const displayTitle = ov?.title ?? l.title;
@@ -369,23 +368,16 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
                       <div className="min-w-0 flex items-center gap-3 flex-wrap">
                         <span className="text-xs uppercase tracking-wide text-muted-foreground w-20">{l.language}</span>
                         <span className="text-muted-foreground text-sm">Lesson {l.num}</span>
-                        <span className={`font-medium ${deleted || hidden ? "text-muted-foreground line-through" : "text-foreground"}`}>{displayTitle}</span>
-                        {ov && !deleted && !hidden && (
+                        <span className={`font-medium ${hidden ? "text-muted-foreground line-through" : "text-foreground"}`}>{displayTitle}</span>
+                        {ov && !hidden && (
                           <span className="text-[10px] uppercase tracking-wide px-1.5 py-0.5 rounded bg-amber-500/15 text-amber-600 dark:text-amber-400">edited</span>
                         )}
                         {hidden && (
                           <span className="text-[10px] uppercase tracking-wide px-1.5 py-0.5 rounded bg-muted text-muted-foreground">hidden</span>
                         )}
-                        {deleted && (
-                          <span className="text-[10px] uppercase tracking-wide px-1.5 py-0.5 rounded bg-destructive/15 text-destructive">deleted</span>
-                        )}
                       </div>
                       <div className="flex gap-1 shrink-0">
-                        {deleted ? (
-                          <Button variant="ghost" size="sm" onClick={() => onBRestore(l.language, l.num)}>
-                            <RotateCcw className="w-4 h-4 mr-1" /> Undo delete
-                          </Button>
-                        ) : hidden ? (
+                        {hidden ? (
                           <Button variant="ghost" size="sm" onClick={() => onBUnhide(l.language, l.num)}>
                             <Eye className="w-4 h-4 mr-1" /> Unhide
                           </Button>
@@ -394,21 +386,19 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
                             <RotateCcw className="w-4 h-4 mr-1" /> Reset
                           </Button>
                         ) : null}
-                        {!deleted && !hidden && (
+                        {!hidden && (
                           <Button variant="ghost" size="sm" onClick={() => onBHide(l.language, l.num)}>
                             <EyeOff className="w-4 h-4 mr-1" /> Hide
                           </Button>
                         )}
-                        {!deleted && !hidden && (
+                        {!hidden && (
                           <Button variant="ghost" size="sm" onClick={() => startBEdit(l.language, l.num, l.title)}>
                             <Pencil className="w-4 h-4 mr-1" /> Edit
                           </Button>
                         )}
-                        {!deleted && (
-                          <Button variant="ghost" size="sm" onClick={() => onBDelete(l.language, l.num)} className="text-destructive hover:text-destructive">
-                            <Trash2 className="w-4 h-4 mr-1" /> Delete
-                          </Button>
-                        )}
+                        <Button variant="ghost" size="sm" onClick={() => onBDelete(l.language, l.num)} className="text-destructive hover:text-destructive">
+                          <Trash2 className="w-4 h-4 mr-1" /> Delete
+                        </Button>
                       </div>
                     </div>
                   )}
