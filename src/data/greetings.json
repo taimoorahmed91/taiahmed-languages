@@ -1,0 +1,365 @@
+[
+  {
+    "de": "Begrüßungen / Abschied",
+    "en": "Greetings / Farewells",
+    "note": "",
+    "entries": [
+      {
+        "de": "Hallo.",
+        "en": "hello",
+        "note": ""
+      },
+      {
+        "de": "Guten Tag.",
+        "en": "good day",
+        "note": ""
+      },
+      {
+        "de": "Guten Morgen.",
+        "en": "good morning",
+        "note": ""
+      },
+      {
+        "de": "Guten Abend.",
+        "en": "good evening",
+        "note": ""
+      },
+      {
+        "de": "Gute Nacht.",
+        "en": "good night",
+        "note": ""
+      },
+      {
+        "de": "Grüß Gott.",
+        "en": "greetings",
+        "note": "\"…of God\"; Bayern, Österreich, religious"
+      },
+      {
+        "de": "Grüße Sie!",
+        "en": "greetings",
+        "note": "\" …to you\"; formal"
+      },
+      {
+        "de": "Grüß Dich!",
+        "en": "greetings",
+        "note": "\" …to you\"; informal"
+      },
+      {
+        "de": "Servus!",
+        "en": "hello or bye",
+        "note": "comes from .CH, depends on context"
+      },
+      {
+        "de": "Tschüß!",
+        "en": "bye",
+        "note": "informal"
+      },
+      {
+        "de": "Ciao!",
+        "en": "hello or bye",
+        "note": "informal, from .IT, depends on context"
+      },
+      {
+        "de": "Auf Wiedersehen!",
+        "en": "goodbye",
+        "note": "\"until we see us again\"; in person"
+      },
+      {
+        "de": "Auf Wiederhören!",
+        "en": "goodbye",
+        "note": "\"until we hear us again\"; phone"
+      },
+      {
+        "de": "Bis bald!",
+        "en": "goodbye",
+        "note": "\"until soon\"; informal, usually among friends"
+      },
+      {
+        "de": "Bis später!",
+        "en": "goodbye",
+        "note": "\"until later\"; informal, usually among friends"
+      },
+      {
+        "de": "Bis dann!",
+        "en": "goodbye",
+        "note": "\"until then\"; informal, usually among friends"
+      }
+    ]
+  },
+  {
+    "de": "jemand kennenlernen",
+    "en": "get to know someone",
+    "note": "\"someone know learn\"",
+    "entries": [
+      {
+        "de": "Wie heißt du, bitte?",
+        "en": "What's your name, please?",
+        "note": "\"How are you called?\"; this is just how DE does it."
+      },
+      {
+        "de": "Ich heiße Name.",
+        "en": "My name is name.",
+        "note": "\"I am called\" ; this is just how DE does it."
+      },
+      {
+        "de": "Was ist dein Name, bitte?",
+        "en": "What's your name, please?",
+        "note": "informal"
+      },
+      {
+        "de": "Mein Name ist Name.",
+        "en": "My name is name.",
+        "note": ""
+      },
+      {
+        "de": "Was ist Ihr Name, bitte?",
+        "en": "What's your name, please?",
+        "note": "formal"
+      },
+      {
+        "de": "Ich bin Name.",
+        "en": "I am name.",
+        "note": ""
+      },
+      {
+        "de": "Was ist dein Nachname, bitte?",
+        "en": "What's your surname, please?",
+        "note": "informal"
+      },
+      {
+        "de": "Was ist Ihr Nachname, bitte?",
+        "en": "What's your surname, please?",
+        "note": "formal"
+      },
+      {
+        "de": "Mein Nachname ist Name.",
+        "en": "My surname is name.",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "de": "Wie geht es Ihnen?",
+    "en": "How are you?",
+    "note": "formal",
+    "entries": [
+      {
+        "de": "Wie geht es dir?",
+        "en": "How are you?",
+        "note": "informal"
+      },
+      {
+        "de": "Wie geht's?",
+        "en": "How are you?",
+        "note": "informal"
+      },
+      {
+        "de": "Mir geht es gut.",
+        "en": "I feel good.",
+        "note": "\"It goes well for me.\""
+      },
+      {
+        "de": "Mir geht es sehr gut.",
+        "en": "I feel very good.",
+        "note": "\"It goes very well for me.\""
+      },
+      {
+        "de": "Mir geht es super.",
+        "en": "I feel super!",
+        "note": "\"It goes super for me!\""
+      },
+      {
+        "de": "Mir geht es wunderbar!",
+        "en": "I feel wonderful!",
+        "note": "\"It goes wonderful for me!\""
+      },
+      {
+        "de": "Mir geht es ausgezeichnet!",
+        "en": "I feel excellent!",
+        "note": "\"It goes excellent for me!\""
+      },
+      {
+        "de": "Mir geht es toll!",
+        "en": "I feel awesome!",
+        "note": "\"It goes awesome for me!\""
+      },
+      {
+        "de": "Mir geht es prima!",
+        "en": "I feel great!",
+        "note": "\"It goes great for me!\""
+      },
+      {
+        "de": "Mir geht es fantastisch!",
+        "en": "I feel fantastic!",
+        "note": "\"It goes fantastically for me!\""
+      },
+      {
+        "de": "Mir geht es schecht.",
+        "en": "I feel bad.",
+        "note": "\"It goes bad for me.\""
+      },
+      {
+        "de": "Mir geht es sehr schecht.",
+        "en": "I feel very bad.",
+        "note": "\"It goes very bad for me.\""
+      },
+      {
+        "de": "Mir geht es nicht gut.",
+        "en": "I don't feel well..",
+        "note": "\"It goes not good for me.\""
+      },
+      {
+        "de": "Ich bin müde.",
+        "en": "I'm tired.",
+        "note": ""
+      },
+      {
+        "de": "Ich bin krank.",
+        "en": "I'm sick.",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "de": "Woher kommst du, bitte?",
+    "en": "Where are you from, please?",
+    "note": "informal",
+    "entries": [
+      {
+        "de": "Woher kommen Sie, bitte?",
+        "en": "Where are you from, please?",
+        "note": "formal"
+      },
+      {
+        "de": "Ich komme aus Polen.",
+        "en": "I am from Poland.",
+        "note": "\"I come from Poland.\""
+      },
+      {
+        "de": "Wo wohnst du, bitte?",
+        "en": "Where do you live, please?",
+        "note": "informal"
+      },
+      {
+        "de": "Wo wohnen Sie, bitte?",
+        "en": "Where do you live, please?",
+        "note": "formal"
+      },
+      {
+        "de": "Ich wohne in München.",
+        "en": "I live in Munich.",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "de": "Wie alt bist du, bitte?",
+    "en": "How old are you, please?",
+    "note": "informal",
+    "entries": [
+      {
+        "de": "Wie alt sind Sie, bitte?",
+        "en": "How old are you, please?",
+        "note": "formal"
+      },
+      {
+        "de": "Ich bin vierzig Jahre alt.",
+        "en": "I am 40 years old.",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "de": "Was ist dein Beruf, bitte?",
+    "en": "What's your occupation, please?",
+    "note": "informal",
+    "entries": [
+      {
+        "de": "Was ist Ihr Beruf, bitte?",
+        "en": "What's your occupation, please?",
+        "note": "formal"
+      },
+      {
+        "de": "Ich bin ein(e) Student / Studentin.",
+        "en": "I am a student. (masc/fem)",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "de": "Bist du ledig?",
+    "en": "Are you single?",
+    "note": "informal",
+    "entries": [
+      {
+        "de": "Sind Sie ledig?",
+        "en": "Are you single?",
+        "note": "formal"
+      },
+      {
+        "de": "Ich bin (nicht) ledig.",
+        "en": "I am (not) single.",
+        "note": ""
+      },
+      {
+        "de": "Bist du verheiratet?",
+        "en": "Are you married?",
+        "note": "informal"
+      },
+      {
+        "de": "Sind Sie verheiratet?",
+        "en": "Are you married?",
+        "note": "formal"
+      },
+      {
+        "de": "Ich bin (nicht) verheiratet.",
+        "en": "I am (not) married.",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "de": "Hast du Kinder? Wie viele?",
+    "en": "Do you have children? How many?",
+    "note": "informal",
+    "entries": [
+      {
+        "de": "Haben Sie Kinder? Wie viele?",
+        "en": "Do you have children? How many?",
+        "note": "formal"
+      },
+      {
+        "de": "Ich habe keine Kinder.",
+        "en": "I have no children.",
+        "note": ""
+      },
+      {
+        "de": "Ich habe ein Kind.",
+        "en": "I have one child.",
+        "note": ""
+      },
+      {
+        "de": "Ich habe zwei Kinder.",
+        "en": "I have two children.",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "de": "Was für Hobbys hast du?",
+    "en": "What kind of hobbies do you have?",
+    "note": "informal",
+    "entries": [
+      {
+        "de": "Was für Hobbys haben Sie?",
+        "en": "What kind of hobbies do you have?",
+        "note": "formal"
+      },
+      {
+        "de": "Meine Hobbys sind Gummienterennen und Karaoke ohne den Songtext zu lesen.",
+        "en": "My hobbies are rubber duck racing and karaoke without reading the lyrics.",
+        "note": ""
+      }
+    ]
+  }
+]
