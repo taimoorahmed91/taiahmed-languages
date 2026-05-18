@@ -303,21 +303,27 @@ function LanguagePage() {
               </div>
             </div>
             {(() => {
-              const topicsDone = TOPICS.filter(
-                (_, ti) => completed.has(ti * 2) && completed.has(ti * 2 + 1),
-              ).length;
+              const visibleTopics = TOPICS.filter((t) => {
+                const k = keyFor(id, t.num);
+                return !overrides.deleted.includes(k) && !overrides.hidden.includes(k);
+              });
+              const topicsDone = visibleTopics.filter((t, _vi, arr) => {
+                const ti = TOPICS.indexOf(t);
+                return completed.has(ti * 2) && completed.has(ti * 2 + 1);
+              }).length;
+              const total = visibleTopics.length;
               return (
                 <div className="mt-4">
                   <div className="flex items-center justify-between text-xs mb-1.5">
                     <span className="text-muted-foreground">Progress</span>
                     <span className="font-medium text-foreground">
-                      {topicsDone} / {TOPICS.length} topics completed
+                      {topicsDone} / {total} topics completed
                     </span>
                   </div>
                   <div className="h-1.5 w-full rounded-full bg-muted overflow-hidden">
                     <div
                       className="h-full bg-emerald-500 transition-all"
-                      style={{ width: `${(topicsDone / TOPICS.length) * 100}%` }}
+                      style={{ width: total > 0 ? `${(topicsDone / total) * 100}%` : "0%" }}
                     />
                   </div>
                 </div>
@@ -361,7 +367,7 @@ function LanguagePage() {
                   )}
                   {!collapsed && (
                     <span className="text-xs font-semibold uppercase tracking-wide text-muted-foreground flex-1">
-                      {ovTitle}
+                      {displayNum}. {ovTitle}
                     </span>
                   )}
                   {collapsed && (
