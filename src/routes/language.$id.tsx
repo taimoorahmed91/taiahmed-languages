@@ -337,7 +337,7 @@ function LanguagePage() {
                       return (
                         <button
                           key={idx}
-                          onClick={() => setActive(idx)}
+                          onClick={() => { setActive(idx); setActiveCustomId(null); }}
                           className={`w-full flex items-center gap-3 rounded-md text-sm text-left transition-colors ${
                             collapsed ? "px-2 py-2 justify-center" : "px-3 py-2"
                           } ${
