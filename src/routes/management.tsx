@@ -39,6 +39,7 @@ const BUILTIN: { language: string; num: number; title: string }[] = [
   { language: "german", num: 2, title: "Pronunciation" },
   { language: "german", num: 3, title: "Pronouns" },
   { language: "german", num: 4, title: "Greetings" },
+  { language: "german", num: 5, title: "Pronounce" },
 ];
 
 function ManagementPage() {
