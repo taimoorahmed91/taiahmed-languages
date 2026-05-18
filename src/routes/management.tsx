@@ -323,12 +323,13 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
             Edits and hides are stored as overrides — restore to bring back the original.
           </p>
           <ul className="divide-y divide-border">
-            {BUILTIN.filter((l) => !overrides.deleted.includes(keyFor(l.language, l.num))).map((l) => {
+            {BUILTIN.filter((l) => !overrides.deleted.includes(keyFor(l.language, l.num))).map((l, idx) => {
               const k = keyFor(l.language, l.num);
               const ov = overrides.edits[k];
               const hidden = overrides.hidden.includes(k);
               const isEditing = bEditKey === k;
               const displayTitle = ov?.title ?? l.title;
+              const displayNum = idx + 1;
               return (
                 <li key={k} className="py-3">
                   {isEditing ? (
@@ -368,7 +369,7 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
                     <div className="flex items-start justify-between gap-4">
                       <div className="min-w-0 flex items-center gap-3 flex-wrap">
                         <span className="text-xs uppercase tracking-wide text-muted-foreground w-20">{l.language}</span>
-                        <span className="text-muted-foreground text-sm">Lesson {l.num}</span>
+                        <span className="text-muted-foreground text-sm">Lesson {displayNum}</span>
                         <span className={`font-medium ${hidden ? "text-muted-foreground line-through" : "text-foreground"}`}>{displayTitle}</span>
                         {ov && !hidden && (
                           <span className="text-[10px] uppercase tracking-wide px-1.5 py-0.5 rounded bg-amber-500/15 text-amber-600 dark:text-amber-400">edited</span>

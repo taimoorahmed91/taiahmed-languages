@@ -308,10 +308,15 @@ function LanguagePage() {
         )}
 
         <nav className="flex-1 overflow-y-auto p-3 space-y-2">
-          {TOPICS.map((topic, ti) => {
+          {TOPICS.map((t, ti) => ({ topic: t, ti }))
+            .filter(({ topic }) => {
+              const k = keyFor(id, topic.num);
+              return !overrides.deleted.includes(k) && !overrides.hidden.includes(k);
+            })
+            .map(({ topic, ti }, vi) => {
             const ovKey = keyFor(id, topic.num);
-            if (overrides.deleted.includes(ovKey) || overrides.hidden.includes(ovKey)) return null;
             const ovTitle = overrides.edits[ovKey]?.title ?? topic.title;
+            const displayNum = vi + 1;
             const lessonIdx = ti * 2;
             const examIdx = ti * 2 + 1;
             const topicDone =
@@ -322,7 +327,7 @@ function LanguagePage() {
                 <button
                   onClick={() => toggleTopic(ti)}
                   className="w-full flex items-center gap-2 px-2 py-2 rounded-md text-left transition-colors hover:bg-muted"
-                  title={collapsed ? `Lesson ${topic.num}: ${ovTitle}` : undefined}
+                  title={collapsed ? `Lesson ${displayNum}: ${ovTitle}` : undefined}
                 >
                   {isExpanded ? (
                     <ChevronDown className="w-4 h-4 shrink-0 text-muted-foreground" />
@@ -331,12 +336,12 @@ function LanguagePage() {
                   )}
                   {!collapsed && (
                     <span className="text-xs font-semibold uppercase tracking-wide text-muted-foreground flex-1">
-                      Lesson {topic.num}: {ovTitle}
+                      Lesson {displayNum}: {ovTitle}
                     </span>
                   )}
                   {collapsed && (
                     <span className="text-xs font-semibold text-muted-foreground flex-1 text-center">
-                      {topic.num}
+                      {displayNum}
                     </span>
                   )}
                   {topicDone && !collapsed && (
