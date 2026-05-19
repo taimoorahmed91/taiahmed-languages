@@ -16,33 +16,33 @@ export type Database = {
     Tables: {
       lesson_overrides: {
         Row: {
+          content_override: string | null
+          is_deleted: boolean
+          is_hidden: boolean
           key: string
           language: string
           lesson_num: number
-          is_deleted: boolean
-          is_hidden: boolean
           title_override: string | null
-          content_override: string | null
           updated_at: string
         }
         Insert: {
+          content_override?: string | null
+          is_deleted?: boolean
+          is_hidden?: boolean
           key: string
           language: string
           lesson_num: number
-          is_deleted?: boolean
-          is_hidden?: boolean
           title_override?: string | null
-          content_override?: string | null
           updated_at?: string
         }
         Update: {
+          content_override?: string | null
+          is_deleted?: boolean
+          is_hidden?: boolean
           key?: string
           language?: string
           lesson_num?: number
-          is_deleted?: boolean
-          is_hidden?: boolean
           title_override?: string | null
-          content_override?: string | null
           updated_at?: string
         }
         Relationships: []

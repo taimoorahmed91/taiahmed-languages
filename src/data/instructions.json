@@ -1,0 +1,22 @@
+[
+  { "formal": "Antworten Sie!", "informal": "Antworte!", "en": "Answer!" },
+  { "formal": "Beantworten Sie die Frage!", "informal": "Beantworte die Frage!", "en": "Answer the question!" },
+  { "formal": "Berichten Sie!", "informal": "Berichte!", "en": "Report!" },
+  { "formal": "Bilden Sie Sätze!", "informal": "Bilde Sätze!", "en": "Form sentences!" },
+  { "formal": "Diskutieren Sie mit Ihrer Nachbarin/Ihrem Nachbarn!", "informal": "Diskutiere mit deiner Nachbarin/deinem Nachbarn!", "en": "Discuss with your neighbor!" },
+  { "formal": "Ergänzen Sie!", "informal": "Ergänze!", "en": "Add to it!" },
+  { "formal": "Fragen Sie Ihre Nachbarin/Ihren Nachbarn!", "informal": "Frage deine Nachbarin/deinen Nachbarn!", "en": "Ask your neighbor!" },
+  { "formal": "Hören Sie das Gespräch/den Dialog!", "informal": "Höre das Gespräch/den Dialog!", "en": "Listen to the conversation/dialogue!" },
+  { "formal": "Vervollständigen Sie das Gespräch/den Dialog!", "informal": "Vervollständige das Gespräch/den Dialog!", "en": "Complete the conversation/dialogue!" },
+  { "formal": "Kombinieren Sie!", "informal": "Kombiniere!", "en": "Combine!" },
+  { "formal": "Kreuzen Sie an!", "informal": "Kreuze an!", "en": "Tick/check!" },
+  { "formal": "Lesen Sie den Text!", "informal": "Lies den Text!", "en": "Read the text!" },
+  { "formal": "Markieren Sie!", "informal": "Markiere!", "en": "Mark!" },
+  { "formal": "Ordnen Sie zu!", "informal": "Ordne zu!", "en": "Match!" },
+  { "formal": "Schreiben Sie einen Text/ein E-Mail!", "informal": "Schreibe einen Text/ein E-Mail!", "en": "Write a text/an email!" },
+  { "formal": "Spielen Sie Dialoge!", "informal": "Spiele Dialoge!", "en": "Act out dialogues!" },
+  { "formal": "Sprechen Sie nach!", "informal": "Sprich nach!", "en": "Repeat (after me)!" },
+  { "formal": "Wiederholen Sie!", "informal": "Wiederhole!", "en": "Repeat!" },
+  { "formal": "Wahr oder falsch?", "informal": "Wahr oder falsch?", "en": "True or false?" },
+  { "formal": "Mehrfachauswahl", "informal": "Mehrfachauswahl", "en": "Multiple choice" }
+]
