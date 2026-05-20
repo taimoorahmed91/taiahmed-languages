@@ -31,6 +31,8 @@ import { LessonPronounsContent } from "@/components/lesson-pronouns-content";
 import { ExamPronouns } from "@/components/exam-pronouns";
 import { LessonInstructionsContent } from "@/components/lesson-instructions-content";
 import { ExamInstructions } from "@/components/exam-instructions";
+import { LessonNumbersContent } from "@/components/lesson-numbers-content";
+import { ExamNumbers } from "@/components/exam-numbers";
 import { getCustomLessons, type CustomLesson } from "@/lib/custom-lessons";
 import { getOverrides, keyFor } from "@/lib/builtin-overrides";
 
@@ -158,6 +160,12 @@ const TOPICS: Topic[] = [
     title: "Instructions",
     lesson: { type: "lesson", num: 7, title: "Instructions" },
     exam: { type: "exam", num: 7, title: "Instructions check" },
+  },
+  {
+    num: 8,
+    title: "Numbers",
+    lesson: { type: "lesson", num: 8, title: "Numbers" },
+    exam: { type: "exam", num: 8, title: "Numbers check" },
   },
 ];
 
@@ -567,6 +575,10 @@ function LanguagePage() {
                   <LessonInstructionsContent />
                 ) : id === "german" && current.type === "exam" && current.num === 7 ? (
                   <ExamInstructions onComplete={(s, t) => markComplete(s, t)} />
+                ) : id === "german" && current.type === "lesson" && current.num === 8 ? (
+                  <LessonNumbersContent />
+                ) : id === "german" && current.type === "exam" && current.num === 8 ? (
+                  <ExamNumbers onComplete={(s, t) => markComplete(s, t)} />
                 ) : (
                   <div className="rounded-lg border border-dashed border-border bg-muted/30 p-10 text-center text-muted-foreground">
                     Placeholder content for{" "}
