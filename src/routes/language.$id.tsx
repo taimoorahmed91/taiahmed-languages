@@ -1,5 +1,5 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import {
@@ -35,6 +35,7 @@ import { LessonNumbersContent } from "@/components/lesson-numbers-content";
 import { ExamNumbers } from "@/components/exam-numbers";
 import { getCustomLessons, type CustomLesson } from "@/lib/custom-lessons";
 import { getOverrides, keyFor } from "@/lib/builtin-overrides";
+import { DownloadPDFButton } from "@/components/download-pdf-button";
 
 type VocabGroup = { de: string; en: string; note: string; entries: { de: string; en: string; note: string }[] };
 type PhonGroup = { de: string; en: string; entries: { de: string; en: string; examples: { de: string; en: string }[] }[] };
@@ -108,6 +109,54 @@ export const Route = createFileRoute("/language/$id")({
 
 function cap(s: string) {
   return s.charAt(0).toUpperCase() + s.slice(1);
+}
+
+/** Renders the lesson or exam content component for a given item. */
+function renderContent(
+  id: string,
+  current: Item,
+  contentOverride: string | undefined,
+  onComplete: (score?: number, total?: number) => void,
+): React.ReactNode {
+  if (contentOverride) {
+    return (
+      <article className="rounded-lg border border-border bg-card p-8 whitespace-pre-wrap text-foreground leading-relaxed">
+        {contentOverride}
+      </article>
+    );
+  }
+  if (id === "german") {
+    if (current.type === "lesson") {
+      switch (current.num) {
+        case 1: return <VocabContent data={LESSON1} />;
+        case 2: return <PhoneticsContent data={LESSON2} />;
+        case 3: return <Lesson3Content />;
+        case 4: return <VocabContent data={GREETINGS} />;
+        case 5: return <PhoneticsContent data={PRONOUNCE} />;
+        case 6: return <LessonPronounsContent />;
+        case 7: return <LessonInstructionsContent />;
+        case 8: return <LessonNumbersContent />;
+      }
+    } else {
+      switch (current.num) {
+        case 1: return <Exam1 onComplete={(s, t) => onComplete(s, t)} />;
+        case 2: return <Exam2 onComplete={(s, t) => onComplete(s, t)} />;
+        case 3: return <Exam3 onComplete={(s, t) => onComplete(s, t)} />;
+        case 4: return <ExamGreetings onComplete={(s, t) => onComplete(s, t)} />;
+        case 5: return <ExamPronounce onComplete={(s, t) => onComplete(s, t)} />;
+        case 6: return <ExamPronouns onComplete={(s, t) => onComplete(s, t)} />;
+        case 7: return <ExamInstructions onComplete={(s, t) => onComplete(s, t)} />;
+        case 8: return <ExamNumbers onComplete={(s, t) => onComplete(s, t)} />;
+      }
+    }
+  }
+  return (
+    <div className="rounded-lg border border-dashed border-border bg-muted/30 p-10 text-center text-muted-foreground">
+      Placeholder content for{" "}
+      <span className="text-foreground font-medium">{current.title}</span>. Real lesson material
+      will live here.
+    </div>
+  );
 }
 
 const LANG_META: Record<string, { name: string; flag: string }> = {
@@ -510,91 +559,86 @@ function LanguagePage() {
 
       <main className="flex-1 p-10">
         <div className="max-w-4xl space-y-6">
-          <p className="text-sm text-muted-foreground uppercase tracking-wide">
+          {/* ── Label row: type label + Download PDF button ──────────────── */}
+          <div className="flex items-center justify-between no-print">
+            <p className="text-sm text-muted-foreground uppercase tracking-wide">
+              {activeCustom
+                ? "Custom lesson"
+                : current.type === "lesson"
+                  ? `Lesson ${currentDisplayNum}`
+                  : `Exam ${currentDisplayNum}`}
+            </p>
+            <DownloadPDFButton
+              title={
+                activeCustom
+                  ? activeCustom.title
+                  : current.type === "lesson"
+                    ? `Lesson ${currentDisplayNum} – ${currentTitle}`
+                    : `Exam ${currentDisplayNum} – ${currentTitle}`
+              }
+            />
+          </div>
+
+          {/* Print-only label (button hidden, label shown cleanly) */}
+          <p className="print-only text-sm text-muted-foreground uppercase tracking-wide">
             {activeCustom
               ? "Custom lesson"
               : current.type === "lesson"
                 ? `Lesson ${currentDisplayNum}`
                 : `Exam ${currentDisplayNum}`}
           </p>
+
           <h1 className="text-4xl font-bold text-foreground -mt-4">
             {activeCustom ? activeCustom.title : currentTitle}
           </h1>
-          {activeCustom ? (
-            <article className="rounded-lg border border-border bg-card p-8 whitespace-pre-wrap text-foreground leading-relaxed">
-              {activeCustom.content}
-            </article>
-          ) : isCurrentExamLocked ? (
-            <div className="rounded-lg border border-border bg-muted/30 p-10 text-center space-y-3">
-              <Lock className="w-8 h-8 mx-auto text-muted-foreground" />
-              <p className="text-foreground font-medium">Exam locked</p>
-              <p className="text-sm text-muted-foreground">
-                Complete the skill first to unlock the exam.
-              </p>
-            </div>
-          ) : (
-            <>
-              <SessionTimer
-                resetKey={`${id}-${active}`}
-                label={current.type === "lesson" ? "Lesson" : "Exam"}
-                onStart={markStarted}
-                onEnd={() => markComplete()}
-                onReset={markReset}
-                showEnd={current.type !== "exam"}
-              />
-              {started.has(active) ? (
-                currentContentOverride ? (
-                  <article className="rounded-lg border border-border bg-card p-8 whitespace-pre-wrap text-foreground leading-relaxed">
-                    {currentContentOverride}
-                  </article>
-                ) : id === "german" && current.type === "lesson" && current.num === 1 ? (
-                  <VocabContent data={LESSON1} />
-                ) : id === "german" && current.type === "exam" && current.num === 1 ? (
-                  <Exam1 onComplete={(s, t) => markComplete(s, t)} />
-                ) : id === "german" && current.type === "lesson" && current.num === 2 ? (
-                  <PhoneticsContent data={LESSON2} />
-                ) : id === "german" && current.type === "exam" && current.num === 2 ? (
-                  <Exam2 onComplete={(s, t) => markComplete(s, t)} />
-                ) : id === "german" && current.type === "lesson" && current.num === 3 ? (
-                  <Lesson3Content />
-                ) : id === "german" && current.type === "exam" && current.num === 3 ? (
-                  <Exam3 onComplete={(s, t) => markComplete(s, t)} />
-                ) : id === "german" && current.type === "lesson" && current.num === 4 ? (
-                  <VocabContent data={GREETINGS} />
-                ) : id === "german" && current.type === "exam" && current.num === 4 ? (
-                  <ExamGreetings onComplete={(s, t) => markComplete(s, t)} />
-                ) : id === "german" && current.type === "lesson" && current.num === 5 ? (
-                  <PhoneticsContent data={PRONOUNCE} />
-                ) : id === "german" && current.type === "exam" && current.num === 5 ? (
-                  <ExamPronounce onComplete={(s, t) => markComplete(s, t)} />
-                ) : id === "german" && current.type === "lesson" && current.num === 6 ? (
-                  <LessonPronounsContent />
-                ) : id === "german" && current.type === "exam" && current.num === 6 ? (
-                  <ExamPronouns onComplete={(s, t) => markComplete(s, t)} />
-                ) : id === "german" && current.type === "lesson" && current.num === 7 ? (
-                  <LessonInstructionsContent />
-                ) : id === "german" && current.type === "exam" && current.num === 7 ? (
-                  <ExamInstructions onComplete={(s, t) => markComplete(s, t)} />
-                ) : id === "german" && current.type === "lesson" && current.num === 8 ? (
-                  <LessonNumbersContent />
-                ) : id === "german" && current.type === "exam" && current.num === 8 ? (
-                  <ExamNumbers onComplete={(s, t) => markComplete(s, t)} />
+
+          {/* ── Screen-only interactive content ──────────────────────────── */}
+          <div className="no-print">
+            {activeCustom ? (
+              <article className="rounded-lg border border-border bg-card p-8 whitespace-pre-wrap text-foreground leading-relaxed">
+                {activeCustom.content}
+              </article>
+            ) : isCurrentExamLocked ? (
+              <div className="rounded-lg border border-border bg-muted/30 p-10 text-center space-y-3">
+                <Lock className="w-8 h-8 mx-auto text-muted-foreground" />
+                <p className="text-foreground font-medium">Exam locked</p>
+                <p className="text-sm text-muted-foreground">
+                  Complete the skill first to unlock the exam.
+                </p>
+              </div>
+            ) : (
+              <>
+                <SessionTimer
+                  resetKey={`${id}-${active}`}
+                  label={current.type === "lesson" ? "Lesson" : "Exam"}
+                  onStart={markStarted}
+                  onEnd={() => markComplete()}
+                  onReset={markReset}
+                  showEnd={current.type !== "exam"}
+                />
+                {started.has(active) ? (
+                  renderContent(id, current, currentContentOverride, markComplete)
                 ) : (
-                  <div className="rounded-lg border border-dashed border-border bg-muted/30 p-10 text-center text-muted-foreground">
-                    Placeholder content for{" "}
-                    <span className="text-foreground font-medium">{current.title}</span>. Real
-                    lesson material will live here.
+                  <div className="rounded-lg border border-border bg-muted/30 p-10 text-center space-y-2">
+                    <p className="text-muted-foreground text-sm">
+                      Press <span className="font-semibold text-foreground">Start</span> to begin.
+                    </p>
                   </div>
-                )
-              ) : (
-                <div className="rounded-lg border border-border bg-muted/30 p-10 text-center space-y-2">
-                  <p className="text-muted-foreground text-sm">
-                    Press <span className="font-semibold text-foreground">Start</span> to begin.
-                  </p>
-                </div>
-              )}
-            </>
-          )}
+                )}
+              </>
+            )}
+          </div>
+
+          {/* ── Print-only content — always renders regardless of started/locked ── */}
+          <div className="print-only">
+            {activeCustom ? (
+              <article className="whitespace-pre-wrap text-foreground leading-relaxed">
+                {activeCustom.content}
+              </article>
+            ) : (
+              renderContent(id, current, currentContentOverride, () => {})
+            )}
+          </div>
         </div>
       </main>
     </div>

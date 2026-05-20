@@ -142,3 +142,39 @@
     color: var(--color-foreground);
   }
 }
+
+/* ── Print / PDF ─────────────────────────────────────────────────────────── */
+
+/* Hidden on screen; revealed only during print */
+.print-only {
+  display: none;
+}
+
+@media print {
+  @page {
+    margin: 1.5cm;
+    size: A4 portrait;
+  }
+
+  /* Hide the sidebar and any element marked no-print */
+  aside,
+  .no-print {
+    display: none !important;
+  }
+
+  /* Reveal print-only elements */
+  .print-only {
+    display: block !important;
+  }
+
+  /* Give main a tighter padding so content fills the page nicely */
+  main {
+    padding: 1rem !important;
+  }
+
+  /* Ensure borders and backgrounds render in print */
+  * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}
