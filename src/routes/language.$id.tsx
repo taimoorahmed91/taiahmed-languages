@@ -33,6 +33,8 @@ import { LessonInstructionsContent } from "@/components/lesson-instructions-cont
 import { ExamInstructions } from "@/components/exam-instructions";
 import { LessonNumbersContent } from "@/components/lesson-numbers-content";
 import { ExamNumbers } from "@/components/exam-numbers";
+import { LessonBeerStuffContent } from "@/components/lesson-beer-stuff-content";
+import { ExamBeerStuff } from "@/components/exam-beer-stuff";
 import { getCustomLessons, type CustomLesson } from "@/lib/custom-lessons";
 import { getOverrides, keyFor } from "@/lib/builtin-overrides";
 import { DownloadPDFButton } from "@/components/download-pdf-button";
@@ -136,6 +138,7 @@ function renderContent(
         case 6: return <LessonPronounsContent />;
         case 7: return <LessonInstructionsContent />;
         case 8: return <LessonNumbersContent />;
+        case 9: return <LessonBeerStuffContent />;
       }
     } else {
       switch (current.num) {
@@ -147,6 +150,7 @@ function renderContent(
         case 6: return <ExamPronouns onComplete={(s, t) => onComplete(s, t)} />;
         case 7: return <ExamInstructions onComplete={(s, t) => onComplete(s, t)} />;
         case 8: return <ExamNumbers onComplete={(s, t) => onComplete(s, t)} />;
+        case 9: return <ExamBeerStuff onComplete={(s, t) => onComplete(s, t)} />;
       }
     }
   }
@@ -215,6 +219,12 @@ const TOPICS: Topic[] = [
     title: "Numbers",
     lesson: { type: "lesson", num: 8, title: "Numbers" },
     exam: { type: "exam", num: 8, title: "Numbers check" },
+  },
+  {
+    num: 9,
+    title: "Beer Stuff",
+    lesson: { type: "lesson", num: 9, title: "Beer Stuff" },
+    exam: { type: "exam", num: 9, title: "Beer Stuff check" },
   },
 ];
 
