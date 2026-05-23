@@ -1,0 +1,90 @@
+{
+  "meeting": {
+    "title": "Zwei Freunde / Freundinnen treffen sich.",
+    "titleEn": "Two friends meet.",
+    "lines": [
+      { "de": "Hallo! Wie geht's dir heute?", "en": "Hello! How are you today?" },
+      { "de": "Mir geht's gut, danke! Wie geht es dir?", "en": "I'm fine, thanks! How are you?" },
+      { "de": "Mir geht's auch gut, vielen Dank! Wie geht es deiner Familie?", "en": "I'm good, too, many thanks! How is your family?" },
+      { "de": "Die Kinder sind frech, mein/meine Partner/Partnerin ist gemein, aber ansonsten ist alles super toll!", "en": "The kids are cheeky, my partner is mean, but otherwise everything's super great!" },
+      { "de": "Ja, meine auch, leider! Aber Familie ist Familie, oder?", "en": "Yes, mine, too, unfortunately! But family is family, right?" },
+      { "de": "Du sagst es! Ich muss los. Auf Wiedersehen!", "en": "You said it! I must go. Goodbye!" },
+      { "de": "Tschüß!", "en": "Bye!" }
+    ],
+    "variations": [
+      { "de": "Guten Morgen.", "en": "good morning" },
+      { "de": "Guten Abend.", "en": "good evening" },
+      { "de": "Gute Nacht.", "en": "good night" },
+      { "de": "Ciao!", "en": "hello or bye", "note": "informal, from .IT, depends on context" },
+      { "de": "Bis bald!", "en": "goodbye", "note": "\"until soon\"; informal, usually among friends" },
+      { "de": "Bis später!", "en": "goodbye", "note": "\"until later\"; informal, usually among friends" },
+      { "de": "Bis dann!", "en": "goodbye", "note": "\"until then\"; informal, usually among friends" },
+      { "de": "Bis morgen!", "en": "until tomorrow" }
+    ]
+  },
+  "firstMeeting": {
+    "title": "Zwei Personen treffen sich zum ersten Mal.",
+    "titleEn": "Two people meet for the first time.",
+    "lines": [
+      { "de": "Guten Tag! Darf ich mich vorstellen? Ich heiße dein-Name. Wie heißen Sie, bitte?", "en": "Good day! May I introduce myself? I am your-name. Who are you, please?" },
+      { "de": "Guten Tag! Ich heiße dein-Name. Es freut mich, Sie kennenzulernen.", "en": "Good day! I am your-name. I'm happy to get to know you." },
+      { "de": "Es freut mich auch Sie kennenzulernen. Sind Sie neu hier?", "en": "I'm happy to get to know you too. Are you new here?" },
+      { "de": "Nein, ich wohne hier schon seit einem Jahr. Woher kommen Sie?", "en": "No, I live here since one year. Where do you come from?" },
+      { "de": "Ich komme aus Hamburg. Und Sie?", "en": "I'm from Hamburg. And you?" },
+      { "de": "Ich komme aus Nürnberg, aber wohne schon lange hier in München. Haben Sie Kinder?", "en": "I'm from Nuremberg, but I've already lived a long time in Munich. Do you have children?" },
+      { "de": "Nein, ich weiß, wie Kinder gemacht werden und bin vorsichtig.", "en": "No, I know how children are made, and I'm careful." },
+      { "de": "Aber sind Sie verheiratet?", "en": "But are you married?" },
+      { "de": "Nein, die Ehe ist nichts für mich. Es lebe die Freiheit!", "en": "No, marriage is not for me. Long live Freedom!" },
+      { "de": "Sie sagen es!", "en": "You said it!" }
+    ],
+    "variations": [
+      { "de": "Was ist dein Beruf, bitte?", "en": "What's your occupation, please?", "note": "informal" },
+      { "de": "Was ist Ihr Beruf, bitte?", "en": "What's your occupation, please?", "note": "formal" },
+      { "de": "Bist du ledig?", "en": "Are you single?", "note": "informal" },
+      { "de": "Sind Sie ledig?", "en": "Are you single?", "note": "formal" },
+      { "de": "Was für Hobbys hast du?", "en": "What kind of hobbies do you have?", "note": "informal" },
+      { "de": "Was für Hobbys haben Sie?", "en": "What kind of hobbies do you have?", "note": "formal" },
+      { "de": "Mir geht es super.", "en": "I feel super!", "note": "\"It goes super for me!\"" },
+      { "de": "Mir geht es wunderbar!", "en": "I feel wonderful!", "note": "\"It goes wonderful for me!\"" },
+      { "de": "Mir geht es ausgezeichnet!", "en": "I feel excellent!", "note": "\"It goes excellent for me!\"" },
+      { "de": "Mir geht es toll!", "en": "I feel awesome!", "note": "\"It goes awesome for me!\"" },
+      { "de": "Mir geht es prima!", "en": "I feel great!", "note": "\"It goes great for me!\"" },
+      { "de": "Mir geht es fantastisch!", "en": "I feel fantastic!", "note": "\"It goes fantastically for me!\"" },
+      { "de": "Mir geht es schlecht.", "en": "I feel bad.", "note": "\"It goes bad for me.\"" },
+      { "de": "Mir geht es nicht gut.", "en": "I don't feel well.", "note": "\"It goes not good for me.\"" },
+      { "de": "Ich bin müde.", "en": "I'm tired." },
+      { "de": "Ich bin krank.", "en": "I'm sick." },
+      { "de": "Ich bin ein(e) Student / Studentin.", "en": "I am a student. (masc/fem)" }
+    ]
+  },
+  "orderBeer": {
+    "title": "Zwei Freunde/Freundinnen bestellen Bier.",
+    "titleEn": "Two friends order beer.",
+    "lines": [
+      { "de": "Ein Bier, bitte!", "en": "A beer, please!" },
+      { "de": "Helles, Dunkles, oder Weißbier?", "en": "Light, dark or wheat?" },
+      { "de": "Mango, bitte!", "en": "Mango, please!" },
+      { "de": "Hey, wir sind in Deutschland. Reinheitsgebot, ok?", "en": "Hey, we're in Germany. Purity Law, ok?" },
+      { "de": "Oh. Na gut, ein Dunkelweizen.", "en": "Oh. Very well, a dark wheat." },
+      { "de": "Und für Sie?", "en": "And for you?" },
+      { "de": "Für mich ein alkoholfreies Bier, bitte. Ich muß fahren und will keinen Bierschiß.", "en": "For me, an alcohol-free beer, please. I must drive and I don't want a beershit." }
+    ],
+    "variations": [
+      { "de": "alkoholfreies Bier", "en": "alcohol-free beer" },
+      { "de": "Weißbier / Weizen / Hefeweizen", "en": "wheat beer" },
+      { "de": "Berliner Weisse", "en": "Berliner Weisse" },
+      { "de": "Kölsch", "en": "Kölsch" },
+      { "de": "Dunkel", "en": "dark lager" },
+      { "de": "Bock", "en": "Bock" },
+      { "de": "Doppelbock", "en": "Doppelbock" },
+      { "de": "Maibock", "en": "Maibock" },
+      { "de": "Rauchbier", "en": "smoked beer" },
+      { "de": "Märzen", "en": "Märzen" },
+      { "de": "Altbier", "en": "Altbier" },
+      { "de": "Schwarzbier", "en": "black beer" },
+      { "de": "Gose", "en": "Gose" },
+      { "de": "Roggenbier", "en": "rye beer" },
+      { "de": "das Pils", "en": "Pilsner" }
+    ]
+  }
+}
