@@ -3,12 +3,12 @@
     "title": "Zwei Freunde / Freundinnen treffen sich.",
     "titleEn": "Two friends meet.",
     "lines": [
-      { "de": "Hallo! Wie geht's dir heute?", "en": "Hello! How are you today?" },
-      { "de": "Mir geht's gut, danke! Wie geht es dir?", "en": "I'm fine, thanks! How are you?" },
-      { "de": "Mir geht's auch gut, vielen Dank! Wie geht es deiner Familie?", "en": "I'm good, too, many thanks! How is your family?" },
+      { "de": "Hallo! Wie geht's dir heute?", "en": "Hello! How are you today?", "note": "\"How goes it to you today?\"" },
+      { "de": "Mir geht's gut, danke! Wie geht es dir?", "en": "I'm fine, thanks! How are you?", "note": "\"To me goes it good, thanks! How goes it to you?\"" },
+      { "de": "Mir geht's auch gut, vielen Dank! Wie geht es deiner Familie?", "en": "I'm good, too, many thanks! How is your family?", "note": "\"To me goes it also good, many thanks! How goes it to your family?\"" },
       { "de": "Die Kinder sind frech, mein/meine Partner/Partnerin ist gemein, aber ansonsten ist alles super toll!", "en": "The kids are cheeky, my partner is mean, but otherwise everything's super great!" },
       { "de": "Ja, meine auch, leider! Aber Familie ist Familie, oder?", "en": "Yes, mine, too, unfortunately! But family is family, right?" },
-      { "de": "Du sagst es! Ich muss los. Auf Wiedersehen!", "en": "You said it! I must go. Goodbye!" },
+      { "de": "Du sagst es! Ich muss los. Auf Wiedersehen!", "en": "You said it! I must go. Goodbye!", "note": "\"You say it! I must go (loose). Until we see us again!\"" },
       { "de": "Tschüß!", "en": "Bye!" }
     ],
     "variations": [
@@ -26,16 +26,16 @@
     "title": "Zwei Personen treffen sich zum ersten Mal.",
     "titleEn": "Two people meet for the first time.",
     "lines": [
-      { "de": "Guten Tag! Darf ich mich vorstellen? Ich heiße dein-Name. Wie heißen Sie, bitte?", "en": "Good day! May I introduce myself? I am your-name. Who are you, please?" },
-      { "de": "Guten Tag! Ich heiße dein-Name. Es freut mich, Sie kennenzulernen.", "en": "Good day! I am your-name. I'm happy to get to know you." },
-      { "de": "Es freut mich auch Sie kennenzulernen. Sind Sie neu hier?", "en": "I'm happy to get to know you too. Are you new here?" },
-      { "de": "Nein, ich wohne hier schon seit einem Jahr. Woher kommen Sie?", "en": "No, I live here since one year. Where do you come from?" },
+      { "de": "Guten Tag! Darf ich mich vorstellen? Ich heiße dein-Name. Wie heißen Sie, bitte?", "en": "Good day! May I introduce myself? I am your-name. Who are you, please?", "note": "\"May I myself introduce? I am-called your-name. How are-you-called, please?\"" },
+      { "de": "Guten Tag! Ich heiße dein-Name. Es freut mich, Sie kennenzulernen.", "en": "Good day! I am your-name. I'm happy to get to know you.", "note": "\"I am-called your-name. It pleases me, you to-know-to-learn.\"" },
+      { "de": "Es freut mich auch Sie kennenzulernen. Sind Sie neu hier?", "en": "I'm happy to get to know you too. Are you new here?", "note": "\"It pleases me also you to-know-to-learn. Are you new here?\"" },
+      { "de": "Nein, ich wohne hier schon seit einem Jahr. Woher kommen Sie?", "en": "No, I live here since one year. Where do you come from?", "note": "\"No, I live here already since one year. From-where come you?\"" },
       { "de": "Ich komme aus Hamburg. Und Sie?", "en": "I'm from Hamburg. And you?" },
-      { "de": "Ich komme aus Nürnberg, aber wohne schon lange hier in München. Haben Sie Kinder?", "en": "I'm from Nuremberg, but I've already lived a long time in Munich. Do you have children?" },
-      { "de": "Nein, ich weiß, wie Kinder gemacht werden und bin vorsichtig.", "en": "No, I know how children are made, and I'm careful." },
+      { "de": "Ich komme aus Nürnberg, aber wohne schon lange hier in München. Haben Sie Kinder?", "en": "I'm from Nuremberg, but I've already lived a long time in Munich. Do you have children?", "note": "\"I come from Nuremberg, but live already long here in Munich. Have you children?\"" },
+      { "de": "Nein, ich weiß, wie Kinder gemacht werden und bin vorsichtig.", "en": "No, I know how children are made, and I'm careful.", "note": "\"No, I know how children made become and am careful.\"" },
       { "de": "Aber sind Sie verheiratet?", "en": "But are you married?" },
-      { "de": "Nein, die Ehe ist nichts für mich. Es lebe die Freiheit!", "en": "No, marriage is not for me. Long live Freedom!" },
-      { "de": "Sie sagen es!", "en": "You said it!" }
+      { "de": "Nein, die Ehe ist nichts für mich. Es lebe die Freiheit!", "en": "No, marriage is not for me. Long live Freedom!", "note": "\"No, the marriage is nothing for me. It live the freedom!\"" },
+      { "de": "Sie sagen es!", "en": "You said it!", "note": "\"You say it!\"" }
     ],
     "variations": [
       { "de": "Was ist dein Beruf, bitte?", "en": "What's your occupation, please?", "note": "informal" },
@@ -62,7 +62,7 @@
     "titleEn": "Two friends order beer.",
     "lines": [
       { "de": "Ein Bier, bitte!", "en": "A beer, please!" },
-      { "de": "Helles, Dunkles, oder Weißbier?", "en": "Light, dark or wheat?" },
+      { "de": "Helles, Dunkles, oder Weißbier?", "en": "Light, dark or wheat?", "note": "\"Light-one, Dark-one, or White-beer?\"" },
       { "de": "Mango, bitte!", "en": "Mango, please!" },
       { "de": "Hey, wir sind in Deutschland. Reinheitsgebot, ok?", "en": "Hey, we're in Germany. Purity Law, ok?" },
       { "de": "Oh. Na gut, ein Dunkelweizen.", "en": "Oh. Very well, a dark wheat." },

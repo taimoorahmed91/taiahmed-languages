@@ -26,6 +26,8 @@ const TF: TfQ[] = [
   { de: "„Mir geht es prima!“ bedeutet, es geht mir schlecht.", statement: "“Mir geht es prima!” means I feel bad.", answer: false, explain: "It means “I feel great!”." },
   { de: "„Bis morgen!“ heißt „until tomorrow“.", statement: "“Bis morgen!” means “until tomorrow”.", answer: true },
   { de: "„Ich komme aus Hamburg.“ heißt „I'm from Hamburg.“", statement: "“Ich komme aus Hamburg.” means “I'm from Hamburg.”", answer: true },
+  { de: "„Wie geht’s dir?“ bedeutet wörtlich „How goes it to you?“", statement: "'Wie geht's dir?' literally means 'How goes it to you?'", answer: true },
+  { de: "„Es freut mich, Sie kennenzulernen.“ bedeutet wörtlich „It pleases me, you to-know-to-learn.“", statement: "'Es freut mich, Sie kennenzulernen.' literally means 'It pleases me, you to-know-to-learn.'", answer: true },
   { de: "Das Reinheitsgebot erlaubt Mango-Bier.", statement: "The Reinheitsgebot allows mango beer.", answer: false, explain: "The purity law allows only water, malt, hops (and yeast)." },
 ];
 

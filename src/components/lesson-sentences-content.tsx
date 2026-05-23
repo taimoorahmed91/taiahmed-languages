@@ -7,12 +7,14 @@ type Data = { meeting: Dialogue; firstMeeting: Dialogue; orderBeer: Dialogue };
 const D = data as Data;
 
 function Dialog({ rows }: { rows: Row[] }) {
+  const hasNotes = rows.some((r) => r.note);
   return (
     <div className="divide-y divide-border">
       {rows.map((r, i) => (
         <div key={i} className="grid grid-cols-12 gap-4 px-5 py-2.5 text-sm">
-          <div className="col-span-6 font-medium text-foreground"><DeText>{r.de}</DeText></div>
-          <div className="col-span-6 text-muted-foreground">{r.en}</div>
+          <div className={hasNotes ? "col-span-4 font-medium text-foreground" : "col-span-6 font-medium text-foreground"}><DeText>{r.de}</DeText></div>
+          <div className={hasNotes ? "col-span-4 text-muted-foreground" : "col-span-6 text-muted-foreground"}>{r.en}</div>
+          {hasNotes && <div className="col-span-4 text-xs italic text-muted-foreground/80">{r.note ?? ""}</div>}
         </div>
       ))}
     </div>
