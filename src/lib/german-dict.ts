@@ -90,6 +90,15 @@ const COMMON: Record<string, string> = {
   wahr: "true", falsch: "false / wrong", mehrfachauswahl: "multiple choice", negativ: "negative", negatives: "something negative",
   vierzig: "forty", polen: "Poland", münchen: "Munich", anna: "Anna", text: "text", sätze: "sentences", satz: "sentence", gespräch: "conversation", dialog: "dialogue", nachbarin: "female neighbor", nachbarn: "neighbor (m. / plural)", "e-mail": "email",
   bayerisch: "Bavarian", bayern: "Bavaria", österreich: "Austria",
+  hallo: "hello", ja: "yes", nein: "no", bitte: "please", danke: "thanks", dank: "thanks", heute: "today", hier: "here", neu: "new", na: "well / so", oh: "oh", hey: "hey", ok: "ok",
+  tag: "day", familie: "family", kinder: "children", partner: "partner (m.)", partnerin: "partner (f.)", ehe: "marriage", freiheit: "freedom",
+  muss: "must", muß: "must", darf: "may / am allowed to", will: "want / will", lebe: "live", fahren: "to drive", sagen: "to say", sagst: "say", kommen: "to come", lange: "long / for a long time",
+  freut: "pleases", vorstellen: "to introduce", kennenzulernen: "to get to know", weiß: "know",
+  frech: "cheeky / naughty", gemein: "mean / nasty", ansonsten: "otherwise", alles: "everything", super: "super / great", toll: "great / awesome", leider: "unfortunately",
+  vielen: "many (acc.)", seit: "since", los: "go / leave", gemacht: "made", vorsichtig: "careful", nichts: "nothing", deiner: "your (dat. f.)", mein: "my (m.)", dein: "your (m., informal)",
+  bier: "beer", helles: "light beer", dunkles: "dark beer", weißbier: "wheat beer", dunkelweizen: "dark wheat beer", alkoholfreies: "alcohol-free", bierschiß: "beer-shit (slang)",
+  reinheitsgebot: "purity law", deutschland: "Germany", hamburg: "Hamburg", nürnberg: "Nuremberg",
+  name: "name", mango: "mango",
 };
 for (const [k, v] of Object.entries(COMMON)) dict.set(k, v);
 
