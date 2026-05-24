@@ -37,6 +37,8 @@ import { LessonBeerStuffContent } from "@/components/lesson-beer-stuff-content";
 import { ExamBeerStuff } from "@/components/exam-beer-stuff";
 import { LessonSentencesContent } from "@/components/lesson-sentences-content";
 import { ExamSentences } from "@/components/exam-sentences";
+import { LessonAdjOppositesContent } from "@/components/lesson-adj-opposites-content";
+import { ExamAdjOpposites } from "@/components/exam-adj-opposites";
 import { getCustomLessons, type CustomLesson } from "@/lib/custom-lessons";
 import { getOverrides, keyFor } from "@/lib/builtin-overrides";
 import { DownloadPDFButton } from "@/components/download-pdf-button";
@@ -142,6 +144,7 @@ function renderContent(
         case 8: return <LessonNumbersContent />;
         case 9: return <LessonBeerStuffContent />;
         case 10: return <LessonSentencesContent />;
+        case 11: return <LessonAdjOppositesContent />;
       }
     } else {
       switch (current.num) {
@@ -155,6 +158,7 @@ function renderContent(
         case 8: return <ExamNumbers onComplete={(s, t) => onComplete(s, t)} />;
         case 9: return <ExamBeerStuff onComplete={(s, t) => onComplete(s, t)} />;
         case 10: return <ExamSentences onComplete={(s, t) => onComplete(s, t)} />;
+        case 11: return <ExamAdjOpposites onComplete={(s, t) => onComplete(s, t)} />;
       }
     }
   }
@@ -235,6 +239,12 @@ const TOPICS: Topic[] = [
     title: "Sentences",
     lesson: { type: "lesson", num: 10, title: "Sentences" },
     exam: { type: "exam", num: 10, title: "Sentences check" },
+  },
+  {
+    num: 11,
+    title: "Adjective Opposites",
+    lesson: { type: "lesson", num: 11, title: "Adjective Opposites" },
+    exam: { type: "exam", num: 11, title: "Adjective Opposites check" },
   },
 ];
 
