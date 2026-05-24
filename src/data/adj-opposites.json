@@ -1,0 +1,43 @@
+{
+  "title": "das Gegenteil / die Gegenteile",
+  "titleEn": "opposites",
+  "pairs": [
+    { "a": { "de": "groß", "en": "big" }, "b": { "de": "klein", "en": "small" } },
+    { "a": { "de": "schnell", "en": "fast" }, "b": { "de": "langsam", "en": "slow" } },
+    { "a": { "de": "dunkel", "en": "dark" }, "b": { "de": "hell", "en": "light" } },
+    { "a": { "de": "glücklich", "en": "happy" }, "b": { "de": "traurig", "en": "sad" } },
+    { "a": { "de": "lang", "en": "long" }, "b": { "de": "kurz", "en": "short" } },
+    { "a": { "de": "heiß", "en": "hot" }, "b": { "de": "kalt", "en": "cold" } },
+    { "a": { "de": "warm", "en": "warm" }, "b": { "de": "kühl", "en": "cool" } },
+    { "a": { "de": "richtig / korrekt", "en": "right / correct" }, "b": { "de": "falsch", "en": "wrong / incorrect" } },
+    { "a": { "de": "wahr", "en": "true" }, "b": { "de": "falsch", "en": "false" } },
+    { "a": { "de": "dick", "en": "fat" }, "b": { "de": "dünn", "en": "thin" } },
+    { "a": { "de": "alt", "en": "old" }, "b": { "de": "neu", "en": "new" } },
+    { "a": { "de": "alt", "en": "old" }, "b": { "de": "jung", "en": "young" } },
+    { "a": { "de": "reich", "en": "rich" }, "b": { "de": "arm", "en": "poor" } },
+    { "a": { "de": "intelligent / klug", "en": "intelligent / smart" }, "b": { "de": "dumm / doof", "en": "dumb / stupid" } },
+    { "a": { "de": "gut", "en": "good" }, "b": { "de": "schlecht", "en": "bad" } },
+    { "a": { "de": "schwer", "en": "heavy / hard / difficult" }, "b": { "de": "leicht", "en": "light / easy" } },
+    { "a": { "de": "teuer", "en": "expensive" }, "b": { "de": "billig", "en": "cheap" } }
+  ],
+  "examples": [
+    { "de": "Ein Blauwal ist groß, aber eine Maus ist klein.", "en": "A blue whale is big, but a mouse is small." },
+    { "de": "Ein Kampfjet ist schnell, aber ein spazierender Mensch ist langsam.", "en": "A fighter jet is fast, but a walking person is slow." },
+    { "de": "Eine Cola ist dunkel, aber ein Wasser ist hell.", "en": "A cola is dark, but a water is light." },
+    { "de": "Ein Lottogewinn macht glücklich, aber eine Rechnung macht traurig.", "en": "Winning the lottery makes one happy, but getting a bill makes one sad." },
+    { "de": "Lange Haare brauchen mehr Pflege als kurze Haare.", "en": "Long hair needs more care than short hair." },
+    { "de": "Im Sommer wird's heiß und im Winter wird's kalt.", "en": "In the summer, it gets hot and in the winter, it gets cold.", "note": "wird's = wird es" },
+    { "de": "Im Frühling wird's warm und im Herbst wird's kühl.", "en": "In the spring, it gets warm and in autumn it gets cool." },
+    { "de": "Deine erste Antwort war richtig, aber deine Zweite war falsch.", "en": "Your first answer was correct, but your second one was wrong." },
+    { "de": "Wahr/falsch Fragen in einer Prüfung sind die leichtesten.", "en": "True/false questions on a test are easiest." },
+    { "de": "Melissa McCarthy war dick und Kate Moss ist dünn.", "en": "Melissa McCarthy was fat and Kate Moss is thin." },
+    { "de": "Lieber ein neues Auto als ein Altes, natürlich nur, wenn man das Geld hat.", "en": "Rather a new car than an old one, if one of course has money." },
+    { "de": "Der Deutschlehrer ist alt, aber seine Studenten und Studentinnen sind jung.", "en": "The German teacher is old, but his students are young." },
+    { "de": "Elon Musk ist reich und der Rest von uns sind arm.", "en": "Elon Musk is rich and the rest of us are poor." },
+    { "de": "Albert war intelligent, aber Donald ist doof.", "en": "Albert was intelligent, but Donald is dumb." },
+    { "de": "Lachen ist gut, aber Stress ist schlecht.", "en": "Laughter is good, but stress is bad." },
+    { "de": "Ein voller Koffer ist schwer, aber eine Handtasche ist leicht.", "en": "A full suitcase is heavy, but a handbag is light." },
+    { "de": "Mathe in der Schule ist schwer, aber Kunst ist leicht.", "en": "In school, math is difficult, but art is easy." },
+    { "de": "Ein Auto ist teuer, aber ein Fahrrad ist billig.", "en": "A car is expensive, but a bicycle is cheap." }
+  ]
+}
