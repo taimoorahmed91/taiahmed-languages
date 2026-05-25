@@ -1,0 +1,139 @@
+{
+  "title": "Verbtheorie",
+  "titleEn": "Verb Theory",
+  "intro": [
+    { "de": "Ein Verb beschreibt eine Aktion.", "en": "A verb describes an action." },
+    { "de": "die Verbstruktur: der Verbstamm + die Endung", "en": "the verb structure: stem + ending" },
+    { "de": "lern + en = lernen (Infinitiv)", "en": "to learn (infinitive)" },
+    { "de": "Verbkonjugation hängt von zwei Dingen ab: Person und Anzahl.", "en": "Verb conjugation depends on two things: person and count." },
+    { "de": "Person: 1. / 2. / 3.  —  Anzahl: Singular / Plural", "en": "Person: 1st / 2nd / 3rd — Count: singular / plural" },
+    { "de": "zwei Arten von Verben: 1. regelmäßige (schwache) Verben, 2. unregelmäßige (starke) Verben", "en": "two kinds of verbs: 1. regular (weak), 2. irregular (strong)" }
+  ],
+  "regularEndings": [
+    { "person": "1. Person", "singular": "ich  -e", "plural": "wir  -en" },
+    { "person": "2. Person informell", "singular": "du  -st", "plural": "ihr  -t" },
+    { "person": "2. Person formell", "singular": "Sie  -en", "plural": "Sie  -en" },
+    { "person": "3. Person m/f/n", "singular": "er/sie/es  -t", "plural": "sie  -en" }
+  ],
+  "regularVerbs": [
+    { "de": "heißen (heissen)", "en": "to be called" },
+    { "de": "wohnen", "en": "to live (in a location)" },
+    { "de": "machen", "en": "to do / make" },
+    { "de": "spielen", "en": "to play" },
+    { "de": "studieren", "en": "to study" },
+    { "de": "arbeiten", "en": "to work" },
+    { "de": "fragen", "en": "to ask" },
+    { "de": "hören", "en": "to hear", "note": "Despite the o-Umlaut, still regular" },
+    { "de": "kaufen", "en": "to buy" },
+    { "de": "reisen", "en": "to travel" },
+    { "de": "suchen", "en": "to seek / look for something" }
+  ],
+  "vowelChanges": [
+    { "rule": "e → i", "example": "sprechen → du sprichst, er/sie/es spricht" },
+    { "rule": "e → ie", "example": "lesen → du liest, er/sie/es liest" },
+    { "rule": "au → äu", "example": "laufen → du läufst, er/sie/es läuft" },
+    { "rule": "a → ä", "example": "fahren → du fährst, er/sie/es fährt" },
+    { "rule": "i → ei", "example": "wissen → du weißt, er/sie/es weiß" }
+  ],
+  "irregularVerbs": [
+    { "de": "essen", "en": "to eat" },
+    { "de": "fahren", "en": "to drive" },
+    { "de": "laufen", "en": "to walk / run" },
+    { "de": "lesen", "en": "to read" },
+    { "de": "sehen", "en": "to see" },
+    { "de": "nehmen", "en": "to take" },
+    { "de": "sprechen", "en": "to speak" },
+    { "de": "treffen", "en": "to meet" },
+    { "de": "waschen", "en": "to wash" },
+    { "de": "wissen", "en": "to know" },
+    { "de": "schlafen", "en": "to sleep" }
+  ],
+  "conjugations": [
+    { "infinitive": "essen", "en": "to eat", "rows": [
+      { "person": "1. Person", "singular": "ich esse", "plural": "wir essen" },
+      { "person": "2. Person informell", "singular": "du isst", "plural": "ihr esst" },
+      { "person": "2. Person formell", "singular": "Sie essen", "plural": "Sie essen" },
+      { "person": "3. Person m/f/n", "singular": "er/sie/es isst", "plural": "sie essen" }
+    ]},
+    { "infinitive": "fahren", "en": "to drive", "rows": [
+      { "person": "1. Person", "singular": "ich fahre", "plural": "wir fahren" },
+      { "person": "2. Person informell", "singular": "du fährst", "plural": "ihr fahrt" },
+      { "person": "2. Person formell", "singular": "Sie fahren", "plural": "Sie fahren" },
+      { "person": "3. Person m/f/n", "singular": "er/sie/es fährt", "plural": "sie fahren" }
+    ]},
+    { "infinitive": "laufen", "en": "to walk / run / go", "rows": [
+      { "person": "1. Person", "singular": "ich laufe", "plural": "wir laufen" },
+      { "person": "2. Person informell", "singular": "du läufst", "plural": "ihr lauft" },
+      { "person": "2. Person formell", "singular": "Sie laufen", "plural": "Sie laufen" },
+      { "person": "3. Person m/f/n", "singular": "er/sie/es läuft", "plural": "sie laufen" }
+    ]},
+    { "infinitive": "lesen", "en": "to read", "rows": [
+      { "person": "1. Person", "singular": "ich lese", "plural": "wir lesen" },
+      { "person": "2. Person informell", "singular": "du liest", "plural": "ihr lest" },
+      { "person": "2. Person formell", "singular": "Sie lesen", "plural": "Sie lesen" },
+      { "person": "3. Person m/f/n", "singular": "er/sie/es liest", "plural": "sie lesen" }
+    ]},
+    { "infinitive": "nehmen", "en": "to take", "rows": [
+      { "person": "1. Person", "singular": "ich nehme", "plural": "wir nehmen" },
+      { "person": "2. Person informell", "singular": "du nimmst", "plural": "ihr nehmt" },
+      { "person": "2. Person formell", "singular": "Sie nehmen", "plural": "Sie nehmen" },
+      { "person": "3. Person m/f/n", "singular": "er/sie/es nimmt", "plural": "sie nehmen" }
+    ]},
+    { "infinitive": "schlafen", "en": "to sleep", "rows": [
+      { "person": "1. Person", "singular": "ich schlafe", "plural": "wir schlafen" },
+      { "person": "2. Person informell", "singular": "du schläfst", "plural": "ihr schlaft" },
+      { "person": "2. Person formell", "singular": "Sie schlafen", "plural": "Sie schlafen" },
+      { "person": "3. Person m/f/n", "singular": "er/sie/es schläft", "plural": "sie schlafen" }
+    ]},
+    { "infinitive": "sehen", "en": "to see", "rows": [
+      { "person": "1. Person", "singular": "ich sehe", "plural": "wir sehen" },
+      { "person": "2. Person informell", "singular": "du siehst", "plural": "ihr seht" },
+      { "person": "2. Person formell", "singular": "Sie sehen", "plural": "Sie sehen" },
+      { "person": "3. Person m/f/n", "singular": "er/sie/es sieht", "plural": "sie sehen" }
+    ]},
+    { "infinitive": "sprechen", "en": "to speak", "rows": [
+      { "person": "1. Person", "singular": "ich spreche", "plural": "wir sprechen" },
+      { "person": "2. Person informell", "singular": "du sprichst", "plural": "ihr sprecht" },
+      { "person": "2. Person formell", "singular": "Sie sprechen", "plural": "Sie sprechen" },
+      { "person": "3. Person m/f/n", "singular": "er/sie/es spricht", "plural": "sie sprechen" }
+    ]},
+    { "infinitive": "treffen", "en": "to meet", "rows": [
+      { "person": "1. Person", "singular": "ich treffe", "plural": "wir treffen" },
+      { "person": "2. Person informell", "singular": "du triffst", "plural": "ihr trefft" },
+      { "person": "2. Person formell", "singular": "Sie treffen", "plural": "Sie treffen" },
+      { "person": "3. Person m/f/n", "singular": "er/sie/es trifft", "plural": "sie treffen" }
+    ]},
+    { "infinitive": "waschen", "en": "to wash", "rows": [
+      { "person": "1. Person", "singular": "ich wasche", "plural": "wir waschen" },
+      { "person": "2. Person informell", "singular": "du wäschst", "plural": "ihr wascht" },
+      { "person": "2. Person formell", "singular": "Sie waschen", "plural": "Sie waschen" },
+      { "person": "3. Person m/f/n", "singular": "er/sie/es wäscht", "plural": "sie waschen" }
+    ]},
+    { "infinitive": "wissen", "en": "to know", "rows": [
+      { "person": "1. Person", "singular": "ich weiß", "plural": "wir wissen" },
+      { "person": "2. Person informell", "singular": "du weißt", "plural": "ihr wisst" },
+      { "person": "2. Person formell", "singular": "Sie wissen", "plural": "Sie wissen" },
+      { "person": "3. Person m/f/n", "singular": "er/sie/es weiß", "plural": "sie wissen" }
+    ]}
+  ],
+  "regularSentences": [
+    { "de": "Ich heiße dein-name. Wie heißt du, bitte?", "en": "My name is your-name. What's your name, please?" },
+    { "de": "Ich wohne mit drei Hunden, sieben Katzen und vier Meerschweinchen.", "en": "I live with three dogs, seven cats and four guinea pigs." },
+    { "de": "Wir machen einen Deutschkurs.", "en": "We're doing a German course." },
+    { "de": "Er spielt gern Poker, obwohl er kein Geld dafür hat.", "en": "He likes to play poker, although he doesn't have the money for it." },
+    { "de": "Die Studenten und Studentinnen studieren gern in der Freizeit.", "en": "The students like to study in their free time." },
+    { "de": "Arbeitet ihr gern bei Cisco?", "en": "Do you (all) like to work at Cisco?" }
+  ],
+  "irregularSentences": [
+    { "de": "Isst du gern Schweinshaxe? Es ist sehr bayerisch!", "en": "Do you like to eat knuckle of pork? It's very Bavarian!" },
+    { "de": "In Deutschland fährt man rechts. In England fahren sie links.", "en": "In Germany one drives on the right. In England they drive on the left." },
+    { "de": "Sie läuft gern durch den Park.", "en": "She likes to run (jog) in the park." },
+    { "de": "Menschen lesen lieber Social Media anstatt Bücher.", "en": "People prefer to read social media instead of books." },
+    { "de": "Er sieht nur, was er sehen will.", "en": "He sees only what he wants to see." },
+    { "de": "Er ist der König, also nimmt er, was er will.", "en": "He's the king, therefore he takes what he wants." },
+    { "de": "Sprichst du schon gut deutsch?", "en": "Can you already speak good German?" },
+    { "de": "Wir treffen euch später.", "en": "We'll meet you (all) later." },
+    { "de": "Wäschst du gern Geschirr?", "en": "Do you like to wash dishes?" },
+    { "de": "Er weiß alles. Das sagt er halt.", "en": "He knows everything. That's just what he says." }
+  ]
+}
