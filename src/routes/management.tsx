@@ -46,6 +46,7 @@ const BUILTIN: { language: string; num: number; title: string }[] = [
   { language: "german", num: 9, title: "Beer Stuff" },
   { language: "german", num: 10, title: "Sentences" },
   { language: "german", num: 11, title: "Adjective Opposites" },
+  { language: "german", num: 12, title: "Verb Theory" },
 ];
 
 function ManagementPage() {
