@@ -1,0 +1,59 @@
+{
+  "title": "die zwei Hilfsverben",
+  "titleEn": "The two auxiliary verbs",
+  "intro": [
+    { "de": "haben", "en": "to have" },
+    { "de": "sein", "en": "to be" }
+  ],
+  "conjugations": [
+    {
+      "infinitive": "haben",
+      "en": "to have",
+      "rows": [
+        { "person": "1st person", "singular": "ich habe", "plural": "wir haben" },
+        { "person": "2nd informal", "singular": "du hast", "plural": "ihr habt" },
+        { "person": "2nd formal", "singular": "Sie haben", "plural": "Sie haben" },
+        { "person": "3rd m/f/n", "singular": "er/sie/es hat", "plural": "sie haben" }
+      ]
+    },
+    {
+      "infinitive": "sein",
+      "en": "to be",
+      "rows": [
+        { "person": "1st person", "singular": "ich bin", "plural": "wir sind" },
+        { "person": "2nd informal", "singular": "du bist", "plural": "ihr seid" },
+        { "person": "2nd formal", "singular": "Sie sind", "plural": "Sie sind" },
+        { "person": "3rd m/f/n", "singular": "er/sie/es ist", "plural": "sie sind" }
+      ]
+    }
+  ],
+  "habenSentences": [
+    { "de": "Ich habe ein Auto.", "en": "I have a car.", "note": "Ich habe einen Wagen." },
+    { "de": "Du hast keine Zeit.", "en": "You have no time. (informal)", "note": "" },
+    { "de": "Sie haben recht.", "en": "You are correct. (formal)", "note": "(literally: You have right)" },
+    { "de": "Das stimmt.", "en": "That's right.", "note": "In a restaurant: keep the change." },
+    { "de": "Stimmt das?", "en": "Is that right?", "note": "" },
+    { "de": "Er hat nichts zu verlieren.", "en": "He has nothing to lose.", "note": "" },
+    { "de": "Sie hat ein tolles Kleid.", "en": "She has a fine dress.", "note": "" },
+    { "de": "Es hat keinen Sinn.", "en": "It's hopeless / It makes no sense.", "note": "" },
+    { "de": "Wir haben genug Bier.", "en": "We have enough beer.", "note": "" },
+    { "de": "Man hat nie genug Bier.", "en": "One never has enough beer.", "note": "" },
+    { "de": "Ihr habt gute Ideen.", "en": "You (all) have good ideas. (informal)", "note": "" },
+    { "de": "Sie haben viel Zeit.", "en": "You (all) have a lot of time. (formal)", "note": "" },
+    { "de": "Sie haben einen Termin.", "en": "They have an appointment.", "note": "" }
+  ],
+  "seinSentences": [
+    { "de": "Ich bin ein Berliner.", "en": "I am a resident of Berlin.", "note": "" },
+    { "de": "Du bist kein Berliner.", "en": "You are not a resident of Berlin. (informal)", "note": "" },
+    { "de": "Sie sind der Chef.", "en": "You are the boss. (formal)", "note": "" },
+    { "de": "Er ist betrunken.", "en": "He's drunk.", "note": "" },
+    { "de": "Sie ist seine Frau, also hat sie den Stress.", "en": "She's his wife, therefore she has the stress.", "note": "" },
+    { "de": "Es ist zum Kotzen.", "en": "It's disgusting.", "note": "literally: \"It is to vomit\"" },
+    { "de": "Wir sind auf dem Weg zur Bierhalle.", "en": "We're on our way to the beer hall.", "note": "" },
+    { "de": "Ihr seid zu nüchtern.", "en": "You (all) are too sober. (informal)", "note": "" },
+    { "de": "Sie sind hier willkommen.", "en": "You (all) are welcome here. (formal)", "note": "" },
+    { "de": "Sie sind eine komische Gruppe.", "en": "They are a strange group.", "note": "ch (hard/soft) vs sch (always soft)" },
+    { "de": "Sie sind eine komische Gruppe.", "en": "You (all) are a strange group. (formal)", "note": "" },
+    { "de": "Ihr seid eine komische Gruppe.", "en": "You (all) are a strange group. (informal)", "note": "" }
+  ]
+}
