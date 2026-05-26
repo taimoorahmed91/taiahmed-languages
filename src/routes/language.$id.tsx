@@ -41,6 +41,8 @@ import { LessonAdjOppositesContent } from "@/components/lesson-adj-opposites-con
 import { ExamAdjOpposites } from "@/components/exam-adj-opposites";
 import { LessonVerbTheoryContent } from "@/components/lesson-verb-theory-content";
 import { ExamVerbTheory } from "@/components/exam-verb-theory";
+import { LessonHelpVerbsContent } from "@/components/lesson-help-verbs-content";
+import { ExamHelpVerbs } from "@/components/exam-help-verbs";
 import { getCustomLessons, type CustomLesson } from "@/lib/custom-lessons";
 import { getOverrides, keyFor } from "@/lib/builtin-overrides";
 import { DownloadPDFButton } from "@/components/download-pdf-button";
@@ -148,6 +150,7 @@ function renderContent(
         case 10: return <LessonSentencesContent />;
         case 11: return <LessonAdjOppositesContent />;
         case 12: return <LessonVerbTheoryContent />;
+        case 13: return <LessonHelpVerbsContent />;
       }
     } else {
       switch (current.num) {
@@ -163,6 +166,7 @@ function renderContent(
         case 10: return <ExamSentences onComplete={(s, t) => onComplete(s, t)} />;
         case 11: return <ExamAdjOpposites onComplete={(s, t) => onComplete(s, t)} />;
         case 12: return <ExamVerbTheory onComplete={(s, t) => onComplete(s, t)} />;
+        case 13: return <ExamHelpVerbs onComplete={(s, t) => onComplete(s, t)} />;
       }
     }
   }
