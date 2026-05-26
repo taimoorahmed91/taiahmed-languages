@@ -260,6 +260,12 @@ const TOPICS: Topic[] = [
     lesson: { type: "lesson", num: 12, title: "Verb Theory" },
     exam: { type: "exam", num: 12, title: "Verb Theory check" },
   },
+  {
+    num: 13,
+    title: "Help Verbs",
+    lesson: { type: "lesson", num: 13, title: "Help Verbs" },
+    exam: { type: "exam", num: 13, title: "Help Verbs check" },
+  },
 ];
 
 const ITEMS: Item[] = TOPICS.flatMap((t) => [t.lesson, t.exam]);
